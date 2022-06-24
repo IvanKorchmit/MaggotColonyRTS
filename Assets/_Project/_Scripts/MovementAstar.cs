@@ -3,7 +3,6 @@ using Pathfinding;
 using Pathfinding.RVO;
 public class MovementAstar : AIPath
 {
-    
     [SerializeField] private RangeFinder range;
     [SerializeField] private RVOController rvo;
     [SerializeField] private SpriteRotation spRot;
