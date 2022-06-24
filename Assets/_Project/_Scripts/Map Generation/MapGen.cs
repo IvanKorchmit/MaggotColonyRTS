@@ -9,24 +9,35 @@ using LibNoise;
 
 public class MapGen : MonoBehaviour
 {
-    [SerializeField] int width, height;
-    [SerializeField] Tilemap walkableTilemap;
-    [SerializeField] Tilemap unwaklableTilemap;
-    [SerializeField] Tilemap treeTilemap;
+    [System.Serializable]
+    public struct NoiseTile
+    {
+        [Range(0f, 1f)]
+        public float value;
+        public TileBase tile;
+        public Tilemap tilemap;
+        public bool isGrass;
+    }
 
-    [SerializeField] TileBase[] tiles;
-    [SerializeField] TileBase[] treeTiles;
 
-    [SerializeField] float noiseScale = 10f;
+    [SerializeField] float riverThreshold;
 
+
+
+    [SerializeField] private Gradient grassColor;
+    [SerializeField] private int width, height;
+    [SerializeField] private Tilemap treeTilemap;
+    [NonReorderable]
+    [SerializeField] private NoiseTile[] tiles;
+    [SerializeField] private NoiseTile defaultTile;
+    [NonReorderable]
+    [SerializeField] private TileBase[] treeTiles;
     [Range(0f, 1f)]
-    [SerializeField] float treeChance;
+    [SerializeField] private float treeChance;
 
 
-    [SerializeField] double displacement = 4;
     [SerializeField] double frequency = 2;
-    [SerializeField] int seed = 0;
-    [SerializeField] int resolution;
+    [SerializeField] double riverFrequency = 2;
 
 
     // Start is called before the first frame update
@@ -38,40 +49,55 @@ public class MapGen : MonoBehaviour
 
     public void Generate()
     {
-        ModuleBase moduleBase = new Voronoi(frequency, displacement, seed, false);
-        Noise2D noise = new Noise2D(resolution, resolution, moduleBase);
-        
+        ModuleBase moduleBase = new Voronoi();
+        ModuleBase riverNoise = new RidgedMultifractal();
         for (int y = 0; y < height; y++)
         {
             for (int x = 0; x < width; x++)
             {
-                int tileIndex = GetTileIDFromNoise(x, y, noise);
-
-                if (tileIndex == 0)
-                    unwaklableTilemap.SetTile(new Vector3Int(x, y, 0), tiles[tileIndex]);
-                else
+                Vector3Int pos = new Vector3Int(x, y, 0);
+                NoiseTile tile = GetTileFromNoise(x,y, moduleBase, out double samp);
+                tile.tilemap.SetTile(pos, tile.tile);   
+                if (tile.isGrass)
                 {
-                    walkableTilemap.SetTile(new Vector3Int(x, y, 0), tiles[tileIndex]);
+                    tile.tilemap.SetTileFlags(pos, TileFlags.None);
+                    tile.tilemap.SetColor(pos, grassColor.Evaluate((float)samp));
                 }
+                GenerateRiver(x, y, riverNoise);
             }
         }
     }
-
-    int GetTileIDFromNoise(int x, int y, Noise2D noise)
+    private void GenerateRiver(float x, float y, ModuleBase noise)
     {
-        
+        double sample = Mathf.Abs((float)(noise.GetValue(x * riverFrequency, y * riverFrequency, 0)));
+        Debug.Log(sample);
+        if (sample <= riverThreshold)
+        {
+            Vector3Int pos = new Vector3Int((int)x, (int)y, 0);
+            defaultTile.tilemap.SetTileFlags(pos, TileFlags.None);
+            defaultTile.tilemap.SetTile(pos, defaultTile.tile);
+            defaultTile.tilemap.SetColor(pos, Color.white);
+        }
+    }
+    private NoiseTile GetTileFromNoise(float x, float y, ModuleBase noise, out double sample)
+    {
+
         // Using perlin Noise
         //float xCord = (float)x / width;
         //float yCord = (float)y / height;
         //float sample = Mathf.PerlinNoise(xCord * noiseScale, yCord * noiseScale);
 
         // Voronoi
-        float sample = noise.GetTexture().GetPixel(x, y).r;
-        
+        sample = Mathf.Abs((float)noise.GetValue(x * frequency, y * frequency, 0));
+        foreach (NoiseTile nt in tiles)
+        {
+            if (sample <= nt.value)
+            {
+                return nt;
+            }
+        }
         
         Debug.Log(sample);
-        sample *= tiles.Length;
-        
-        return Mathf.FloorToInt(sample);
+        return defaultTile;
     }
 }

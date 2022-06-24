@@ -152,23 +152,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5e84021e15789845b9224b930486c7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 50
-  height: 50
-  walkableTilemap: {fileID: 1717286559}
-  unwaklableTilemap: {fileID: 2110336462}
+  riverThreshold: 0.18
+  grassColor:
+    serializedVersion: 2
+    key0: {r: 0.33705795, g: 0.58431375, b: 0, a: 1}
+    key1: {r: 0.5849056, g: 0.4369815, b: 0, a: 1}
+    key2: {r: 0.050980393, g: 0.30350646, b: 0.0053432505, a: 0}
+    key3: {r: 1, g: 0.6698113, b: 0.36334103, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 8288
+    ctime1: 21781
+    ctime2: 32768
+    ctime3: 44333
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 4
+    m_NumAlphaKeys: 2
+  width: 100
+  height: 100
   treeTilemap: {fileID: 824645071}
   tiles:
-  - {fileID: 11400000, guid: a09f627cbafcfb445a633eccf946e864, type: 2}
-  - {fileID: 11400000, guid: e2da6dcb821b4644a905812c23f12101, type: 2}
-  - {fileID: 11400000, guid: ed094c8b04af7d7439d2234366d210f3, type: 2}
+  - value: 1
+    tile: {fileID: 11400000, guid: e2da6dcb821b4644a905812c23f12101, type: 2}
+    tilemap: {fileID: 1717286559}
+    isGrass: 1
+  defaultTile:
+    value: 0
+    tile: {fileID: 11400000, guid: a09f627cbafcfb445a633eccf946e864, type: 2}
+    tilemap: {fileID: 2110336462}
+    isGrass: 0
   treeTiles:
   - {fileID: 11400000, guid: 8fa40e1ff3a550947a5ba83944147df0, type: 2}
-  noiseScale: 97.3
-  treeChance: 0.25
-  displacement: 180.6
-  frequency: 142.72
-  seed: 0
-  resolution: 64
+  treeChance: 0.232
+  frequency: 0.03
+  riverFrequency: 0.03
 --- !u!4 &529369797
 Transform:
   m_ObjectHideFlags: 0
@@ -392,7 +423,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAACAn+s0ZhPBwgIAAPUFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VN9v2jAQ/leQnwcKlJJ2bxtQ2kltUbOpD0sfTHwhFsaO/KNAK/73nZ2EBLYhpDh333133/kun4RLU0JmlV5ozh4VA/K1Rx6M2oLVPPNG8qXXou5hT9dKJvwDGvArZ7bwIBowL9RyhfahD2t4vsm18OBJNIj87+oGvU7yXOntnK1hqow16M+pMIAuraynkWj67JE9Pvrja7Qf8DSKIzx94Ok26h3xmIG0oDvQBtng+tcB52Qm6LYE5qtv4aPRZDAaN+ThJcAl6quR0SCOYp9JCcFNXRexhzI0YEpL41AeAhinKDgU4/UXwNeF9bTd4Oc8N2Dr+jQ9zLjGvlWs5LuqmrmlZlPV+E6FC0WEqirKx7+8/WFw51pt75usw8hnsAXPNi/0kFFjOy3ummfnZTu5o2JDVwJeC5BPaqGVkwydVjsf6gyMZh2qk7JpAdmmxVW1Xhhd2bY+urwoFHEM4veJhfIkJBqMW+svAyYRKvS+5vSe2nLruUDj3T2goDBEps6AVl8kxv+k6+601Y47ro1FV90F6bOvlNMeSuahFC/W2anSEnSXoQRJhT0skcde3vCF7/9Rd9RvWJ299jWLcxESzC0+ii5cS7U73abG2TRhYJvT77djdYs/3LZcKi5tAlRnRSePKdTuEUzx7KzgstNq73jC7k6VlNXUmn+EJU7nNOuEWdhbp2FGLQ2lYK04Xqwbip0OEdIJ4Sc5qAvlojr/f/PdLyjmFcFMnpQMW3f2DNrWjrPz/SCT8YRBHK8mw+E4m0RZP49hFbPR1U10E8NVRklYIC7xLqhYVs2srxBHS7ZaJC6LZ/Qfx95C0zIsLNN0t+AfW2VaJJe5SjINIJ8rhpNY0JgEPy5szjjKTMBaLsNQks+UCJVtgKUnojQ0dr63mqYtS0pK/q6st6RkGj6CKfHm0z4uNbxz2PnkDdmRHP8AUEsDBBQAAAgIAACAn+uil2SebAAAAHgAAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNEz1jM11FFQSi9KLMgoBoqAOaWZKSB2tJKZiVlKqrl5kpmhoUmymUGybpp5apJ5ipGxhYGFeapxcqJSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAAICf6zRmE8HCAgAA9QUAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAAICf66KXZJ5sAAAAeAAAAAkAJAAAAAAAAAAAAAAADwMAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAADGAwAAAAA=
+    dataString: UEsDBBQAAAgIAAAQIew0ZhPBwgIAAPUFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VN9v2jAQ/leQnwcKlJJ2bxtQ2kltUbOpD0sfTHwhFsaO/KNAK/73nZ2EBLYhpDh333133/kun4RLU0JmlV5ozh4VA/K1Rx6M2oLVPPNG8qXXou5hT9dKJvwDGvArZ7bwIBowL9RyhfahD2t4vsm18OBJNIj87+oGvU7yXOntnK1hqow16M+pMIAuraynkWj67JE9Pvrja7Qf8DSKIzx94Ok26h3xmIG0oDvQBtng+tcB52Qm6LYE5qtv4aPRZDAaN+ThJcAl6quR0SCOYp9JCcFNXRexhzI0YEpL41AeAhinKDgU4/UXwNeF9bTd4Oc8N2Dr+jQ9zLjGvlWs5LuqmrmlZlPV+E6FC0WEqirKx7+8/WFw51pt75usw8hnsAXPNi/0kFFjOy3ummfnZTu5o2JDVwJeC5BPaqGVkwydVjsf6gyMZh2qk7JpAdmmxVW1Xhhd2bY+urwoFHEM4veJhfIkJBqMW+svAyYRKvS+5vSe2nLruUDj3T2goDBEps6AVl8kxv+k6+601Y47ro1FV90F6bOvlNMeSuahFC/W2anSEnSXoQRJhT0skcde3vCF7/9Rd9RvWJ299jWLcxESzC0+ii5cS7U73abG2TRhYJvT77djdYs/3LZcKi5tAlRnRSePKdTuEUzx7KzgstNq73jC7k6VlNXUmn+EJU7nNOuEWdhbp2FGLQ2lYK04Xqwbip0OEdIJ4Sc5qAvlojr/f/PdLyjmFcFMnpQMW3f2DNrWjrPz/SCT8YRBHK8mw+E4m0RZP49hFbPR1U10E8NVRklYIC7xLqhYVs2srxBHS7ZaJC6LZ/Qfx95C0zIsLNN0t+AfW2VaJJe5SjINIJ8rhpNY0JgEPy5szjjKTMBaLsNQks+UCJVtgKUnojQ0dr63mqYtS0pK/q6st6RkGj6CKfHm0z4uNbxz2PnkDdmRHP8AUEsDBBQAAAgIAAAQIeyil2SebAAAAHgAAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNEz1jM11FFQSi9KLMgoBoqAOaWZKSB2tJKZiVlKqrl5kpmhoUmymUGybpp5apJ5ipGxhYGFeapxcqJSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAABAh7DRmE8HCAgAA9QUAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAABAh7KKXZJ5sAAAAeAAAAAkAJAAAAAAAAAAAAAAADwMAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAADGAwAAAAA=
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -507,7 +538,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7782178, y: 1}
+    m_SensorSize: {x: 2.2035928, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
