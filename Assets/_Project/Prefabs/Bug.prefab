@@ -9,13 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1044287870891840048}
-  - component: {fileID: 1044287870891840050}
   - component: {fileID: 1044287870891840049}
   - component: {fileID: 1044287870891840014}
   - component: {fileID: 1044287870891840013}
   - component: {fileID: 1044287870891840012}
   - component: {fileID: 1044287870891840051}
   - component: {fileID: 1044287870891840015}
+  - component: {fileID: 1154049636}
   m_Layer: 0
   m_Name: Bug
   m_TagString: Untagged
@@ -40,24 +40,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1044287870891840050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1044287870891840055}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a95e3c3dfcd119040a1c8afda9054b3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: {fileID: 1044287871323859298}
-  seeker: {fileID: 1044287870891840051}
-  rvo: {fileID: 1044287870891840049}
-  speed: 2
-  spRot: {fileID: 1044287870891840013}
-  wayPointDistance: 0.67
 --- !u!114 &1044287870891840049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,7 +59,7 @@ MonoBehaviour:
   locked: 0
   lockWhenNotMoving: 1
   agentTimeHorizon: 1
-  obstacleTimeHorizon: 1
+  obstacleTimeHorizon: 3
   maxNeighbours: 50
   layer: 1
   collidesWith: -1
@@ -204,6 +186,58 @@ MonoBehaviour:
   m_DefaultActionMap: MouseAndKeyboard
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1154049636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1044287870891840055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a95e3c3dfcd119040a1c8afda9054b3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 6
+  radius: 0.5
+  height: 2
+  canMove: 1
+  maxSpeed: 3
+  gravity: {x: 0, y: 0, z: 0}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  endReachedDistance: 1
+  whenCloseToDestination: 0
+  rvoDensityBehavior:
+    enabled: 0
+    densityThreshold: 0.5
+    returnAfterBeingPushedAway: 0
+    progressAverage: 0
+    lastJobDensityResult: 0
+  centerOffsetCompatibility: NaN
+  repathRateCompatibility: NaN
+  canSearchCompability: 0
+  orientation: 1
+  enableRotation: 0
+  autoRepath:
+    mode: 2
+    interval: 0.5
+    sensitivity: 10
+    maximumInterval: 2
+    visualizeSensitivity: 0
+  targetCompatibility: {fileID: 0}
+  maxAcceleration: 6
+  rotationSpeed: 360
+  slowdownDistance: 0.24
+  pickNextWaypointDist: 2
+  alwaysDrawGizmos: 0
+  slowWhenNotFacingTarget: 1
+  preventMovingBackwards: 0
+  constrainInsideGraph: 1
+  range: {fileID: 1044287871323859298}
+  rvo: {fileID: 1044287870891840049}
+  spRot: {fileID: 1044287870891840013}
 --- !u!1 &1044287871323859303
 GameObject:
   m_ObjectHideFlags: 0

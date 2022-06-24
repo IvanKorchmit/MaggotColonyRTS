@@ -6,6 +6,6 @@ public class FollowMouse : MonoBehaviour
 {
     public void GoTo()
     {
-        GetComponent<MovementAstar>().FindPath(transform.position, Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()));    
+        GetComponent<MovementAstar>().FindPath(transform.position, Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()), true);    
     }
 }
