@@ -17,6 +17,10 @@ public class SpriteRotation : MonoBehaviour
         animator.SetInteger("Angle", angle);
         animator.SetTrigger("ChangeAngle");
     }
+    public void SetSpeed(float speed)
+    {
+        animator.SetInteger("Speed", speed);
+    }
     private void Update()
     {
         if (oldAngle != angle)
