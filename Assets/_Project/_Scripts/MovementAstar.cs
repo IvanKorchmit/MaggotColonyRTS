@@ -3,7 +3,6 @@ using Pathfinding;
 using Pathfinding.RVO;
 public class MovementAstar : MonoBehaviour
 {
-    
     [SerializeField] private RangeFinder range;
     [SerializeField] private Seeker seeker;
     [SerializeField] private RVOController rvo;
