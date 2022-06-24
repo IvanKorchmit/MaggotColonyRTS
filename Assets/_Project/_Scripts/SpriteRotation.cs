@@ -19,7 +19,7 @@ public class SpriteRotation : MonoBehaviour
     }
     public void SetSpeed(float speed)
     {
-        animator.SetInteger("Speed", speed);
+        animator.SetFloat("Speed", speed);
     }
     private void Update()
     {

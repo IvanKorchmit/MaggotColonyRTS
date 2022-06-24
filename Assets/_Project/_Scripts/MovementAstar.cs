@@ -20,7 +20,7 @@ public class MovementAstar : AIPath
     {
         moveDirection = rvo.CalculateMovementDelta(Time.deltaTime);
         SetAngle();
-        
+        spRot.SetSpeed(moveDirection.normalized.magnitude);
     }
     private void SetAngle()
     {
