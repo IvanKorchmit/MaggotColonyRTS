@@ -9,7 +9,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] float speed = 20f;
     [SerializeField] float screenBorderThickness = 10f;
     [SerializeField] Vector2 screenXLimits = Vector2.zero;
-    [SerializeField] Vector2 screenZLimits = Vector2.zero;
+    [SerializeField] Vector2 screenYLimits = Vector2.zero;
 
     Vector2 previousInput;
     Controls controls;
@@ -67,8 +67,8 @@ public class CameraController : MonoBehaviour
             pos += new Vector3(previousInput.x, previousInput.y) * speed * Time.deltaTime;
         }
 
-        pos.x = Mathf.Clamp(pos.x, screenXLimits.x, screenZLimits.y);
-        pos.y = Mathf.Clamp(pos.y, screenXLimits.x, screenZLimits.y);
+        pos.x = Mathf.Clamp(pos.x, screenXLimits.x, screenYLimits.y);
+        pos.y = Mathf.Clamp(pos.y, screenXLimits.x, screenYLimits.y);
         pos.z = playerCameraTranform.position.z;
         playerCameraTranform.position = pos;
     }

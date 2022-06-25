@@ -566,7 +566,23 @@ PlayerSettings:
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 0
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    Android: ASTAR_POOL_DEBUG
+    CloudRendering: ASTAR_POOL_DEBUG
+    EmbeddedLinux: ASTAR_POOL_DEBUG
+    GameCoreScarlett: ASTAR_POOL_DEBUG
+    GameCoreXboxOne: ASTAR_POOL_DEBUG
+    Lumin: ASTAR_POOL_DEBUG
+    Nintendo Switch: ASTAR_POOL_DEBUG
+    PS4: ASTAR_POOL_DEBUG
+    PS5: ASTAR_POOL_DEBUG
+    Stadia: ASTAR_POOL_DEBUG
+    Standalone: ASTAR_POOL_DEBUG
+    WebGL: ASTAR_POOL_DEBUG
+    Windows Store Apps: ASTAR_POOL_DEBUG
+    XboxOne: ASTAR_POOL_DEBUG
+    iPhone: ASTAR_POOL_DEBUG
+    tvOS: ASTAR_POOL_DEBUG
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
