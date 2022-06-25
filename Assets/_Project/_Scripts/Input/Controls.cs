@@ -44,15 +44,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Press"",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""OnDoubleClick"",
-                    ""type"": ""Button"",
-                    ""id"": ""1ba18557-5ae3-4b1c-a804-bbde2fb6a6c3"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -168,17 +159,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""ce8040ff-09d2-4c03-a6fd-2fa2cfa43373"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": ""MultiTap"",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""OnDoubleClick"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""da82eed3-4d03-421b-9b1a-6bc1161353c9"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
@@ -214,7 +194,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_MoveCamera = m_Player.FindAction("Move Camera", throwIfNotFound: true);
         m_Player_OnSingleClick = m_Player.FindAction("OnSingleClick", throwIfNotFound: true);
-        m_Player_OnDoubleClick = m_Player.FindAction("OnDoubleClick", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -276,14 +255,12 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_MoveCamera;
     private readonly InputAction m_Player_OnSingleClick;
-    private readonly InputAction m_Player_OnDoubleClick;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
         public PlayerActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @MoveCamera => m_Wrapper.m_Player_MoveCamera;
         public InputAction @OnSingleClick => m_Wrapper.m_Player_OnSingleClick;
-        public InputAction @OnDoubleClick => m_Wrapper.m_Player_OnDoubleClick;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -299,9 +276,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @OnSingleClick.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOnSingleClick;
                 @OnSingleClick.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOnSingleClick;
                 @OnSingleClick.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOnSingleClick;
-                @OnDoubleClick.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOnDoubleClick;
-                @OnDoubleClick.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOnDoubleClick;
-                @OnDoubleClick.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOnDoubleClick;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -312,9 +286,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @OnSingleClick.started += instance.OnOnSingleClick;
                 @OnSingleClick.performed += instance.OnOnSingleClick;
                 @OnSingleClick.canceled += instance.OnOnSingleClick;
-                @OnDoubleClick.started += instance.OnOnDoubleClick;
-                @OnDoubleClick.performed += instance.OnOnDoubleClick;
-                @OnDoubleClick.canceled += instance.OnOnDoubleClick;
             }
         }
     }
@@ -332,6 +303,5 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     {
         void OnMoveCamera(InputAction.CallbackContext context);
         void OnOnSingleClick(InputAction.CallbackContext context);
-        void OnOnDoubleClick(InputAction.CallbackContext context);
     }
 }

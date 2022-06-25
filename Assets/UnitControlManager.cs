@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 public class UnitControlManager : MonoBehaviour
 {
 
@@ -56,26 +57,34 @@ public class UnitControlManager : MonoBehaviour
             }
         }
     }
-    public void OnDoubleClick()
+    private void OnGUI()
     {
-        Vector2 mouse = mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        RaycastHit2D point = Physics2D.CircleCast(mouse, 2, new Vector2(), 1f, LayerMask.GetMask("Enemy"));
-        if (point.collider != null && point.collider.TryGetComponent(out IAttackable attackable))
+        Debug.Log(Event.current.clickCount);
+        if (Event.current.clickCount == 2)
         {
-            OrderBase.AttackOrder order = new OrderBase.AttackOrder { target = attackable };
-            foreach (var item in selected)
-            {
-                item.Action(order);
-            }
+            OnDoubleClick();
         }
-        else
-        {
-            OrderBase.MoveOrder order = new OrderBase.MoveOrder { position = mouse };
-            foreach (var item in selected)
+    }
+    private void OnDoubleClick()
+    {
+            Vector2 mouse = mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            RaycastHit2D point = Physics2D.CircleCast(mouse, 2, new Vector2(), 1f, LayerMask.GetMask("Enemy"));
+            if (point.collider != null && point.collider.TryGetComponent(out IAttackable attackable))
             {
-                item.Action(order);
+                OrderBase.AttackOrder order = new OrderBase.AttackOrder { target = attackable };
+                foreach (var item in selected)
+                {
+                    item.Action(order);
+                }
             }
-        }
+            else
+            {
+                OrderBase.MoveOrder order = new OrderBase.MoveOrder { position = mouse };
+                foreach (var item in selected)
+                {
+                    item.Action(order);
+                }
+            }
     }
     private void Update()
     {
