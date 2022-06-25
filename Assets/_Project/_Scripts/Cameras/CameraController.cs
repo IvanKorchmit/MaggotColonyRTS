@@ -36,12 +36,12 @@ public class CameraController : MonoBehaviour
 
     private void UpdateCameraPosition()
     {
-        Vector2 pos = playerCameraTranform.position;
+        Vector3 pos = playerCameraTranform.position;
 
         if (previousInput == Vector2.zero)
         {
-            Vector2 cursorMovement = Vector2.zero;
-            Vector2 cursourPosition = Mouse.current.position.ReadValue();
+            Vector3 cursorMovement = Vector2.zero;
+            Vector3 cursourPosition = Mouse.current.position.ReadValue();
 
             if (cursourPosition.y >= Screen.height - screenBorderThickness)
             {
@@ -64,12 +64,12 @@ public class CameraController : MonoBehaviour
         }
         else
         {
-            pos += new Vector2(previousInput.x, previousInput.y) * speed * Time.deltaTime;
+            pos += new Vector3(previousInput.x, previousInput.y) * speed * Time.deltaTime;
         }
 
         pos.x = Mathf.Clamp(pos.x, screenXLimits.x, screenZLimits.y);
         pos.y = Mathf.Clamp(pos.y, screenXLimits.x, screenZLimits.y);
-
+        pos.z = playerCameraTranform.position.z;
         playerCameraTranform.position = pos;
     }
 
