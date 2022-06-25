@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 using UnityEngine.InputSystem;
-public class BugAI : MonoBehaviour
+public class BugAI : MonoBehaviour, IAttackable
 {
     [SerializeField] private int wanderSpread;
     [SerializeField] private int wanderLength;

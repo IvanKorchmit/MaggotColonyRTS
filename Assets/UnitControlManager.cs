@@ -56,6 +56,27 @@ public class UnitControlManager : MonoBehaviour
             }
         }
     }
+    public void OnDoubleClick()
+    {
+        Vector2 mouse = mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        RaycastHit2D point = Physics2D.CircleCast(mouse, 2, new Vector2(), 1f, LayerMask.GetMask("Enemy"));
+        if (point.collider != null && point.collider.TryGetComponent(out IAttackable attackable))
+        {
+            OrderBase.AttackOrder order = new OrderBase.AttackOrder { target = attackable };
+            foreach (var item in selected)
+            {
+                item.Action(order);
+            }
+        }
+        else
+        {
+            OrderBase.MoveOrder order = new OrderBase.MoveOrder { position = mouse };
+            foreach (var item in selected)
+            {
+                item.Action(order);
+            }
+        }
+    }
     private void Update()
     {
         if (Mouse.current.leftButton.ReadValue() >= 0.1f) MouseHold();
@@ -64,5 +85,23 @@ public class UnitControlManager : MonoBehaviour
 public interface ISelectable
 {
     bool Select();
+    void Action(OrderBase order);
     bool Deselect();
+}
+public interface IAttackable
+{
+    Transform transform { get; }
+    GameObject gameObject { get; }
+}
+public abstract class OrderBase
+{
+    public class MoveOrder : OrderBase
+    {
+        public Vector2 position;
+    }
+
+    public class AttackOrder : OrderBase
+    {
+        public IAttackable target;
+    }
 }
