@@ -23,18 +23,27 @@ public class UnitControlManager : MonoBehaviour
         selectionBox.transform.localScale = upperRight - lowerLeft;
 
     }
-    public void OnClick()
+    public void OnClick(InputAction.CallbackContext ctx)
     {
-        lastClick = mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        selectionBox.transform.position = lastClick;
-        foreach (var item in selected)
+        if (ctx.performed)
         {
-            item.Deselect();
+            selectionBox.gameObject.SetActive(true);
+            lastClick = mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            selectionBox.transform.position = lastClick;
+            foreach (var item in selected)
+            {
+                item.Deselect();
+            }
+            selected.Clear();
         }
-        selected.Clear();
+        else if (ctx.canceled)
+        {
+            OnRelease();
+        }
     }
-    public void OnRelease()
+    private void OnRelease()
     {
+        selectionBox.gameObject.SetActive(false);
         Vector2 releasePos = mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         var units = Physics2D.OverlapAreaAll(lastClick, releasePos, LayerMask.GetMask("Player"));
         foreach (var item in units)

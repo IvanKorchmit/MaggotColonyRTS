@@ -53,24 +53,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""OnRelease"",
-                    ""type"": ""Button"",
-                    ""id"": ""0c1e6a37-03aa-4635-8fcb-24427149447e"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Press(behavior=1)"",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""MouseHold"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""72abf888-273a-49db-9e6f-9f7e837f62ad"",
-                    ""expectedControlType"": ""Axis"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -205,28 +187,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""OnSingleClick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""5efee18b-f979-442d-b815-ccfbafc0d069"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""OnRelease"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""a29a6cb4-93bc-4798-a27d-1113e1a6281a"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MouseHold"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -255,8 +215,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_Player_MoveCamera = m_Player.FindAction("Move Camera", throwIfNotFound: true);
         m_Player_OnSingleClick = m_Player.FindAction("OnSingleClick", throwIfNotFound: true);
         m_Player_OnDoubleClick = m_Player.FindAction("OnDoubleClick", throwIfNotFound: true);
-        m_Player_OnRelease = m_Player.FindAction("OnRelease", throwIfNotFound: true);
-        m_Player_MouseHold = m_Player.FindAction("MouseHold", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -319,8 +277,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_MoveCamera;
     private readonly InputAction m_Player_OnSingleClick;
     private readonly InputAction m_Player_OnDoubleClick;
-    private readonly InputAction m_Player_OnRelease;
-    private readonly InputAction m_Player_MouseHold;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -328,8 +284,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @MoveCamera => m_Wrapper.m_Player_MoveCamera;
         public InputAction @OnSingleClick => m_Wrapper.m_Player_OnSingleClick;
         public InputAction @OnDoubleClick => m_Wrapper.m_Player_OnDoubleClick;
-        public InputAction @OnRelease => m_Wrapper.m_Player_OnRelease;
-        public InputAction @MouseHold => m_Wrapper.m_Player_MouseHold;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -348,12 +302,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @OnDoubleClick.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOnDoubleClick;
                 @OnDoubleClick.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOnDoubleClick;
                 @OnDoubleClick.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOnDoubleClick;
-                @OnRelease.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOnRelease;
-                @OnRelease.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOnRelease;
-                @OnRelease.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOnRelease;
-                @MouseHold.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouseHold;
-                @MouseHold.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouseHold;
-                @MouseHold.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouseHold;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -367,12 +315,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @OnDoubleClick.started += instance.OnOnDoubleClick;
                 @OnDoubleClick.performed += instance.OnOnDoubleClick;
                 @OnDoubleClick.canceled += instance.OnOnDoubleClick;
-                @OnRelease.started += instance.OnOnRelease;
-                @OnRelease.performed += instance.OnOnRelease;
-                @OnRelease.canceled += instance.OnOnRelease;
-                @MouseHold.started += instance.OnMouseHold;
-                @MouseHold.performed += instance.OnMouseHold;
-                @MouseHold.canceled += instance.OnMouseHold;
             }
         }
     }
@@ -391,7 +333,5 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnMoveCamera(InputAction.CallbackContext context);
         void OnOnSingleClick(InputAction.CallbackContext context);
         void OnOnDoubleClick(InputAction.CallbackContext context);
-        void OnOnRelease(InputAction.CallbackContext context);
-        void OnMouseHold(InputAction.CallbackContext context);
     }
 }
