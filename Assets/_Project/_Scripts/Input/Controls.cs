@@ -35,6 +35,33 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""OnSingleClick"",
+                    ""type"": ""Button"",
+                    ""id"": ""75f9e63b-937e-44fb-9d91-8e9c5ef1e4b2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""OnDoubleClick"",
+                    ""type"": ""Button"",
+                    ""id"": ""1ba18557-5ae3-4b1c-a804-bbde2fb6a6c3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""OnRelease"",
+                    ""type"": ""Button"",
+                    ""id"": ""0c1e6a37-03aa-4635-8fcb-24427149447e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -147,6 +174,39 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""Move Camera"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ce8040ff-09d2-4c03-a6fd-2fa2cfa43373"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": ""MultiTap"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OnDoubleClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""da82eed3-4d03-421b-9b1a-6bc1161353c9"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OnSingleClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5efee18b-f979-442d-b815-ccfbafc0d069"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OnRelease"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -173,6 +233,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_MoveCamera = m_Player.FindAction("Move Camera", throwIfNotFound: true);
+        m_Player_OnSingleClick = m_Player.FindAction("OnSingleClick", throwIfNotFound: true);
+        m_Player_OnDoubleClick = m_Player.FindAction("OnDoubleClick", throwIfNotFound: true);
+        m_Player_OnRelease = m_Player.FindAction("OnRelease", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -233,11 +296,17 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_MoveCamera;
+    private readonly InputAction m_Player_OnSingleClick;
+    private readonly InputAction m_Player_OnDoubleClick;
+    private readonly InputAction m_Player_OnRelease;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
         public PlayerActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @MoveCamera => m_Wrapper.m_Player_MoveCamera;
+        public InputAction @OnSingleClick => m_Wrapper.m_Player_OnSingleClick;
+        public InputAction @OnDoubleClick => m_Wrapper.m_Player_OnDoubleClick;
+        public InputAction @OnRelease => m_Wrapper.m_Player_OnRelease;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -250,6 +319,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @MoveCamera.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveCamera;
                 @MoveCamera.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveCamera;
                 @MoveCamera.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveCamera;
+                @OnSingleClick.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOnSingleClick;
+                @OnSingleClick.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOnSingleClick;
+                @OnSingleClick.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOnSingleClick;
+                @OnDoubleClick.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOnDoubleClick;
+                @OnDoubleClick.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOnDoubleClick;
+                @OnDoubleClick.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOnDoubleClick;
+                @OnRelease.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOnRelease;
+                @OnRelease.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOnRelease;
+                @OnRelease.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOnRelease;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -257,6 +335,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @MoveCamera.started += instance.OnMoveCamera;
                 @MoveCamera.performed += instance.OnMoveCamera;
                 @MoveCamera.canceled += instance.OnMoveCamera;
+                @OnSingleClick.started += instance.OnOnSingleClick;
+                @OnSingleClick.performed += instance.OnOnSingleClick;
+                @OnSingleClick.canceled += instance.OnOnSingleClick;
+                @OnDoubleClick.started += instance.OnOnDoubleClick;
+                @OnDoubleClick.performed += instance.OnOnDoubleClick;
+                @OnDoubleClick.canceled += instance.OnOnDoubleClick;
+                @OnRelease.started += instance.OnOnRelease;
+                @OnRelease.performed += instance.OnOnRelease;
+                @OnRelease.canceled += instance.OnOnRelease;
             }
         }
     }
@@ -273,5 +360,8 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnMoveCamera(InputAction.CallbackContext context);
+        void OnOnSingleClick(InputAction.CallbackContext context);
+        void OnOnDoubleClick(InputAction.CallbackContext context);
+        void OnOnRelease(InputAction.CallbackContext context);
     }
 }
