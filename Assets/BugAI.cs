@@ -8,7 +8,7 @@ public class BugAI : MonoBehaviour, IAttackable, IDamagable
     [SerializeField] private float health = 10f;
 
     private IDamagable target;
-
+    [SerializeField] private Animator animator;
     [SerializeField] private int wanderSpread;
     [SerializeField] private int wanderLength;
     [SerializeField] private Seeker seeker;
@@ -27,7 +27,11 @@ public class BugAI : MonoBehaviour, IAttackable, IDamagable
 
     private void Range_OnSpot(Transform obj)
     {
-        target = obj.GetComponent<IDamagable>();
+        if (obj == null) return;
+        if (obj.TryGetComponent(out IDamagable d))
+        {
+            target = d;
+        }
     }
 
     private void RotateTowardsPosition(Transform transform)
@@ -35,7 +39,8 @@ public class BugAI : MonoBehaviour, IAttackable, IDamagable
         Vector2 dir = transform.position - this.transform.position;
         dir.Normalize();
         float angle = Mathf.Atan2(dir.y, dir.x);
-        spriteRotation.SetAngle((int)angle);
+        spriteRotation.SetAngle((int)angle, true);
+
     }
     private void Range_OnUnspot()
     {
@@ -47,6 +52,8 @@ public class BugAI : MonoBehaviour, IAttackable, IDamagable
         void DamageTarget()
         {
             target.Damage(3f, this);
+
+            animator.SetTrigger("Attack");
             RotateTowardsPosition(target.transform);
         }
         if (!target.IsAlive() && range.ClosestTarget != null)
@@ -61,15 +68,16 @@ public class BugAI : MonoBehaviour, IAttackable, IDamagable
         }
         float speed = movement.CurrentSpeed;
         audioSource.enabled = speed > 0;
-        if (target != null && target.IsAlive())
+        if (target != null && target.IsAlive() && (range.ClosestTarget == null || range.ClosestTarget != target.transform))
         {
             seeker.StartPath(transform.position, target.transform.position);
+            movement.canMove = true;
         }
     }
 
     private void Wander()
     {
-        if (target == null && !target.IsAlive())
+        if (target == null || !target.IsAlive())
         {
             path = RandomPath.Construct(transform.position, wanderLength);
             path.spread = wanderSpread;

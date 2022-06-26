@@ -196,6 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
+  animator: {fileID: 1044287870891840012}
   wanderSpread: 5000
   wanderLength: 70000
   seeker: {fileID: 1044287870891840051}
