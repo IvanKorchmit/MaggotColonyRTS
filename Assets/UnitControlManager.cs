@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 public class UnitControlManager : MonoBehaviour
 {
-
+    [SerializeField] private float doubleClickTime;
     private Vector2 lastClick;
     private Camera mainCam;
     private List<ISelectable> selected;
@@ -24,23 +24,17 @@ public class UnitControlManager : MonoBehaviour
         selectionBox.transform.localScale = upperRight - lowerLeft;
 
     }
-    public void OnClick(InputAction.CallbackContext ctx)
+    private void OnClick()
     {
-        if (ctx.performed)
+        OnDoubleClick();
+        selectionBox.gameObject.SetActive(true);
+        lastClick = mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        selectionBox.transform.position = lastClick;
+        foreach (var item in selected)
         {
-            selectionBox.gameObject.SetActive(true);
-            lastClick = mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-            selectionBox.transform.position = lastClick;
-            foreach (var item in selected)
-            {
-                item.Deselect();
-            }
-            selected.Clear();
+            item.Deselect();
         }
-        else if (ctx.canceled)
-        {
-            OnRelease();
-        }
+        selected.Clear();
     }
     private void OnRelease()
     {
@@ -59,10 +53,13 @@ public class UnitControlManager : MonoBehaviour
     }
     private void OnGUI()
     {
-        Debug.Log(Event.current.clickCount);
-        if (Event.current.clickCount == 2)
+        if (Event.current.isMouse && Event.current.type == EventType.MouseDown)
         {
-            OnDoubleClick();
+            OnClick();
+        }
+        else if (Event.current.isMouse && Event.current.type == EventType.MouseUp)
+        {
+            OnRelease();
         }
     }
     private void OnDoubleClick()
@@ -97,7 +94,7 @@ public interface ISelectable
     void Action(OrderBase order);
     bool Deselect();
 }
-public interface IAttackable
+public interface IAttackable : IDamagable
 {
     Transform transform { get; }
     GameObject gameObject { get; }

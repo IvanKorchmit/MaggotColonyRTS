@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 using UnityEngine.InputSystem;
-public class BugAI : MonoBehaviour, IAttackable
+public class BugAI : MonoBehaviour, IAttackable, IDamagable
 {
+    [SerializeField] private float health = 10f;
+
+
     [SerializeField] private int wanderSpread;
     [SerializeField] private int wanderLength;
     [SerializeField] private Seeker seeker;
@@ -31,5 +34,15 @@ public class BugAI : MonoBehaviour, IAttackable
         path = RandomPath.Construct(transform.position, wanderLength);
         path.spread = wanderSpread;
         seeker.StartPath(path);
+    }
+
+    public void Damage(float damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            gameObject.SetActive(false);
+            Destroy(gameObject, 1f);
+        }
     }
 }
