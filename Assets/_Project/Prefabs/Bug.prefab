@@ -204,6 +204,7 @@ MonoBehaviour:
   audioSource: {fileID: 6839533573682130245}
   movement: {fileID: 1154049636}
   spriteRotation: {fileID: 1044287870891840013}
+  corpse: {fileID: 2803703560539748098, guid: 80ab44ab84d8bd04ab319b9a20cf1017, type: 3}
 --- !u!82 &6839533573682130245
 AudioSource:
   m_ObjectHideFlags: 0

@@ -16,6 +16,7 @@ public class BugAI : MonoBehaviour, IAttackable, IDamagable
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private MovementAstar movement;
     [SerializeField] private SpriteRotation spriteRotation;
+    [SerializeField] private GameObject corpse;
     private RandomPath path;
     private void Start()
     {
@@ -53,6 +54,7 @@ public class BugAI : MonoBehaviour, IAttackable, IDamagable
         {
             target.Damage(3f, this);
 
+            animator.SetBool("IsAttacking", true);
             animator.SetTrigger("Attack");
             RotateTowardsPosition(target.transform);
         }
@@ -63,16 +65,15 @@ public class BugAI : MonoBehaviour, IAttackable, IDamagable
         }
         else if (range.ClosestTarget != null && target != null && target.IsAlive() && target.transform == range.ClosestTarget.transform)
         {
-            movement.canMove = false;
-            TimerUtils.AddTimer(2f, DamageTarget);
+            TimerUtils.AddTimer(0.75f, DamageTarget);
         }
         float speed = movement.CurrentSpeed;
         audioSource.enabled = speed > 0;
         if (target != null && target.IsAlive() && (range.ClosestTarget == null || range.ClosestTarget != target.transform))
         {
             seeker.StartPath(transform.position, target.transform.position);
-            movement.canMove = true;
         }
+            movement.canMove = !animator.GetBool("IsAttacking");
     }
 
     private void Wander()
@@ -93,7 +94,10 @@ public class BugAI : MonoBehaviour, IAttackable, IDamagable
         seeker.StartPath(transform.position, target.transform.position);
         if (health <= 0)
         {
+            var corpse = Instantiate(this.corpse, transform.position, Quaternion.identity);
+            corpse.GetComponent<Animator>().SetInteger("Angle",animator.GetInteger("Angle"));
             gameObject.SetActive(false);
+            Destroy(corpse, 10);
             Destroy(gameObject, 1f);
         }
     }

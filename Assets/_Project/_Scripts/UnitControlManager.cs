@@ -64,24 +64,25 @@ public class UnitControlManager : MonoBehaviour
     }
     private void OnDoubleClick()
     {
-            Vector2 mouse = mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-            RaycastHit2D point = Physics2D.CircleCast(mouse, 2, new Vector2(), 1f, LayerMask.GetMask("Enemy"));
-            if (point.collider != null && point.collider.TryGetComponent(out IAttackable attackable))
+        selected.RemoveAll((m) => m == null);
+        Vector2 mouse = mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        RaycastHit2D point = Physics2D.CircleCast(mouse, 2, new Vector2(), 1f, LayerMask.GetMask("Enemy"));
+        if (point.collider != null && point.collider.TryGetComponent(out IAttackable attackable))
+        {
+            OrderBase.AttackOrder order = new OrderBase.AttackOrder { target = attackable };
+            foreach (var item in selected)
             {
-                OrderBase.AttackOrder order = new OrderBase.AttackOrder { target = attackable };
-                foreach (var item in selected)
-                {
-                    item.Action(order);
-                }
+                item.Action(order);
             }
-            else
+        }
+        else
+        {
+            OrderBase.MoveOrder order = new OrderBase.MoveOrder { position = mouse };
+            foreach (var item in selected)
             {
-                OrderBase.MoveOrder order = new OrderBase.MoveOrder { position = mouse };
-                foreach (var item in selected)
-                {
-                    item.Action(order);
-                }
+                item.Action(order);
             }
+        }
     }
     private void Update()
     {
@@ -96,7 +97,6 @@ public interface ISelectable
 }
 public interface IAttackable : IDamagable
 {
-    Transform transform { get; }
     GameObject gameObject { get; }
 }
 public abstract class OrderBase
