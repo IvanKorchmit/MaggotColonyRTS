@@ -4,6 +4,7 @@ using UnityEngine;
 public class RangeFinder : MonoBehaviour
 {
     public event System.Action OnUnspot;
+    public event System.Action<Transform> OnSpot;
 
 
 
@@ -88,6 +89,7 @@ public class RangeFinder : MonoBehaviour
             newList.Add(min);
         }
         targets = newList;
+        OnSpot?.Invoke(ClosestTarget);
 
     }
 }

@@ -7,7 +7,7 @@ public class MovementAstar : AIPath
     [SerializeField] private RVOController rvo;
     [SerializeField] private SpriteRotation spRot;
     protected Vector2 moveDirection;
-    public bool CanMove { get; set; } = true;
+    public float CurrentSpeed => moveDirection.normalized.magnitude;
     private void Update()
     {
         moveDirection = rvo.CalculateMovementDelta(Time.deltaTime);

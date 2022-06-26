@@ -195,10 +195,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffbbd730e3713c2409ae188ac8123bcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 10
   wanderSpread: 5000
   wanderLength: 70000
   seeker: {fileID: 1044287870891840051}
   range: {fileID: 1044287871323859298}
+  audioSource: {fileID: 6839533573682130245}
+  movement: {fileID: 1154049636}
+  spriteRotation: {fileID: 1044287870891840013}
 --- !u!82 &6839533573682130245
 AudioSource:
   m_ObjectHideFlags: 0
