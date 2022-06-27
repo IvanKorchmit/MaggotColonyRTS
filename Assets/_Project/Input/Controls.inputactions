@@ -13,6 +13,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "OnSingleClick",
+                    "type": "Button",
+                    "id": "75f9e63b-937e-44fb-9d91-8e9c5ef1e4b2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -125,6 +134,17 @@
                     "action": "Move Camera",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "da82eed3-4d03-421b-9b1a-6bc1161353c9",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OnSingleClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

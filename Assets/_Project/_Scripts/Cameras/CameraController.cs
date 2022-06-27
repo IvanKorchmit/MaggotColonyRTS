@@ -9,7 +9,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] float speed = 20f;
     [SerializeField] float screenBorderThickness = 10f;
     [SerializeField] Vector2 screenXLimits = Vector2.zero;
-    [SerializeField] Vector2 screenZLimits = Vector2.zero;
+    [SerializeField] Vector2 screenYLimits = Vector2.zero;
 
     Vector2 previousInput;
     Controls controls;
@@ -36,12 +36,12 @@ public class CameraController : MonoBehaviour
 
     private void UpdateCameraPosition()
     {
-        Vector2 pos = playerCameraTranform.position;
+        Vector3 pos = playerCameraTranform.position;
 
         if (previousInput == Vector2.zero)
         {
-            Vector2 cursorMovement = Vector2.zero;
-            Vector2 cursourPosition = Mouse.current.position.ReadValue();
+            Vector3 cursorMovement = Vector2.zero;
+            Vector3 cursourPosition = Mouse.current.position.ReadValue();
 
             if (cursourPosition.y >= Screen.height - screenBorderThickness)
             {
@@ -64,12 +64,12 @@ public class CameraController : MonoBehaviour
         }
         else
         {
-            pos += new Vector2(previousInput.x, previousInput.y) * speed * Time.deltaTime;
+            pos += new Vector3(previousInput.x, previousInput.y) * speed * Time.deltaTime;
         }
 
-        pos.x = Mathf.Clamp(pos.x, screenXLimits.x, screenZLimits.y);
-        pos.y = Mathf.Clamp(pos.y, screenXLimits.x, screenZLimits.y);
-
+        pos.x = Mathf.Clamp(pos.x, screenXLimits.x, screenYLimits.y);
+        pos.y = Mathf.Clamp(pos.y, screenXLimits.x, screenYLimits.y);
+        pos.z = playerCameraTranform.position.z;
         playerCameraTranform.position = pos;
     }
 

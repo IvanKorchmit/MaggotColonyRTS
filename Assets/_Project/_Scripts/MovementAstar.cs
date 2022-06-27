@@ -7,14 +7,7 @@ public class MovementAstar : AIPath
     [SerializeField] private RVOController rvo;
     [SerializeField] private SpriteRotation spRot;
     protected Vector2 moveDirection;
-    public bool CanMove { get; set; } = true;
-    private void OnPathCalculated(Path p)
-    {
-        if (!p.error)
-        {
-            path = p;
-        }
-    }
+    public float CurrentSpeed => moveDirection.normalized.magnitude;
     private void Update()
     {
         moveDirection = rvo.CalculateMovementDelta(Time.deltaTime);
@@ -31,7 +24,7 @@ public class MovementAstar : AIPath
     {
         if (!grouped)
         {
-            seeker.StartPath(s, e, OnPathCalculated);
+            seeker.StartPath(s, e);
         }
         else
         {
