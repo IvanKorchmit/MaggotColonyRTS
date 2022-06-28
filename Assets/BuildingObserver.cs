@@ -15,18 +15,15 @@ public class BuildingObserver : MonoBehaviour
     {
         instance = this;
         buildingsToObserve = new List<IBuilding>();
+        InvokeRepeating(nameof(Invoke), 5, 60*4);
     }
     public static IBuilding GetBuilding()
     {
         return instance.buildingsToObserve[Random.Range(0, instance.buildingsToObserve.Count)];
     }
-    private void Update()
+    private void Invoke()
     {
-        if (AttackBase != null && !TimerUtils.ActionExists(AttackBase))
-        {
-            
-            TimerUtils.AddTimer(Random.Range(5f, 10f), AttackBase);
-        }
+        AttackBase?.Invoke();
     }
 }
 

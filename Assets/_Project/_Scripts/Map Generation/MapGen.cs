@@ -6,7 +6,8 @@ using LibNoise.Generator;
 using LibNoise.Operator;
 using LibNoise;
 using Pathfinding;
-
+using System.Linq;
+using Cinemachine;
 
 public class MapGen : MonoBehaviour
 {
@@ -46,6 +47,8 @@ public class MapGen : MonoBehaviour
     [SerializeField] double riverFrequency = 2;
 
 
+    [SerializeField] private Transform vcam;
+
 
 
 
@@ -76,6 +79,7 @@ public class MapGen : MonoBehaviour
         Vector3Int origin = Vector3Int.RoundToInt(tilemap.cellBounds.center);
         cc.transform.position = grid.CellToWorld(origin);
         BoundsInt bounds = new (origin, new Vector3Int(24, 24, 1));
+        // Clearing area
         foreach (var item in tilemapToClear)
         {
             foreach (var pos in bounds.allPositionsWithin)
@@ -83,12 +87,46 @@ public class MapGen : MonoBehaviour
                 item.SetTile(pos, tileToReplace);
             }
         }
-        Camera.main.transform.position = cc.transform.position;
-        origin.x += Random.Range(-tilemap.cellBounds.min.x, -tilemap.cellBounds.max.x);
-        origin.y += Random.Range(-tilemap.cellBounds.min.y, -tilemap.cellBounds.max.y);
+        float z = vcam.position.z;
+        vcam.transform.position = cc.transform.position;
+
+        vcam.transform.position = new Vector3(vcam.transform.position.x, vcam.transform.position.y, z);
+
+
+
+        origin = new Vector3Int();
+        while (Vector2.Distance(new Vector2(origin.x,origin.y), cc.transform.position) > width / 4)
+        {
+            foreach (var item in tilemap.cellBounds.allPositionsWithin)
+            {
+                if (Random.value < 0.9f)
+                {
+                    continue;
+                }
+                else
+                {
+                    if (Vector2.Distance(new Vector2(item.x,item.y), cc.transform.position) > width / 4)
+                    {
+                        if (Random.value < 0.9f)
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
+        }
         var egg = Instantiate(centralEgg, new Vector3(), Quaternion.identity);
-        egg.transform.position = origin;
+        egg.transform.position = grid.CellToWorld(origin);    
         bounds = new(origin, new Vector3Int(24, 24, 1));
+
+
+
+
+        // Clearing area for the enemy
         foreach (var item in tilemapToClear)
         {
             foreach (var pos in bounds.allPositionsWithin)

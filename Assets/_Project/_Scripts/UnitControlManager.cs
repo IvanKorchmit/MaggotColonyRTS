@@ -67,7 +67,7 @@ public class UnitControlManager : MonoBehaviour
     }
     private void OnDoubleClick()
     {
-        selected.RemoveAll((m) => m == null);
+        selected.RemoveAll((m) => m == null || !m.IsAlive());
         Vector2 mouse = mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         RaycastHit2D point = Physics2D.CircleCast(mouse, 2, new Vector2(), 1f, LayerMask.GetMask("Enemy"));
         if (point.collider != null && point.collider.TryGetComponent(out IAttackable attackable))
