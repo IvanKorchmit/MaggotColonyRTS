@@ -43,24 +43,30 @@ public class MapGen : MonoBehaviour
     [SerializeField] private Tilemap[] tilemapToClear;
     [SerializeField] private TileBase tileToReplace;
 
-    [SerializeField] double frequency = 2;
-    [SerializeField] double riverFrequency = 2;
+    [SerializeField] private double frequency = 2;
+    [SerializeField] private double riverFrequency = 2;
+
+
+    [SerializeField] private Seeker seeker;
 
 
     [SerializeField] private Transform vcam;
 
-
+    private float seed;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        seed = Random.Range(0, 10000f);
+
+
+
         var gg = AstarPath.active.graphs[0] as GridGraph;
         gg.SetDimensions(width, height, gg.nodeSize);
         gg.center = new Vector3(0,(float)height/4);  
         Generate();
         PlaceCommandCenter();
-        Physics2D.SyncTransforms();
         TimerUtils.AddTimer(0.1f,()=>AstarPath.active.Scan(gg));
     }
     private void GenerateTree(float x, float y, ModuleBase noise)
@@ -95,33 +101,11 @@ public class MapGen : MonoBehaviour
 
 
         origin = new Vector3Int();
-        while (Vector2.Distance(new Vector2(origin.x,origin.y), cc.transform.position) > width / 4)
-        {
-            foreach (var item in tilemap.cellBounds.allPositionsWithin)
-            {
-                if (Random.value < 0.9f)
-                {
-                    continue;
-                }
-                else
-                {
-                    if (Vector2.Distance(new Vector2(item.x,item.y), cc.transform.position) > width / 4)
-                    {
-                        if (Random.value < 0.9f)
-                        {
-                            continue;
-                        }
-                        else
-                        {
-                            break;
-                        }
-                    }
-                }
-            }
-        }
+        origin.x += Random.Range(0, width);
+        origin.y += Random.Range(0, height);
         var egg = Instantiate(centralEgg, new Vector3(), Quaternion.identity);
-        egg.transform.position = grid.CellToWorld(origin);    
-        bounds = new(origin, new Vector3Int(24, 24, 1));
+        egg.transform.position = origin;
+        bounds = new(Vector3Int.RoundToInt(egg.transform.position), new Vector3Int(24, 24, 1));
 
 
 
@@ -137,20 +121,32 @@ public class MapGen : MonoBehaviour
         ClearPath(egg, cc);
     }
 
-    private void ClearPath(GameObject egg, GameObject cc)
+    void OnPathDone(Path p)
     {
-        ABPath path = ABPath.Construct(egg.transform.position, cc.transform.position);
+        if (p.error)
+        {
+            Debug.Log(p.errorLog);
+            return;
+        }
         foreach (var item in tilemapToClear)
         {
-            foreach (var gn in path.path)
+            Debug.Log(item);
+            Debug.Log(p.vectorPath.Count);
+            foreach (var gn in p.vectorPath)
             {
-                BoundsInt bounds = new(tilemap.origin + Vector3Int.RoundToInt((Vector3)gn.position), new Vector3Int(6, 6, 1));
+                Debug.Log(gn);
+                BoundsInt bounds = new(tilemap.origin + tilemap.WorldToCell(gn), new Vector3Int(6, 6, 1));
                 foreach (var pos in bounds.allPositionsWithin)
                 {
                     item.SetTile(pos, tileToReplace);
                 }
             }
         }
+    }
+    private void ClearPath(GameObject egg, GameObject cc)
+    {
+        ABPath path = ABPath.Construct(egg.transform.position, cc.transform.position);
+        seeker.StartPath(path, OnPathDone);
     }
 
     public void Generate()
@@ -180,7 +176,7 @@ public class MapGen : MonoBehaviour
     }
     private void GenerateRiver(float x, float y, ModuleBase noise)
     {
-        double sample = Mathf.Abs((float)(noise.GetValue(x * riverFrequency, y * riverFrequency, 0)));
+        double sample = Mathf.Abs((float)(noise.GetValue((x + seed) * riverFrequency, (y + seed) * riverFrequency, 0)));
         if (sample <= riverThreshold)
         {
             Vector3Int pos = new Vector3Int((int)x, (int)y, 0);
@@ -191,13 +187,7 @@ public class MapGen : MonoBehaviour
     }
     private NoiseTile GetTileFromNoise(float x, float y, ModuleBase noise, NoiseTile[] tiles, double frequency, out double sample)
     {
-        // Using perlin Noise
-        //float xCord = (float)x / width;
-        //float yCord = (float)y / height;
-        //float sample = Mathf.PerlinNoise(xCord * noiseScale, yCord * noiseScale);
-
-        // Voronoi
-        sample = Mathf.Abs((float)noise.GetValue(x * frequency, y * frequency, 0));
+        sample = Mathf.Abs((float)noise.GetValue((x + seed) * frequency, (y + seed) * frequency, 0));
         foreach (NoiseTile nt in tiles)
         {
             if (sample <= nt.value)

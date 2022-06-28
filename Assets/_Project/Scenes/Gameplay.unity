@@ -405,11 +405,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!4 &871503449 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4386574285410547784, guid: d15c585f6c1f4c543a508956c7a98474, type: 3}
-  m_PrefabInstance: {fileID: 2007602383}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1178243214
 GameObject:
   m_ObjectHideFlags: 0
@@ -1093,10 +1088,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2119357814}
     - target: {fileID: 529369796, guid: d15c585f6c1f4c543a508956c7a98474, type: 3}
-      propertyPath: vcam
-      value: 
-      objectReference: {fileID: 871503449}
-    - target: {fileID: 529369796, guid: d15c585f6c1f4c543a508956c7a98474, type: 3}
       propertyPath: tilemap
       value: 
       objectReference: {fileID: 1717286559}
@@ -1104,10 +1095,6 @@ PrefabInstance:
       propertyPath: treeTilemap
       value: 
       objectReference: {fileID: 824645071}
-    - target: {fileID: 529369796, guid: d15c585f6c1f4c543a508956c7a98474, type: 3}
-      propertyPath: tileToReplace
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 529369796, guid: d15c585f6c1f4c543a508956c7a98474, type: 3}
       propertyPath: defaultTile.tilemap
       value: 
@@ -1191,6 +1178,14 @@ PrefabInstance:
     - target: {fileID: 1179637978507701431, guid: d15c585f6c1f4c543a508956c7a98474, type: 3}
       propertyPath: m_Name
       value: Backend
+      objectReference: {fileID: 0}
+    - target: {fileID: 2201393673013846395, guid: d15c585f6c1f4c543a508956c7a98474, type: 3}
+      propertyPath: startEndModifier.exactEndPoint
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2201393673013846395, guid: d15c585f6c1f4c543a508956c7a98474, type: 3}
+      propertyPath: startEndModifier.exactStartPoint
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d15c585f6c1f4c543a508956c7a98474, type: 3}
