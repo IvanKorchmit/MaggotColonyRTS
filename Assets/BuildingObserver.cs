@@ -15,14 +15,23 @@ public class BuildingObserver : MonoBehaviour
     {
         instance = this;
         buildingsToObserve = new List<IBuilding>();
+        AttackBase += () => Debug.Log("attack!!!!!!!!!!!!!");
     }
     public static IBuilding GetBuilding()
     {
         return instance.buildingsToObserve[Random.Range(0, instance.buildingsToObserve.Count)];
     }
+    private void Update()
+    {
+        if (AttackBase != null && !TimerUtils.ActionExists(AttackBase))
+        {
+            
+            TimerUtils.AddTimer(Random.Range(5f, 10f), AttackBase);
+        }
+    }
 }
 
-public interface IBuilding
+public interface IBuilding : IDamagable
 {
     Transform transform { get; }
 }

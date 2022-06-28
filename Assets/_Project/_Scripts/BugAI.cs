@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class BugAI : MonoBehaviour, IAttackable, IDamagable
 {
     [SerializeField] private float health = 10f;
-
+    private bool isWandering;
     private IDamagable target;
     [SerializeField] private Animator animator;
     [SerializeField] private int wanderSpread;
@@ -20,10 +20,19 @@ public class BugAI : MonoBehaviour, IAttackable, IDamagable
     private RandomPath path;
     private void Start()
     {
-        Wander();
+        isWandering = true;
         InvokeRepeating(nameof(Wander), 0, 3f);
         range.OnUnspot += Range_OnUnspot;
         range.OnSpot += Range_OnSpot;
+        BuildingObserver.AttackBase += BuildingObserver_AttackBase;
+    }
+
+    private void BuildingObserver_AttackBase()
+    {
+        IBuilding b = BuildingObserver.GetBuilding();
+        seeker.StartPath(transform.position, b.transform.position);
+        target = b;
+        isWandering = false;
     }
 
     private void Range_OnSpot(Transform obj)
@@ -45,7 +54,10 @@ public class BugAI : MonoBehaviour, IAttackable, IDamagable
     }
     private void Range_OnUnspot()
     {
-        Wander();
+        if (target != null)
+        {
+            isWandering = true;
+        }
         target = null;
     }
     private void Update()
@@ -60,7 +72,7 @@ public class BugAI : MonoBehaviour, IAttackable, IDamagable
         }
         if (!target.IsAlive() && range.ClosestTarget != null)
         {
-            CancelInvoke(nameof(Wander));
+            isWandering = false;
             target = range.ClosestTarget.GetComponent<IDamagable>();
         }
         else if (range.ClosestTarget != null && target != null && target.IsAlive() && target.transform == range.ClosestTarget.transform)
@@ -78,6 +90,7 @@ public class BugAI : MonoBehaviour, IAttackable, IDamagable
 
     private void Wander()
     {
+        if (!isWandering) return;
         if (target == null || !target.IsAlive())
         {
             path = RandomPath.Construct(transform.position, wanderLength);

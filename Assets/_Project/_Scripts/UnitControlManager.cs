@@ -53,7 +53,7 @@ public class UnitControlManager : MonoBehaviour
     }
     private void OnGUI()
     {
-        if (Event.current.keyCode == KeyCode.Mouse0)
+        if (Event.current.button == 0)
         {
             if (Event.current.isMouse && Event.current.type == EventType.MouseDown)
             {
