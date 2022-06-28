@@ -25,6 +25,7 @@ public class MapGen : MonoBehaviour
     [SerializeField] float riverThreshold;
 
     [SerializeField] private GameObject commandCenter;
+    [SerializeField] private GameObject centralEgg;
     [SerializeField] private Grid grid;
     [SerializeField] private Gradient grassColor;
     [SerializeField] private int width, height;
@@ -45,15 +46,19 @@ public class MapGen : MonoBehaviour
     [SerializeField] double riverFrequency = 2;
 
 
+
+
+
     // Start is called before the first frame update
     void Start()
     {
         var gg = AstarPath.active.graphs[0] as GridGraph;
-        gg.center = grid.CellToWorld(Vector3Int.RoundToInt(tilemap.cellBounds.center));
-        gg.SetDimensions(width, height, gg.nodeSize);   
+        gg.SetDimensions(width, height, gg.nodeSize);
+        gg.center = new Vector3(0,(float)height/4);  
         Generate();
         PlaceCommandCenter();
-        AstarPath.active.Scan();
+        Physics2D.SyncTransforms();
+        TimerUtils.AddTimer(0.1f,()=>AstarPath.active.Scan(gg));
     }
     private void GenerateTree(float x, float y, ModuleBase noise)
     {
@@ -69,21 +74,47 @@ public class MapGen : MonoBehaviour
         
         var cc = Instantiate(commandCenter, new Vector3(), Quaternion.identity);
         Vector3Int origin = Vector3Int.RoundToInt(tilemap.cellBounds.center);
-        //origin.x += Random.Range(-width, width) / 3;
-        //origin.y += Random.Range(-height, height) / 3;
         cc.transform.position = grid.CellToWorld(origin);
         BoundsInt bounds = new (origin, new Vector3Int(24, 24, 1));
         foreach (var item in tilemapToClear)
         {
-            Debug.Log(bounds.allPositionsWithin);
             foreach (var pos in bounds.allPositionsWithin)
             {
                 item.SetTile(pos, tileToReplace);
             }
         }
         Camera.main.transform.position = cc.transform.position;
-
+        origin.x += Random.Range(-tilemap.cellBounds.min.x, -tilemap.cellBounds.max.x);
+        origin.y += Random.Range(-tilemap.cellBounds.min.y, -tilemap.cellBounds.max.y);
+        var egg = Instantiate(centralEgg, new Vector3(), Quaternion.identity);
+        egg.transform.position = origin;
+        bounds = new(origin, new Vector3Int(24, 24, 1));
+        foreach (var item in tilemapToClear)
+        {
+            foreach (var pos in bounds.allPositionsWithin)
+            {
+                item.SetTile(pos, tileToReplace);
+            }
+        }
+        ClearPath(egg, cc);
     }
+
+    private void ClearPath(GameObject egg, GameObject cc)
+    {
+        ABPath path = ABPath.Construct(egg.transform.position, cc.transform.position);
+        foreach (var item in tilemapToClear)
+        {
+            foreach (var gn in path.path)
+            {
+                BoundsInt bounds = new(tilemap.origin + Vector3Int.RoundToInt((Vector3)gn.position), new Vector3Int(6, 6, 1));
+                foreach (var pos in bounds.allPositionsWithin)
+                {
+                    item.SetTile(pos, tileToReplace);
+                }
+            }
+        }
+    }
+
     public void Generate()
     {
         ModuleBase moduleBase = new Voronoi();

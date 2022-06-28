@@ -1,5 +1,116 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &529369795
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 529369797}
+  - component: {fileID: 529369796}
+  m_Layer: 0
+  m_Name: Map Generator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &529369797
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 529369795}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1179637978507701430}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &529369796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 529369795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5e84021e15789845b9224b930486c7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  riverThreshold: 0.13
+  commandCenter: {fileID: 4978138083637021654, guid: e7a1e7d55a3492341927dc2c6f994152, type: 3}
+  centralEgg: {fileID: 3320680001973058432, guid: ba9f1ac0f55076e4b981f8f47ac33227, type: 3}
+  grid: {fileID: 0}
+  grassColor:
+    serializedVersion: 2
+    key0: {r: 0.4029163, g: 0.5283019, b: 0.23175506, a: 1}
+    key1: {r: 0.5849056, g: 0.4369815, b: 0, a: 1}
+    key2: {r: 0.050980393, g: 0.30350646, b: 0.0053432505, a: 0}
+    key3: {r: 0.745283, g: 0.607648, b: 0.4253738, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 8288
+    ctime1: 21781
+    ctime2: 32768
+    ctime3: 44333
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 4
+    m_NumAlphaKeys: 2
+  width: 256
+  height: 256
+  treeTilemap: {fileID: 0}
+  tiles:
+  - value: 1
+    tile: {fileID: 11400000, guid: e2da6dcb821b4644a905812c23f12101, type: 2}
+    alt: {fileID: 0}
+    tilemap: {fileID: 0}
+    altTilemap: {fileID: 0}
+    isGrass: 1
+  trees:
+  - value: 0.023
+    tile: {fileID: 11400000, guid: 8fa40e1ff3a550947a5ba83944147df0, type: 2}
+    alt: {fileID: 11400000, guid: 2725741a6656efb4a809f6f94cb209a4, type: 2}
+    tilemap: {fileID: 0}
+    altTilemap: {fileID: 0}
+    isGrass: 0
+  defaultTile:
+    value: 0
+    tile: {fileID: 11400000, guid: a09f627cbafcfb445a633eccf946e864, type: 2}
+    alt: {fileID: 0}
+    tilemap: {fileID: 0}
+    altTilemap: {fileID: 0}
+    isGrass: 0
+  treeDensity: 0.01
+  tilemap: {fileID: 0}
+  tilemapToClear:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  tileToReplace: {fileID: 0}
+  frequency: 0.03
+  riverFrequency: 0.015
 --- !u!1 &1179637977339157545
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,6 +235,7 @@ Transform:
   - {fileID: 1179637979300409639}
   - {fileID: 1179637978314186151}
   - {fileID: 1179637977339157544}
+  - {fileID: 529369797}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -224,7 +336,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAAAQIezU4Yk8vwIAAPAFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VN9v2kAM/lfQPQ8UKCVlbxtQ2kltUdnUh9GHI3HIieMuuh8FWvG/z74kJGUbQsrF/mx/n8/OBxPKFpA4beZGpA86Bfa1w+6t3oEzIiEj+9JpUHdw4ButluIdavCLSF1OIB4wz9wJjfY+hdV5vqmNJPAo6kX0u7pBr1ci02Y3Szcw0dZZ9GdcWkCX0Y7SKDR9dNgBH93hNdqPeBrEEZ7e8TSOOic8JqAcmBa0Rta47nXAeZVIvisgJfYNfDjuDcdVRDgHsEJ1FS7qxVFMdbSUwlasmDsWQf4zP5L4VHCUGmiQ8hzEJnfEth34lGUWXMXM8ONUGOxYmZF912Ubd9xuS3ZvXHqqMRgNA6cy6cNf/m4/uDOjd3d13X5ENVwuki0yTLh1rfa2zdPPxL3ac7nlawkvOahHPTfaqxSdzngK9RYG0+b1LG2SQ7Jt7CXVC6Mvmq5Hl3eEGk5B/WHpoDjriHrDxvrLgl1KHRpf5SRPZRlTLjB4cfeoJ8yPrVShlUhi/E++aQ9a5bgVxjp0VXBF1dfaG4KyWaBCYr2baKPAtDMUoLh0xwXmcZdXfOH7f9Qtp+Wqqle+emcuQoK5wUfRhWuh9+fLNF6CDdNan36/nspL/OF3xUIL5ZbATZK36thc7x/A5k/eSaFarSbHI3Z3opUqx9b+I2zpTcaTVpiDg/MGptzxQAW54nSl7VDsdIhQXkoa5KAu0EV19H+l7ucc68pgZo8amaHx0zNo23iRfl4PNhqOUojj9ajfHyajKOlmMazjdHB1E93EcJVwFvZHKLwLLhdlM6srxNFSjRaFu0IZ6bvYmRtehI1NDd/PxftO2wYpVKaXiQFQT2WGs1gwWAS/LOksFShzCc4JFYaSfayY1MkW0tU50So0dnZwhq+aLCtWiDftyLJik/D9WzEyn/dxYeBNwJ6K18lO7PQHUEsDBBQAAAgIAAAQIeyil2SebAAAAHgAAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNEz1jM11FFQSi9KLMgoBoqAOaWZKSB2tJKZiVlKqrl5kpmhoUmymUGybpp5apJ5ipGxhYGFeapxcqJSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAABAh7NThiTy/AgAA8AUAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAABAh7KKXZJ5sAAAAeAAAAAkAJAAAAAAAAAAAAAAADAMAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAADDAwAAAAA=
+    dataString: UEsDBBQAAAgIAAAQIezTc9+VyQIAAPoFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VNtu2zAM/ZVAz0vgXGo3e9uSNO2AtsGyoQ9LHxSLjoUokqFLcyny76NkO3bTLQhgmTwkzyEpvxMuTQGpVXquOXtUDMjXDnkwagdW89QbyZdOg7qHA90oueQnqMEvnNncg2jA/KSWK7T3fVid55vcCA+Oo17kf8Nb9DrJM6V3M7aBiTLWoD+jwgC6tLI+jUTTe4cc8NEd3aD9iKdBEuHphKdx1DnjMQVpQTfQqAbeVLgS5mQq6K4A5sk36HjYi4dVRDgHsERxFS7qJVHiyyghuKlIEXssgvqf9Oi1M05RaWDhhefAN7n1HNqBz1lmwFYMNT1OucaGlRnJd1V2cUfNtmT3RoXzNZIkDpzKpI+f/N1+cGda7e7ruv3I17A5T7fIMKXGtrrbNk8/EndyT8WWrgW85CCf1FwrJxk6rXY+1BkYTJvXi7RJDum2sZdUr4yu+Dyjfq8/HkTj4awbenyq5JxDIw5LC8VFUtQbNdbfBsxSqDCDKr33VJaxTw8aZ/iA0sImmUogWj1fjP9FN+2Vqxx3XBuLrgouffW1ctpDySxQ8bqdnSgtQbczFCCpsMcF5rHX077y/T/qjvprVlWvfPXtuQoJ5gYfRVeuhdpf5qqdABMWtz79eT2X8/zhdsVCcWmXQHWat+qYXO0fweTPzgouW632jifs7kRJWW6w+UfY0umMpq0wCwfrNEyppYEKcsVFY+1Q7HSIkE4Iv9NBXaCL6vz/1Xc/p1hXBDN5UsgMjR+eQdvGcfbxppB4FDNIknXc74/SOEq7WQLrhA2Gt9FtAsOUknCVuMRZULEom1mNEFdLNlokXhuf0X8hO3NNi3B5mab7OT/tlGmQXGZqmWoA+VxmuIgFjUXwI8NmjKPMJVjLZVhK8r4iQqVbYKtLolVo7OxgNV01WVak4G/KesuKTMKXcEW8+XI1FxreOOx98TrZmZz/AlBLAwQUAAAICAAAECHsopdknmwAAAB4AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9YzNdRRUEovSizIKAaKgDmlmSkgdrSSmYlZSqq5eZKZoaFJsplBsm6aeWqSeYqRsYWBhXmqcXKiUixQfUllQapfYm4qRE9AYklGWmZeSmZeup57UWaKO8hopdhaAFBLAQItABQAAAgIAAAQIezTc9+VyQIAAPoFAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAAAQIeyil2SebAAAAHgAAAAJACQAAAAAAAAAAAAAABYDAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAIAAgC4AAAAzQMAAAAA
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -239,7 +351,7 @@ MonoBehaviour:
   unwalkableNodeDebugSize: 0.3
   logPathResults: 0
   maxNearestNodeDistance: 100
-  scanOnStartup: 1
+  scanOnStartup: 0
   fullGetNearestSearch: 0
   prioritizeGraphs: 0
   prioritizeGraphsLimit: 1
@@ -287,7 +399,7 @@ MonoBehaviour:
   - 31
   heuristic: 2
   heuristicScale: 1
-  threadCount: 1
+  threadCount: -1
   maxFrameTime: 10
   batchGraphUpdates: 0
   graphUpdateBatchingInterval: 0.2
@@ -338,7 +450,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3224247959883224196, guid: ff4f50c8b281fe54da564594867e11da, type: 3}
       propertyPath: m_Lens.m_SensorSize.x
-      value: 2.1035502
+      value: 2.1508875
       objectReference: {fileID: 0}
     - target: {fileID: 3224247960205667385, guid: ff4f50c8b281fe54da564594867e11da, type: 3}
       propertyPath: m_Name

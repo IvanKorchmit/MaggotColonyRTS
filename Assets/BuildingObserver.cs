@@ -15,7 +15,6 @@ public class BuildingObserver : MonoBehaviour
     {
         instance = this;
         buildingsToObserve = new List<IBuilding>();
-        AttackBase += () => Debug.Log("attack!!!!!!!!!!!!!");
     }
     public static IBuilding GetBuilding()
     {
@@ -33,5 +32,4 @@ public class BuildingObserver : MonoBehaviour
 
 public interface IBuilding : IDamagable
 {
-    Transform transform { get; }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class CommandCenter : MonoBehaviour, IDamagable, ISelectable, IBuilding
 {
     [SerializeField] private float health = 300f;
+    [SerializeField] private GameObject[] startUnits;
     public void Action(OrderBase order)
     {
         throw new System.NotImplementedException();
@@ -34,6 +35,10 @@ public class CommandCenter : MonoBehaviour, IDamagable, ISelectable, IBuilding
     void Start()
     {
         BuildingObserver.Observe(this);
+        foreach (var u in startUnits)
+        {
+            Instantiate(u, transform.position, Quaternion.identity);
+        }
     }
 
     // Update is called once per frame
