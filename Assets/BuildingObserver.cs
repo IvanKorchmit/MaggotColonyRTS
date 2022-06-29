@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BuildingObserver : MonoBehaviour
 {
+    private const int MINUTES_BEFORE_ATTACK = 1;
     public static event System.Action AttackBase;
     private List<IBuilding> buildingsToObserve;
     private static BuildingObserver instance;
@@ -15,23 +16,18 @@ public class BuildingObserver : MonoBehaviour
     {
         instance = this;
         buildingsToObserve = new List<IBuilding>();
-        AttackBase += () => Debug.Log("attack!!!!!!!!!!!!!");
+        InvokeRepeating(nameof(Invoke), 5, 60*MINUTES_BEFORE_ATTACK);
     }
     public static IBuilding GetBuilding()
     {
         return instance.buildingsToObserve[Random.Range(0, instance.buildingsToObserve.Count)];
     }
-    private void Update()
+    private void Invoke()
     {
-        if (AttackBase != null && !TimerUtils.ActionExists(AttackBase))
-        {
-            
-            TimerUtils.AddTimer(Random.Range(5f, 10f), AttackBase);
-        }
+        AttackBase?.Invoke();
     }
 }
 
 public interface IBuilding : IDamagable
 {
-    Transform transform { get; }
 }
