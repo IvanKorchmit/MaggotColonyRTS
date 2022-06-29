@@ -53,13 +53,16 @@ public class UnitControlManager : MonoBehaviour
     }
     private void OnGUI()
     {
-        if (Event.current.isMouse && Event.current.type == EventType.MouseDown)
+        if (Event.current.button == 0)
         {
-            OnClick();
-        }
-        else if (Event.current.isMouse && Event.current.type == EventType.MouseUp)
-        {
-            OnRelease();
+            if (Event.current.isMouse && Event.current.type == EventType.MouseDown)
+            {
+                OnClick();
+            }
+            else if (Event.current.isMouse && Event.current.type == EventType.MouseUp)
+            {
+                OnRelease();
+            }
         }
     }
     private void OnDoubleClick()
