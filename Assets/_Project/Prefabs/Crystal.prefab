@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1911499224282035242}
   - component: {fileID: 1911499224282035243}
   - component: {fileID: 1911499224282035240}
-  - component: {fileID: 1911499224282035241}
   - component: {fileID: 694904062900557505}
   m_Layer: 8
   m_Name: Crystal
@@ -104,41 +103,6 @@ CircleCollider2D:
   m_Offset: {x: -0.21, y: -0.02}
   serializedVersion: 2
   m_Radius: 0.85
---- !u!114 &1911499224282035241
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1911499224282035246}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b130f358dcb26548b2ff0923d496dc6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  team: 0
-  brightness: 1
-  shapeType: 0
-  absoluteOffset: 0
-  offset: {x: 0, y: 0}
-  boxSize: {x: 5, y: 5}
-  circleRadius: 10
-  innerRadius: 1
-  angle: 180
-  texture: {fileID: 0}
-  rotateToForward: 0
-  mesh: {fileID: 0}
-  lineOfSightMask:
-    serializedVersion: 2
-    m_Bits: 0
-  lineOfSightRaycastCount: 100
-  lineOfSightPenetration: 0
-  lineOfSightRaycastAngle: 360
-  lineOfSightRaycastOffset: 0
-  lineOfSightSeeOutsideRange: 0
-  multithreading: 0
-  cellBased: 0
-  snapToPixelCenter: 0
 --- !u!114 &694904062900557505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,6 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dfc46be5c39a0e4e915556f30176ae0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  money: 15
 --- !u!1 &2954503764700399611
 GameObject:
   m_ObjectHideFlags: 0

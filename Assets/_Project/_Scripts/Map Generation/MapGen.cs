@@ -49,10 +49,16 @@ public class MapGen : MonoBehaviour
 
     [SerializeField] private Seeker seeker;
 
+    [SerializeField] private NoiseTile infested;
+
 
     [SerializeField] private Transform vcam;
+    [SerializeField] private GameObject crystal;
+
+
 
     private float seed;
+
 
 
     // Start is called before the first frame update
@@ -61,17 +67,20 @@ public class MapGen : MonoBehaviour
         seed = Random.Range(0, 10000f);
 
 
-
-        var gg = AstarPath.active.graphs[0] as GridGraph;
-        gg.SetDimensions(width, height, gg.nodeSize);
-        gg.center = new Vector3(0,(float)height/4);  
+        for (int i = 0; i < AstarPath.active.graphs.Length; i++)
+        {
+            var gg = AstarPath.active.graphs[i] as GridGraph;
+            gg.SetDimensions(width, height, gg.nodeSize);
+            gg.center = new Vector3(0, (float)height / 4);
+        }
         Generate();
         PlaceCommandCenter();
-        TimerUtils.AddTimer(0.1f,()=>AstarPath.active.Scan(gg));
+        var graph = AstarPath.active.graphs[0] as GridGraph;
+        TimerUtils.AddTimer(0.1f, () => AstarPath.active.Scan(graph));
     }
     private void GenerateTree(float x, float y, ModuleBase noise)
     {
-        NoiseTile tree = GetTileFromNoise(x, y, noise, trees, 1f-treeDensity, out double sample);
+        NoiseTile tree = GetTileFromNoise(x, y, noise, trees, 1f - treeDensity, out double sample);
         if (sample <= treeDensity && tree.altTilemap != null)
         {
             tree.tilemap.SetTile(new Vector3Int((int)x, (int)y), tree.tile);
@@ -80,11 +89,11 @@ public class MapGen : MonoBehaviour
     }
     private void PlaceCommandCenter()
     {
-        
+
         var cc = Instantiate(commandCenter, new Vector3(), Quaternion.identity);
         Vector3Int origin = Vector3Int.RoundToInt(tilemap.cellBounds.center);
         cc.transform.position = grid.CellToWorld(origin);
-        BoundsInt bounds = new (origin, new Vector3Int(24, 24, 1));
+        BoundsInt bounds = new(origin, new Vector3Int(24, 24, 1));
         // Clearing area
         foreach (var item in tilemapToClear)
         {
@@ -97,20 +106,20 @@ public class MapGen : MonoBehaviour
         vcam.transform.position = cc.transform.position;
 
         vcam.transform.position = new Vector3(vcam.transform.position.x, vcam.transform.position.y, z);
+        for (int i = 0; i < 10; i++)
+        {
+            SpawnNest(cc);
+            SpawnCrystal(cc);
 
+        }
 
-
-        origin = new Vector3Int();
-        origin.x += Random.Range(0, width);
-        origin.y += Random.Range(0, height);
-        var egg = Instantiate(centralEgg, new Vector3(), Quaternion.identity);
-        egg.transform.position = origin;
-        bounds = new(Vector3Int.RoundToInt(egg.transform.position), new Vector3Int(24, 24, 1));
-
-
-
-
-        // Clearing area for the enemy
+    }
+    private void SpawnCrystal(GameObject commandCenter)
+    {
+        Vector3Int origin = GetRandomPosition(commandCenter);
+        var c = Instantiate(crystal, tilemap.CellToWorld(origin), Quaternion.identity);
+        Vector3Int size = new Vector3Int(24, 24, 1);
+        BoundsInt bounds = new(origin - (size / 2), size);
         foreach (var item in tilemapToClear)
         {
             foreach (var pos in bounds.allPositionsWithin)
@@ -118,7 +127,49 @@ public class MapGen : MonoBehaviour
                 item.SetTile(pos, tileToReplace);
             }
         }
-        ClearPath(egg, cc);
+        ClearPath(c, commandCenter);
+    }
+    private void SpawnNest(GameObject commandCenter)
+    {
+        Vector3Int origin = GetRandomPosition(commandCenter);
+
+        GameObject egg = Instantiate(centralEgg, new Vector3(), Quaternion.identity);
+        egg.transform.position = tilemap.CellToLocal(origin);
+        Vector3Int size = new Vector3Int(24, 24, 1);
+        BoundsInt bounds = new(origin - (size / 2), size);
+        ModuleBase noise = new RidgedMultifractal();
+        foreach (var item in tilemapToClear)
+        {
+            foreach (var pos in bounds.allPositionsWithin)
+            {
+                item.SetTile(pos, tileToReplace);
+            }
+        }
+        size = new Vector3Int(60, 60, 1);
+        bounds = new(origin - (size / 2), size);
+        foreach (var pos in bounds.allPositionsWithin)
+        {
+            double sample = Mathf.Abs((float)noise.GetValue((pos.x + seed) * infested.value, (pos.y + seed) * infested.value, 0));
+            // sample *= radius - Vector2.Distance((Vector3)pos, bounds.center);
+            if (sample <= infested.value && infested.tilemap.GetTile(pos) != null && Vector2.Distance((Vector3)origin, (Vector3)pos) <= 25f)
+            {
+                infested.tilemap.SetTile(pos, infested.tile);
+            }
+        }
+        ClearPath(egg, commandCenter);
+    }
+
+    private Vector3Int GetRandomPosition(GameObject commandCenter)
+    {
+        Vector3Int origin;
+        // Determining random point within the map
+        do
+        {
+            origin = new Vector3Int(0, 0);
+            origin.x += Random.Range(0, width);
+            origin.y += Random.Range(0, height);
+        } while (tilemap.GetTile(origin) == null && Vector2.Distance((Vector3)origin, commandCenter.transform.position) < 60f);
+        return origin;
     }
 
     void OnPathDone(Path p)
@@ -130,12 +181,9 @@ public class MapGen : MonoBehaviour
         }
         foreach (var item in tilemapToClear)
         {
-            Debug.Log(item);
-            Debug.Log(p.vectorPath.Count);
             foreach (var gn in p.vectorPath)
             {
-                Debug.Log(gn);
-                BoundsInt bounds = new(tilemap.origin + tilemap.WorldToCell(gn), new Vector3Int(6, 6, 1));
+                BoundsInt bounds = new(tilemap.origin + tilemap.WorldToCell(gn), new Vector3Int(8, 8, 1));
                 foreach (var pos in bounds.allPositionsWithin)
                 {
                     item.SetTile(pos, tileToReplace);
@@ -143,10 +191,11 @@ public class MapGen : MonoBehaviour
             }
         }
     }
-    private void ClearPath(GameObject egg, GameObject cc)
+    private void ClearPath(GameObject a, GameObject b)
     {
-        ABPath path = ABPath.Construct(egg.transform.position, cc.transform.position);
-        seeker.StartPath(path, OnPathDone);
+        var pathcreator = AstarPath.active.graphs[1] as GridGraph;
+        AstarPath.active.Scan(pathcreator);
+        seeker.StartPath(a.transform.position, b.transform.position, OnPathDone);
     }
 
     public void Generate()
@@ -159,8 +208,8 @@ public class MapGen : MonoBehaviour
             for (int x = 0; x < width; x++)
             {
                 Vector3Int pos = new Vector3Int(x, y, 0);
-                NoiseTile tile = GetTileFromNoise(x,y, moduleBase,tiles, frequency, out double samp);
-                tile.tilemap.SetTile(pos, tile.tile);   
+                NoiseTile tile = GetTileFromNoise(x, y, moduleBase, tiles, frequency, out double samp);
+                tile.tilemap.SetTile(pos, tile.tile);
                 if (tile.isGrass)
                 {
                     tile.tilemap.SetTileFlags(pos, TileFlags.None);
@@ -174,6 +223,7 @@ public class MapGen : MonoBehaviour
             }
         }
     }
+
     private void GenerateRiver(float x, float y, ModuleBase noise)
     {
         double sample = Mathf.Abs((float)(noise.GetValue((x + seed) * riverFrequency, (y + seed) * riverFrequency, 0)));
@@ -195,7 +245,7 @@ public class MapGen : MonoBehaviour
                 return nt;
             }
         }
-        
+
         return defaultTile;
     }
 }

@@ -28,5 +28,9 @@ public class Egg : MonoBehaviour, IAttackable, IDamagable
                 Spawn();
             }
         }
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }
