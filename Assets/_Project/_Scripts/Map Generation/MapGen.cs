@@ -118,7 +118,7 @@ public class MapGen : MonoBehaviour
 
     private bool DefaultConstraint(Vector3Int origin, GameObject commandCenter)
     {
-        return Vector2.Distance((Vector3)origin, commandCenter.transform.position) < 128;
+        return Vector2.Distance((Vector3)origin, commandCenter.transform.position) >= 128;
     }
 
     private void SpawnCrystal(GameObject commandCenter)

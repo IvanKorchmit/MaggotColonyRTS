@@ -283,6 +283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   miner: {fileID: 7113053798192772446, guid: 2d437f8c2396ae649a716c56acb726b2, type: 3}
+  nuclearMiner: {fileID: 7113053798192772446, guid: 10e3869bb6a259746872e1d1f075d1a7, type: 3}
   constructionLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -307,7 +308,23 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-      summary: Construct Miner
+      summary: Construct Miner (75$)
+    - action:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 433034928824364440}
+            m_TargetAssemblyTypeName: UnitAI, Assembly-CSharp
+            m_MethodName: ConstructNuclear
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+      summary: Construct Nuclear Miner (130$)
 --- !u!114 &7445075946642162428
 MonoBehaviour:
   m_ObjectHideFlags: 0
