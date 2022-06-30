@@ -5,7 +5,7 @@ using UnityEngine;
 public class Egg : MonoBehaviour, IAttackable, IDamagable
 {
     [SerializeField] private GameObject bug;
-    private float health = 300;
+    [SerializeField] private float health = 300;
     // Start is called before the first frame update
     void Start()
     {

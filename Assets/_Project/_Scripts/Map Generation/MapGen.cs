@@ -115,14 +115,14 @@ public class MapGen : MonoBehaviour
 
     }
 
-    private bool DefaultFilter(Vector3Int origin, GameObject commandCenter)
+    private bool DefaultConstraint(Vector3Int origin, GameObject commandCenter)
     {
-        return Vector2.Distance((Vector3)origin, commandCenter.transform.position) < 60f;
+        return Vector2.Distance((Vector3)origin, commandCenter.transform.position) < 128;
     }
 
     private void SpawnCrystal(GameObject commandCenter)
     {
-        Vector3Int origin = GetRandomPosition(commandCenter, DefaultFilter);
+        Vector3Int origin = GetRandomPosition(commandCenter, DefaultConstraint);
         var c = Instantiate(crystal, tilemap.CellToWorld(origin), Quaternion.identity);
         Vector3Int size = new Vector3Int(24, 24, 1);
         BoundsInt bounds = new(origin - (size / 2), size);
@@ -139,7 +139,7 @@ public class MapGen : MonoBehaviour
 
     private void SpawnNest(GameObject commandCenter)
     {
-        Vector3Int origin = GetRandomPosition(commandCenter, DefaultFilter);
+        Vector3Int origin = GetRandomPosition(commandCenter, DefaultConstraint);
 
         GameObject egg = Instantiate(centralEgg, new Vector3(), Quaternion.identity);
         egg.transform.position = tilemap.CellToLocal(origin);
@@ -181,7 +181,7 @@ public class MapGen : MonoBehaviour
             origin = new Vector3Int(0, 0);
             origin.x += Random.Range(0, width);
             origin.y += Random.Range(0, height);
-        } while (tilemap.GetTile(origin) == null && rules != null ? rules(origin, commandCenter) : true);
+        } while (rules == null || rules(origin, commandCenter));
         return origin;
     }
 

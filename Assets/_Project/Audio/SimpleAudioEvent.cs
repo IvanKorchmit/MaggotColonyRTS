@@ -19,7 +19,6 @@ public class SimpleAudioEvent : AudioEvent
 
         int clipIndex = Random.Range(0, clips.Length);
 
-        source.clip = clips[clipIndex];
         source.volume = Random.Range(volume.minValue, volume.maxValue);
         source.pitch = Random.Range(pitch.minValue, pitch.maxValue);
         //source.Play();
