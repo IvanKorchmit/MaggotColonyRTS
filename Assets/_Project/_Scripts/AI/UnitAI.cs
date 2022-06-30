@@ -2,12 +2,57 @@ using UnityEngine;
 using Pathfinding;
 public class UnitAI : MonoBehaviour, ISelectable, IDamagable, IUnit
 {
+    [SerializeField] private GameObject miner;
+
+
+
+
     [SerializeField] protected Seeker seeker;
     [SerializeField] protected MovementAstar move;
     [SerializeField] protected RangeFinder range;
     [SerializeField] protected float health = 50;
     protected IAttackable target;
     protected Vector2 targetPosition;
+    [SerializeField] private ContextMenu contextMenu;
+    public ContextMenu ContextMenu => contextMenu;
+    public void ConstructMiner()
+    {
+        Collider2D[] crystals = Physics2D.OverlapCircleAll(transform.position, 10f,Physics2D.AllLayers);
+        foreach (var item in crystals)
+        {
+            Debug.Log(item.name);
+            if (item.TryGetComponent(out ICrystal crystal))
+            {
+                if (crystal.CurrentMiner == null)
+                {
+                    IMiner checkSpace = miner.GetComponent<IMiner>();
+                    // Checking space
+
+                    var cs = Physics2D.OverlapCircleAll(transform.position, checkSpace.SpaceRequiredCircle, LayerMask.GetMask("Building"));
+                    if (cs != null || cs.Length > 0)
+                    {
+                        IMiner m = Instantiate(miner, transform.position, Quaternion.identity).GetComponent<IMiner>();
+                        crystal.Assign(m);
+                        AstarPath.active.Scan(AstarPath.active.graphs[0]);
+                        return;
+                    }
+                    else
+                    {
+                        Debug.LogError("No Space!");
+                        return;
+                    }
+                }
+                else
+                {
+                    Debug.LogError("This crystal is already occupied!");
+                    return;
+                }
+            }
+        }
+        Debug.LogError("No crystal found!");
+    }
+
+
     public void Action(OrderBase order)
     {
          

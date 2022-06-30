@@ -94,6 +94,7 @@ public class UnitControlManager : MonoBehaviour
 }
 public interface ISelectable
 {
+    ContextMenu @ContextMenu { get; }
     bool Select();
     void Action(OrderBase order);
     bool Deselect();

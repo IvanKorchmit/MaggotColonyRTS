@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4978138083637021650}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CommandCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,10 +137,35 @@ MonoBehaviour:
   - {fileID: 5664282489524170380, guid: e79b629d0a8587d40a381af6099ddb1c, type: 3}
   - {fileID: 5664282489524170380, guid: e79b629d0a8587d40a381af6099ddb1c, type: 3}
   - {fileID: 5664282489524170380, guid: e79b629d0a8587d40a381af6099ddb1c, type: 3}
-  - {fileID: 433034928824364513, guid: ac04924bf6d4f6b41b8be49ba3680ddf, type: 3}
-  - {fileID: 433034928824364513, guid: ac04924bf6d4f6b41b8be49ba3680ddf, type: 3}
-  - {fileID: 433034928824364513, guid: ac04924bf6d4f6b41b8be49ba3680ddf, type: 3}
-  - {fileID: 433034928824364513, guid: ac04924bf6d4f6b41b8be49ba3680ddf, type: 3}
+  - {fileID: 5664282489524170380, guid: e79b629d0a8587d40a381af6099ddb1c, type: 3}
+  - {fileID: 5664282489524170380, guid: e79b629d0a8587d40a381af6099ddb1c, type: 3}
+  - {fileID: 5664282489524170380, guid: e79b629d0a8587d40a381af6099ddb1c, type: 3}
+  - {fileID: 5664282489524170380, guid: e79b629d0a8587d40a381af6099ddb1c, type: 3}
+  - {fileID: 5664282489524170380, guid: e79b629d0a8587d40a381af6099ddb1c, type: 3}
+  - {fileID: 5664282489524170380, guid: e79b629d0a8587d40a381af6099ddb1c, type: 3}
+  - {fileID: 5664282489524170380, guid: e79b629d0a8587d40a381af6099ddb1c, type: 3}
+  - {fileID: 5664282489524170380, guid: e79b629d0a8587d40a381af6099ddb1c, type: 3}
+  - {fileID: 5664282489524170380, guid: e79b629d0a8587d40a381af6099ddb1c, type: 3}
+  - {fileID: 5664282489524170380, guid: e79b629d0a8587d40a381af6099ddb1c, type: 3}
+  - {fileID: 5664282489524170380, guid: e79b629d0a8587d40a381af6099ddb1c, type: 3}
+  contextMenu:
+    options:
+    - action:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 6119725097460025069}
+            m_TargetAssemblyTypeName: CommandCenter, Assembly-CSharp
+            m_MethodName: Test
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+      summary: Test
 --- !u!60 &6119725097460025066
 PolygonCollider2D:
   m_ObjectHideFlags: 0

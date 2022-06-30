@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1911499224282035243}
   - component: {fileID: 1911499224282035240}
   - component: {fileID: 694904062900557505}
+  - component: {fileID: -7806190237859849300}
   m_Layer: 8
   m_Name: Crystal
   m_TagString: Untagged
@@ -100,9 +101,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.21, y: -0.02}
+  m_Offset: {x: -0.21, y: 0.5}
   serializedVersion: 2
-  m_Radius: 0.85
+  m_Radius: 1.17
 --- !u!114 &694904062900557505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,6 +117,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   money: 15
+--- !u!50 &-7806190237859849300
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911499224282035246}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 0
+  m_CollisionDetection: 1
+  m_Constraints: 0
 --- !u!1 &2954503764700399611
 GameObject:
   m_ObjectHideFlags: 0

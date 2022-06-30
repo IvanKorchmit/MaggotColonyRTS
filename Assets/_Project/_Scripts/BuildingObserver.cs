@@ -30,4 +30,6 @@ public class BuildingObserver : MonoBehaviour
 
 public interface IBuilding : IDamagable, ISelectable
 {
+    float SpaceRequiredCircle { get; }
+    void Sell();
 }

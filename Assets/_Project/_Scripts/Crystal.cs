@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Crystal : MonoBehaviour, ICrystal
 {
+    public IMiner CurrentMiner => miner;
     private IMiner miner;
     [SerializeField] private int money;
 
@@ -15,26 +16,32 @@ public class Crystal : MonoBehaviour, ICrystal
     {
         if (miner != null && miner.IsAlive())
         {
-            miner.GainIncome();
+            miner.GainIncome(money);
         }
     }
 
     public void Assign(IMiner miner)
     {
         this.miner = miner;
+        miner.OnDestroyed += Miner_OnDestroyed;
     }
 
-    public void Damage(float damage, IDamagable owner)
+    private void Miner_OnDestroyed()
     {
-        throw new System.NotImplementedException();
+        miner = null;
     }
+
+    public void Damage(float damage, IDamagable owner) { }
 }
+
+
 public interface IMiner : IBuilding
 {
-    void GainIncome();
-
+    void GainIncome(int money);
+    event System.Action OnDestroyed;
 }
 public interface ICrystal
 {
+    IMiner CurrentMiner { get; }
     void Assign(IMiner miner);
 }

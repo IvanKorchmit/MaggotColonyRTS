@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class BugAI : MonoBehaviour, IAttackable, IDamagable
 {
     [SerializeField] private float health = 10f;
+    private bool immune = true;
     private bool isWandering;
     private IDamagable target;
     [SerializeField] private Animator animator;
@@ -20,6 +21,7 @@ public class BugAI : MonoBehaviour, IAttackable, IDamagable
     private RandomPath path;
     private void Start()
     {
+        TimerUtils.AddTimer(5, () => immune = false);
         isWandering = true;
         InvokeRepeating(nameof(Wander), 0, 3f);
         range.OnUnspot += Range_OnUnspot;
@@ -101,7 +103,7 @@ public class BugAI : MonoBehaviour, IAttackable, IDamagable
 
     public void Damage(float damage, IDamagable owner)
     {
-        if (health <= 0) return;
+        if (health <= 0 || immune) return;
         health -= damage;
         target = owner;
         seeker.StartPath(transform.position, target.transform.position);

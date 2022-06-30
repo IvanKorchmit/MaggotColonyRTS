@@ -20,10 +20,10 @@ public class Egg : MonoBehaviour, IAttackable, IDamagable
     public void Damage(float damage, IDamagable owner)
     {
         health -= damage;
-        if (Random.value >= 0.8f)
+        if (Random.value >= 0.5f)
         {
             // Trigger spawning enemies on attack
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < (int)damage; i++)
             {
                 Spawn();
             }

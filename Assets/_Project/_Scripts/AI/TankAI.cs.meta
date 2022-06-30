@@ -3,7 +3,15 @@ guid: d5b5adb84cccf11479f604ecef7afed2
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - miner: {fileID: 7113053798192772446, guid: 2d437f8c2396ae649a716c56acb726b2, type: 3}
+  - seeker: {instanceID: 0}
+  - move: {instanceID: 0}
+  - range: {instanceID: 0}
+  - headRotation: {instanceID: 0}
+  - explosion: {instanceID: 0}
+  - audioSource: {instanceID: 0}
+  - explosionParticle: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

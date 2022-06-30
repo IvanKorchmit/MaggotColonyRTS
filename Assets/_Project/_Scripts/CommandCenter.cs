@@ -6,6 +6,15 @@ public class CommandCenter : MonoBehaviour, ISelectable, IBuilding
 {
     [SerializeField] private float health = 300f;
     [SerializeField] private GameObject[] startUnits;
+    [SerializeField] private ContextMenu contextMenu;
+    public ContextMenu ContextMenu => contextMenu;
+    public float SpaceRequiredCircle => 0;
+    public void Sell()
+    {
+        Debug.Log("Cannot sell the command center");
+    }
+
+
     public void Action(OrderBase order)
     {
         throw new System.NotImplementedException();

@@ -188,6 +188,7 @@ GameObject:
   - component: {fileID: 5102781289667578477}
   - component: {fileID: 1888729532590524412}
   - component: {fileID: 3599885394112033976}
+  - component: {fileID: -7925173147177895157}
   m_Layer: 7
   m_Name: Tank
   m_TagString: Player
@@ -355,7 +356,7 @@ MonoBehaviour:
   collidesWith: -1
   wallAvoidForce: 1
   wallAvoidFalloff: 1
-  priority: 0.5
+  priority: 1
   debug: 0
 --- !u!114 &3444085141730574737
 MonoBehaviour:
@@ -437,16 +438,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5b5adb84cccf11479f604ecef7afed2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  miner: {fileID: 7113053798192772446, guid: 2d437f8c2396ae649a716c56acb726b2, type: 3}
   seeker: {fileID: 5664282489524170382}
   move: {fileID: 5664282489524170383}
   range: {fileID: 5664282488717930471}
-  health: 50
+  health: 150
+  contextMenu:
+    options:
+    - action:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 433034928824364440, guid: ac04924bf6d4f6b41b8be49ba3680ddf, type: 3}
+            m_TargetAssemblyTypeName: UnitAI, Assembly-CSharp
+            m_MethodName: ConstructMiner
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+      summary: Construct Miner
   headRotation: {fileID: 6940383324452196759}
   currentAngle: 0
   rotationSpeed: 45
   explosionMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 320
   explosion: {fileID: 11400000, guid: 1cd0a2350b0fa9a40abbc04997ac3e8f, type: 2}
   audioSource: {fileID: 3599885394112033976}
   explosionParticle: {fileID: 1882465781526862425, guid: 9d99aa2126eb75b479e4a227a0ff1227, type: 3}
@@ -546,6 +566,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-7925173147177895157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5664282489524170380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e58e3e3233c75aa4883cdfcfeecd5907, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 3599885394112033976}
 --- !u!1 &6940383324452196756
 GameObject:
   m_ObjectHideFlags: 0

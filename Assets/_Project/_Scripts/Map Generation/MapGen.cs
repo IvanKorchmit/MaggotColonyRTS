@@ -93,7 +93,8 @@ public class MapGen : MonoBehaviour
         var cc = Instantiate(commandCenter, new Vector3(), Quaternion.identity);
         Vector3Int origin = Vector3Int.RoundToInt(tilemap.cellBounds.center);
         cc.transform.position = grid.CellToWorld(origin);
-        BoundsInt bounds = new(origin, new Vector3Int(24, 24, 1));
+        Vector3Int size = new Vector3Int(24, 24, 1);
+        BoundsInt bounds = new(origin - size / 2, size);
         // Clearing area
         foreach (var item in tilemapToClear)
         {
