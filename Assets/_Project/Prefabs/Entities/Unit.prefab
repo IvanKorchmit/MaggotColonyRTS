@@ -283,6 +283,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   miner: {fileID: 7113053798192772446, guid: 2d437f8c2396ae649a716c56acb726b2, type: 3}
+  constructionLayer:
+    serializedVersion: 2
+    m_Bits: 256
   seeker: {fileID: 433034928824364515}
   move: {fileID: 433034928824364514}
   range: {fileID: 433034929079282826}

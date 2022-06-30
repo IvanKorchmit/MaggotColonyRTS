@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 8041431184270728008}
   - component: {fileID: 8640880377774777668}
   - component: {fileID: 5672968160813751641}
+  - component: {fileID: 4941237018881561892}
   m_Layer: 6
   m_Name: Bug
   m_TagString: Enemy
@@ -351,6 +352,21 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1
+--- !u!114 &4941237018881561892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1044287870891840055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a537d958aa5bb4f35b0d7b40d72278f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  penalty: 1000
+  randomStep: 10
 --- !u!1 &1044287871323859303
 GameObject:
   m_ObjectHideFlags: 0

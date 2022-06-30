@@ -4,7 +4,7 @@ public class UnitAI : MonoBehaviour, ISelectable, IDamagable, IUnit
 {
     [SerializeField] private GameObject miner;
 
-
+    [SerializeField] private LayerMask constructionLayer;
 
 
     [SerializeField] protected Seeker seeker;
@@ -17,30 +17,40 @@ public class UnitAI : MonoBehaviour, ISelectable, IDamagable, IUnit
     public ContextMenu ContextMenu => contextMenu;
     public void ConstructMiner()
     {
-        Collider2D[] crystals = Physics2D.OverlapCircleAll(transform.position, 10f,Physics2D.AllLayers);
+
+
+        int layer = constructionLayer;
+
+        Collider2D[] crystals = Physics2D.OverlapCircleAll(transform.position, 100f, constructionLayer);
         foreach (var item in crystals)
         {
             Debug.Log(item.name);
             if (item.TryGetComponent(out ICrystal crystal))
             {
-                if (crystal.CurrentMiner == null)
+                void GridSnap_OnPlaceSuccessful(Vector3 position, GameObject prefab)
                 {
-                    IMiner checkSpace = miner.GetComponent<IMiner>();
-                    // Checking space
-
-                    var cs = Physics2D.OverlapCircleAll(transform.position, checkSpace.SpaceRequiredCircle, LayerMask.GetMask("Building"));
-                    if (cs != null || cs.Length > 0)
+                    Debug.Log(name);
+                    if (Vector2.Distance(position, transform.position) <= 75f)
                     {
-                        IMiner m = Instantiate(miner, transform.position, Quaternion.identity).GetComponent<IMiner>();
-                        crystal.Assign(m);
-                        AstarPath.active.Scan(AstarPath.active.graphs[0]);
-                        return;
+                        prefab.layer = LayerMask.NameToLayer("Building");
+                        prefab.GetComponent<SpriteRenderer>().color = Color.white;
+                        var miner = Instantiate(prefab, position, Quaternion.identity).GetComponent<IMiner>();
+                        crystal.Assign(miner);
+                        AstarPath.active.Scan();
+                        Destroy(prefab);
+                        GridSnap.OnPlaceSuccessful -= GridSnap_OnPlaceSuccessful;
                     }
                     else
                     {
-                        Debug.LogError("No Space!");
-                        return;
+                        Debug.LogError("Too far away " + Vector2.Distance((Vector3)position, transform.position));
                     }
+                }
+                if (crystal.CurrentMiner == null)
+                {
+                    // Checking space
+                    GridSnap.Place(miner);
+                    GridSnap.OnPlaceSuccessful += GridSnap_OnPlaceSuccessful;
+                    return;
                 }
                 else
                 {
@@ -49,7 +59,7 @@ public class UnitAI : MonoBehaviour, ISelectable, IDamagable, IUnit
                 }
             }
         }
-        Debug.LogError("No crystal found!");
+            Debug.LogError("No Crystal found!");
     }
 
 
@@ -120,6 +130,7 @@ public class UnitAI : MonoBehaviour, ISelectable, IDamagable, IUnit
 }
 public interface IDamagable
 {
+    GameObject gameObject { get; }
     Transform transform { get; }
     void Damage(float damage, IDamagable owner);
 }

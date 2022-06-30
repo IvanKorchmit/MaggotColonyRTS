@@ -9,10 +9,6 @@ public class ContextMenuGameObject : MonoBehaviour
     {
         contextMenu = menu;
     }
-    private void OnEnable()
-    {
-        Start();
-    }
     private void Start()
     {
         foreach (Transform tr in panel)

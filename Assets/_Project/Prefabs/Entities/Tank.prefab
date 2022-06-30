@@ -439,6 +439,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   miner: {fileID: 7113053798192772446, guid: 2d437f8c2396ae649a716c56acb726b2, type: 3}
+  constructionLayer:
+    serializedVersion: 2
+    m_Bits: 256
   seeker: {fileID: 5664282489524170382}
   move: {fileID: 5664282489524170383}
   range: {fileID: 5664282488717930471}
@@ -448,7 +451,7 @@ MonoBehaviour:
     - action:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 433034928824364440, guid: ac04924bf6d4f6b41b8be49ba3680ddf, type: 3}
+          - m_Target: {fileID: 1888729532590524412}
             m_TargetAssemblyTypeName: UnitAI, Assembly-CSharp
             m_MethodName: ConstructMiner
             m_Mode: 1
