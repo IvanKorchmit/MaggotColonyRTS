@@ -22,8 +22,8 @@ public class BuildingButton : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     private void Start()
     {
         mainCamera = Camera.main;
-        iconImage.sprite = building.GetIcon();
-        priceText.SetText(building.GetPrice().ToString());
+        iconImage.sprite = building.Icon;
+        priceText.SetText(building.Price.ToString());
 
         //player = NetworkClient.connection.identity.GetComponent<RTSPlayer>();
         buildingCollider = building.GetComponent<BoxCollider2D>();
@@ -38,9 +38,9 @@ public class BuildingButton : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     {
         if (eventData.button != PointerEventData.InputButton.Left) { return; }
 
-        if (player.GetResoucres() < building.GetPrice()) { return; }
+        if (player.GetResoucres() < building.Price) { return; }
 
-        buildingPreviewInstance = Instantiate(building.GetBuildingPreview());
+        buildingPreviewInstance = Instantiate(building.BuildingPreview);
         buildingRendererInstance=buildingPreviewInstance.GetComponentInChildren<Renderer>();
 
         buildingPreviewInstance.SetActive(true);
@@ -81,3 +81,5 @@ public class BuildingButton : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     
 
 }
+
+

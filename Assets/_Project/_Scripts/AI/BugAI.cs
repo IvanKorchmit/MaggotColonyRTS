@@ -111,6 +111,7 @@ public class BugAI : MonoBehaviour, IAttackable, IDamagable
             corpse.GetComponent<Animator>().SetInteger("Angle",animator.GetInteger("Angle"));
             gameObject.SetActive(false);
             Destroy(corpse, 10);
+            BuildingObserver.AttackBase -= BuildingObserver_AttackBase;
             Destroy(gameObject, 1f);
         }
     }

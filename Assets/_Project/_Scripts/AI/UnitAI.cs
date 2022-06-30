@@ -1,13 +1,13 @@
 using UnityEngine;
 using Pathfinding;
-public class UnitAI : MonoBehaviour, ISelectable, IDamagable
+public class UnitAI : MonoBehaviour, ISelectable, IDamagable, IUnit
 {
-    [SerializeField] private Seeker seeker;
-    [SerializeField] private MovementAstar move;
-    [SerializeField] private RangeFinder range;
-    [SerializeField] private float health = 50;
-    private IAttackable target;
-    private Vector2 targetPosition;
+    [SerializeField] protected Seeker seeker;
+    [SerializeField] protected MovementAstar move;
+    [SerializeField] protected RangeFinder range;
+    [SerializeField] protected float health = 50;
+    protected IAttackable target;
+    protected Vector2 targetPosition;
     public void Action(OrderBase order)
     {
          
@@ -22,7 +22,7 @@ public class UnitAI : MonoBehaviour, ISelectable, IDamagable
         }
     }
 
-    public void Damage(float damage, IDamagable owner)
+    public virtual void Damage(float damage, IDamagable owner)
     {
         if (health <= 0) return;
         health -= damage;
@@ -32,24 +32,24 @@ public class UnitAI : MonoBehaviour, ISelectable, IDamagable
         }
     }
 
-    public bool Deselect()
+    public virtual bool Deselect()
     {
         GetComponentInChildren<SpriteRenderer>().color = Color.white;
         return true;
     }
 
-    public bool Select()
+    public virtual bool Select()
     {
         GetComponentInChildren<SpriteRenderer>().color = Color.yellow;
         return true;
     }
-    // Update is called once per frame
-    void Update()
+    protected virtual void Attack()
     {
-        void Attack()
-        {
-            target.Damage(3f, this);
-        }
+        target.Damage(3f, this);
+    }
+    // Update is called once per frame
+    protected virtual void Update()
+    {
         if (target.IsAlive()) 
         {
             seeker.StartPath(transform.position, targetPosition);
@@ -87,3 +87,8 @@ public static class UnityObjectAliveExtension
         return o != null;
     }
 }
+
+
+
+public interface IUnit { }
+public interface ITank { }

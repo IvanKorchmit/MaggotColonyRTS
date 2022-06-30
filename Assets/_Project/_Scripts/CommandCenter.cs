@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CommandCenter : MonoBehaviour, IDamagable, ISelectable, IBuilding
+public class CommandCenter : MonoBehaviour, ISelectable, IBuilding
 {
     [SerializeField] private float health = 300f;
     [SerializeField] private GameObject[] startUnits;
@@ -39,11 +39,5 @@ public class CommandCenter : MonoBehaviour, IDamagable, ISelectable, IBuilding
         {
             Instantiate(u, transform.position, Quaternion.identity);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

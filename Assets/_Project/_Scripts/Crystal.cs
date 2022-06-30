@@ -34,7 +34,7 @@ public interface IMiner : IBuilding
     void GainIncome();
 
 }
-public interface ICrystal : IBuilding
+public interface ICrystal
 {
     void Assign(IMiner miner);
 }

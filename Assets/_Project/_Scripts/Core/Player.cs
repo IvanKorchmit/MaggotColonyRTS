@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
         Building buildingToPlace = null;
         foreach (Building building in buildings)
         {
-            if (building.GetId() == buildingId)
+            if (building.ID == buildingId)
             {
                 buildingToPlace = building;
                 break;
@@ -50,7 +50,7 @@ public class Player : MonoBehaviour
 
         if (buildingToPlace == null) { return; }
 
-        if (resoucres < buildingToPlace.GetPrice()) { return; }
+        if (resoucres < buildingToPlace.Price) { return; }
 
         BoxCollider2D buildingCollider = buildingToPlace.GetComponent<BoxCollider2D>();
 
@@ -59,7 +59,7 @@ public class Player : MonoBehaviour
 
         GameObject buildingInstance = Instantiate(buildingToPlace.gameObject, point, buildingToPlace.transform.rotation);      
 
-        SetResoucres(resoucres - buildingToPlace.GetPrice());
+        SetResoucres(resoucres - buildingToPlace.Price);
     }
 
     public List<Building> GetmyBuildings()

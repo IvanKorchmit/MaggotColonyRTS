@@ -20,6 +20,13 @@ public class MovementAstar : AIPath
         float a = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
         spRot.SetAngle((int)a);
     }
+
+    public void SetAngle(Vector2 moveDirection)
+    {
+        if (moveDirection == Vector2.zero) return;
+        float a = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
+        spRot.SetAngle((int)a);
+    }
     public void FindPath(Vector2 s, Vector2 e, bool grouped = false)
     {
         if (!grouped)

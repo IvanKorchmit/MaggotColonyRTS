@@ -14,23 +14,11 @@ public class Building : MonoBehaviour
     public static event Action<Building> OnBuildingSpawned;
     public static event Action<Building> OnBuildingDespawned;
 
-    public int GetPrice()
-    {
-        return price;
-    }
+    public int Price => price;
 
-    public int GetId()
-    {
-        return id;
-    }
-    public Sprite GetIcon()
-    {
-        return icon;
-    }
+    public int ID => id;
+    public Sprite Icon => icon;
 
-    public GameObject GetBuildingPreview()
-    {
-        return buildingPrewiew;
-    }
+    public GameObject BuildingPreview => buildingPrewiew;
 
 }

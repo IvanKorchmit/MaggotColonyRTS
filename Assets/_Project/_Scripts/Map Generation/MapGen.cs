@@ -114,9 +114,15 @@ public class MapGen : MonoBehaviour
         }
 
     }
+
+    private bool DefaultFilter(Vector3Int origin, GameObject commandCenter)
+    {
+        return Vector2.Distance((Vector3)origin, commandCenter.transform.position) < 60f;
+    }
+
     private void SpawnCrystal(GameObject commandCenter)
     {
-        Vector3Int origin = GetRandomPosition(commandCenter);
+        Vector3Int origin = GetRandomPosition(commandCenter, DefaultFilter);
         var c = Instantiate(crystal, tilemap.CellToWorld(origin), Quaternion.identity);
         Vector3Int size = new Vector3Int(24, 24, 1);
         BoundsInt bounds = new(origin - (size / 2), size);
@@ -129,24 +135,19 @@ public class MapGen : MonoBehaviour
         }
         ClearPath(c, commandCenter);
     }
+
+
     private void SpawnNest(GameObject commandCenter)
     {
-        Vector3Int origin = GetRandomPosition(commandCenter);
+        Vector3Int origin = GetRandomPosition(commandCenter, DefaultFilter);
 
         GameObject egg = Instantiate(centralEgg, new Vector3(), Quaternion.identity);
         egg.transform.position = tilemap.CellToLocal(origin);
         Vector3Int size = new Vector3Int(24, 24, 1);
-        BoundsInt bounds = new(origin - (size / 2), size);
         ModuleBase noise = new RidgedMultifractal();
-        foreach (var item in tilemapToClear)
-        {
-            foreach (var pos in bounds.allPositionsWithin)
-            {
-                item.SetTile(pos, tileToReplace);
-            }
-        }
+        ClearAround(size, origin);
         size = new Vector3Int(60, 60, 1);
-        bounds = new(origin - (size / 2), size);
+        BoundsInt bounds = new(origin - (size / 2), size);
         foreach (var pos in bounds.allPositionsWithin)
         {
             double sample = Mathf.Abs((float)noise.GetValue((pos.x + seed) * infested.value, (pos.y + seed) * infested.value, 0));
@@ -159,7 +160,19 @@ public class MapGen : MonoBehaviour
         ClearPath(egg, commandCenter);
     }
 
-    private Vector3Int GetRandomPosition(GameObject commandCenter)
+    private void ClearAround(Vector3Int size, Vector3Int origin)
+    {
+        BoundsInt bounds = new BoundsInt(origin - size / 2, size);
+        foreach (var item in tilemapToClear)
+        {
+            foreach (var pos in bounds.allPositionsWithin)
+            {
+                item.SetTile(pos, tileToReplace);
+            }
+        }
+    }
+    public delegate bool ConditionFilter(Vector3Int origin, GameObject commandCenter);
+    private Vector3Int GetRandomPosition(GameObject commandCenter, ConditionFilter rules)
     {
         Vector3Int origin;
         // Determining random point within the map
@@ -168,7 +181,7 @@ public class MapGen : MonoBehaviour
             origin = new Vector3Int(0, 0);
             origin.x += Random.Range(0, width);
             origin.y += Random.Range(0, height);
-        } while (tilemap.GetTile(origin) == null && Vector2.Distance((Vector3)origin, commandCenter.transform.position) < 60f);
+        } while (tilemap.GetTile(origin) == null && rules != null ? rules(origin, commandCenter) : true);
         return origin;
     }
 
@@ -179,16 +192,9 @@ public class MapGen : MonoBehaviour
             Debug.Log(p.errorLog);
             return;
         }
-        foreach (var item in tilemapToClear)
+        foreach (var gn in p.vectorPath)
         {
-            foreach (var gn in p.vectorPath)
-            {
-                BoundsInt bounds = new(tilemap.origin + tilemap.WorldToCell(gn), new Vector3Int(8, 8, 1));
-                foreach (var pos in bounds.allPositionsWithin)
-                {
-                    item.SetTile(pos, tileToReplace);
-                }
-            }
+            ClearAround(new Vector3Int(8, 8, 1), tilemap.origin + tilemap.WorldToCell(gn));
         }
     }
     private void ClearPath(GameObject a, GameObject b)

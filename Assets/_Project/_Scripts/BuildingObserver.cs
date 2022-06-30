@@ -28,6 +28,6 @@ public class BuildingObserver : MonoBehaviour
     }
 }
 
-public interface IBuilding : IDamagable
+public interface IBuilding : IDamagable, ISelectable
 {
 }
