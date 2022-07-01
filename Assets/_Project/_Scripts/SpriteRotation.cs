@@ -7,12 +7,20 @@ public class SpriteRotation : MonoBehaviour
     [SerializeField] private Animator animator;
     private int oldAngle;
     private int angle;
+    public int Angle => angle;
+
     public void SetAngle(int angle, bool apply = false)
+    {
+        SnapAngle(angle);
+        if (apply) OnAngleChange();
+    }
+
+    public void SnapAngle(int angle)
     {
         this.angle = Mathf.RoundToInt(angle / 45f) * 45;
         if (this.angle < 0) this.angle += 360;
-        if (apply) OnAngleChange();
     }
+
     private void OnAngleChange()
     {
         animator.SetInteger("Angle", angle);

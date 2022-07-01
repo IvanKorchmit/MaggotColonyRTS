@@ -36,32 +36,6 @@ public class Player : MonoBehaviour
     }
 
 
-    public void TryPlaceBuilding(int buildingId, Vector2 point)
-    {
-        Building buildingToPlace = null;
-        foreach (Building building in buildings)
-        {
-            if (building.GetId() == buildingId)
-            {
-                buildingToPlace = building;
-                break;
-            }
-        }
-
-        if (buildingToPlace == null) { return; }
-
-        if (resoucres < buildingToPlace.GetPrice()) { return; }
-
-        BoxCollider2D buildingCollider = buildingToPlace.GetComponent<BoxCollider2D>();
-
-        if (!CanPlaceBuilding(point, buildingCollider)) { return; }
-
-
-        GameObject buildingInstance = Instantiate(buildingToPlace.gameObject, point, buildingToPlace.transform.rotation);      
-
-        SetResoucres(resoucres - buildingToPlace.GetPrice());
-    }
-
     public List<Building> GetmyBuildings()
     {
         return myBuildings;

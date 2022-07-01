@@ -3,7 +3,11 @@ guid: 5da12c352f35cec43a34e18f06c6ecbd
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - miner: {fileID: 7113053798192772446, guid: 2d437f8c2396ae649a716c56acb726b2, type: 3}
+  - seeker: {instanceID: 0}
+  - move: {instanceID: 0}
+  - range: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

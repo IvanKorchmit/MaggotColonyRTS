@@ -92,15 +92,22 @@ public class UnitControlManager : MonoBehaviour
         if (Mouse.current.leftButton.ReadValue() >= 0.1f) MouseHold();
     }
 }
-public interface ISelectable
+
+public interface ITransformAndGameObject
 {
+    Transform transform { get; }
+    GameObject gameObject { get; }
+}
+
+public interface ISelectable : ITransformAndGameObject
+{
+    ContextMenu @ContextMenu { get; }
     bool Select();
     void Action(OrderBase order);
     bool Deselect();
 }
 public interface IAttackable : IDamagable
 {
-    GameObject gameObject { get; }
 }
 public abstract class OrderBase
 {

@@ -52,19 +52,19 @@ MonoBehaviour:
   grassColor:
     serializedVersion: 2
     key0: {r: 0.4029163, g: 0.5283019, b: 0.23175506, a: 1}
-    key1: {r: 0.5849056, g: 0.4369815, b: 0, a: 1}
+    key1: {r: 0.5563087, g: 0.4298326, b: 0.00028618367, a: 1}
     key2: {r: 0.050980393, g: 0.30350646, b: 0.0053432505, a: 0}
     key3: {r: 0.745283, g: 0.607648, b: 0.4253738, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0.745283, g: 0.607648, b: 0.4253738, a: 0}
+    key5: {r: 0.745283, g: 0.607648, b: 0.4253738, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 8288
-    ctime1: 21781
-    ctime2: 32768
-    ctime3: 44333
-    ctime4: 0
-    ctime5: 0
+    ctime1: 24479
+    ctime2: 43369
+    ctime3: 63029
+    ctime4: 63029
+    ctime5: 63029
     ctime6: 0
     ctime7: 0
     atime0: 0
@@ -82,23 +82,41 @@ MonoBehaviour:
   height: 256
   treeTilemap: {fileID: 0}
   tiles:
-  - value: 0.179
-    tile: {fileID: 11400000, guid: e2da6dcb821b4644a905812c23f12101, type: 2}
+  - value: 0.061
+    tile: {fileID: 11400000, guid: 089af5ffc57303b468c799cd7922f684, type: 2}
     alt: {fileID: 0}
     tilemap: {fileID: 0}
     altTilemap: {fileID: 0}
-    isGrass: 1
-  - value: 0.438
+    minimapColor:
+      serializedVersion: 2
+      rgba: 4288794065
+    isGrass: 0
+  - value: 0.197
     tile: {fileID: 11400000, guid: 2de79e57e6d98c8409a1fa0ce1fc8143, type: 2}
     alt: {fileID: 0}
     tilemap: {fileID: 0}
     altTilemap: {fileID: 0}
+    minimapColor:
+      serializedVersion: 2
+      rgba: 0
     isGrass: 1
-  - value: 1
+  - value: 0.611
     tile: {fileID: 11400000, guid: 4375ae53dfca0d441b1407cf0b33284b, type: 2}
     alt: {fileID: 0}
     tilemap: {fileID: 0}
     altTilemap: {fileID: 0}
+    minimapColor:
+      serializedVersion: 2
+      rgba: 0
+    isGrass: 1
+  - value: 1
+    tile: {fileID: 11400000, guid: e2da6dcb821b4644a905812c23f12101, type: 2}
+    alt: {fileID: 0}
+    tilemap: {fileID: 0}
+    altTilemap: {fileID: 0}
+    minimapColor:
+      serializedVersion: 2
+      rgba: 0
     isGrass: 1
   trees:
   - value: 0.023
@@ -106,48 +124,72 @@ MonoBehaviour:
     alt: {fileID: 11400000, guid: 2725741a6656efb4a809f6f94cb209a4, type: 2}
     tilemap: {fileID: 0}
     altTilemap: {fileID: 0}
+    minimapColor:
+      serializedVersion: 2
+      rgba: 4278226299
     isGrass: 0
   - value: 0.043
     tile: {fileID: 11400000, guid: d19148b7afde655419af06320489bb59, type: 2}
     alt: {fileID: 11400000, guid: fd2f031ff2ebb0c47b0ce365076ae76a, type: 2}
     tilemap: {fileID: 0}
     altTilemap: {fileID: 0}
+    minimapColor:
+      serializedVersion: 2
+      rgba: 4278226299
     isGrass: 0
-  - value: 0.14
+  - value: 0.068
     tile: {fileID: 11400000, guid: e5d94e508f1f56645b49729c5def403e, type: 2}
     alt: {fileID: 11400000, guid: ad8a6be40d907114487845c843d7be5d, type: 2}
     tilemap: {fileID: 0}
     altTilemap: {fileID: 0}
+    minimapColor:
+      serializedVersion: 2
+      rgba: 4278226299
     isGrass: 0
-  - value: 0.222
+  - value: 0.376
     tile: {fileID: 11400000, guid: cb811b36c9a34ce478a6e9e08ead2bea, type: 2}
     alt: {fileID: 11400000, guid: 9c4798f94956acd46bb3343d2a7df5c6, type: 2}
     tilemap: {fileID: 0}
     altTilemap: {fileID: 0}
+    minimapColor:
+      serializedVersion: 2
+      rgba: 4278226299
     isGrass: 0
-  - value: 0.247
+  - value: 0.722
     tile: {fileID: 11400000, guid: 09f1ec9c5ecc3e94bbd5d778795713f1, type: 2}
     alt: {fileID: 11400000, guid: 94bab7ba5c5cf6846af4f80583c6dd07, type: 2}
     tilemap: {fileID: 0}
     altTilemap: {fileID: 0}
+    minimapColor:
+      serializedVersion: 2
+      rgba: 4278226299
     isGrass: 0
-  - value: 0.327
+  - value: 0.852
     tile: {fileID: 11400000, guid: 8e1be9d5c993aea49ad8f8849d683d32, type: 2}
     alt: {fileID: 11400000, guid: 05aea8fd1e66c9546bd874870a8ec9f9, type: 2}
     tilemap: {fileID: 0}
     altTilemap: {fileID: 0}
+    minimapColor:
+      serializedVersion: 2
+      rgba: 4278226299
     isGrass: 0
-  - value: 0.426
+  - value: 0.92
     tile: {fileID: 11400000, guid: 91aa89066d487c94bb44036adcf7cdf2, type: 2}
     alt: {fileID: 11400000, guid: d2fc31db3bebea94d86b03dc0e1c9ee2, type: 2}
     tilemap: {fileID: 0}
     altTilemap: {fileID: 0}
+    minimapColor:
+      serializedVersion: 2
+      rgba: 4278226299
     isGrass: 0
-  - value: 0.691
+  - value: 1
     tile: {fileID: 11400000, guid: 44e15418d29871c4683ce6128dbef82f, type: 2}
     alt: {fileID: 11400000, guid: 180b5174a247379488cfadd8cda3301b, type: 2}
     tilemap: {fileID: 0}
     altTilemap: {fileID: 0}
+    minimapColor:
+      serializedVersion: 2
+      rgba: 4278226299
     isGrass: 0
   defaultTile:
     value: 0
@@ -155,6 +197,9 @@ MonoBehaviour:
     alt: {fileID: 0}
     tilemap: {fileID: 0}
     altTilemap: {fileID: 0}
+    minimapColor:
+      serializedVersion: 2
+      rgba: 4292721801
     isGrass: 0
   treeDensity: 0.173
   tilemap: {fileID: 0}
@@ -163,8 +208,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   tileToReplace: {fileID: 0}
-  frequency: 0.006
+  frequency: 0.06
   riverFrequency: 0.045
   seeker: {fileID: 2201393673013846395}
   infested:
@@ -173,6 +219,145 @@ MonoBehaviour:
     alt: {fileID: 0}
     tilemap: {fileID: 0}
     altTilemap: {fileID: 0}
+    minimapColor:
+      serializedVersion: 2
+      rgba: 4287116937
+    isGrass: 0
+  minimapTiles:
+  - value: 0.061
+    tile: {fileID: 11400000, guid: 089af5ffc57303b468c799cd7922f684, type: 2}
+    alt: {fileID: 0}
+    tilemap: {fileID: 0}
+    altTilemap: {fileID: 0}
+    minimapColor:
+      serializedVersion: 2
+      rgba: 0
+    isGrass: 0
+  - value: 0.197
+    tile: {fileID: 11400000, guid: 2de79e57e6d98c8409a1fa0ce1fc8143, type: 2}
+    alt: {fileID: 0}
+    tilemap: {fileID: 0}
+    altTilemap: {fileID: 0}
+    minimapColor:
+      serializedVersion: 2
+      rgba: 0
+    isGrass: 1
+  - value: 0.611
+    tile: {fileID: 11400000, guid: 4375ae53dfca0d441b1407cf0b33284b, type: 2}
+    alt: {fileID: 0}
+    tilemap: {fileID: 0}
+    altTilemap: {fileID: 0}
+    minimapColor:
+      serializedVersion: 2
+      rgba: 0
+    isGrass: 1
+  - value: 1
+    tile: {fileID: 11400000, guid: e2da6dcb821b4644a905812c23f12101, type: 2}
+    alt: {fileID: 0}
+    tilemap: {fileID: 0}
+    altTilemap: {fileID: 0}
+    minimapColor:
+      serializedVersion: 2
+      rgba: 0
+    isGrass: 1
+  - value: 0
+    tile: {fileID: 11400000, guid: a09f627cbafcfb445a633eccf946e864, type: 2}
+    alt: {fileID: 0}
+    tilemap: {fileID: 0}
+    altTilemap: {fileID: 0}
+    minimapColor:
+      serializedVersion: 2
+      rgba: 4292721801
+    isGrass: 0
+  - value: 0
+    tile: {fileID: 11400000, guid: d19148b7afde655419af06320489bb59, type: 2}
+    alt: {fileID: 0}
+    tilemap: {fileID: 0}
+    altTilemap: {fileID: 0}
+    minimapColor:
+      serializedVersion: 2
+      rgba: 4281705477
+    isGrass: 0
+  - value: 0
+    tile: {fileID: 11400000, guid: e5d94e508f1f56645b49729c5def403e, type: 2}
+    alt: {fileID: 0}
+    tilemap: {fileID: 0}
+    altTilemap: {fileID: 0}
+    minimapColor:
+      serializedVersion: 2
+      rgba: 4281705477
+    isGrass: 0
+  - value: 0
+    tile: {fileID: 11400000, guid: 17620a5ce75581746aed8e5839c83b90, type: 2}
+    alt: {fileID: 0}
+    tilemap: {fileID: 0}
+    altTilemap: {fileID: 0}
+    minimapColor:
+      serializedVersion: 2
+      rgba: 4281705477
+    isGrass: 0
+  - value: 0
+    tile: {fileID: 11400000, guid: cb811b36c9a34ce478a6e9e08ead2bea, type: 2}
+    alt: {fileID: 0}
+    tilemap: {fileID: 0}
+    altTilemap: {fileID: 0}
+    minimapColor:
+      serializedVersion: 2
+      rgba: 4281705477
+    isGrass: 0
+  - value: 0
+    tile: {fileID: 11400000, guid: 09f1ec9c5ecc3e94bbd5d778795713f1, type: 2}
+    alt: {fileID: 0}
+    tilemap: {fileID: 0}
+    altTilemap: {fileID: 0}
+    minimapColor:
+      serializedVersion: 2
+      rgba: 4287072135
+    isGrass: 0
+  - value: 0
+    tile: {fileID: 11400000, guid: 8e1be9d5c993aea49ad8f8849d683d32, type: 2}
+    alt: {fileID: 0}
+    tilemap: {fileID: 0}
+    altTilemap: {fileID: 0}
+    minimapColor:
+      serializedVersion: 2
+      rgba: 4287072135
+    isGrass: 0
+  - value: 0
+    tile: {fileID: 11400000, guid: 91aa89066d487c94bb44036adcf7cdf2, type: 2}
+    alt: {fileID: 0}
+    tilemap: {fileID: 0}
+    altTilemap: {fileID: 0}
+    minimapColor:
+      serializedVersion: 2
+      rgba: 4287072135
+    isGrass: 0
+  - value: 0
+    tile: {fileID: 11400000, guid: 44e15418d29871c4683ce6128dbef82f, type: 2}
+    alt: {fileID: 0}
+    tilemap: {fileID: 0}
+    altTilemap: {fileID: 0}
+    minimapColor:
+      serializedVersion: 2
+      rgba: 4287072135
+    isGrass: 0
+  - value: 0
+    tile: {fileID: 11400000, guid: 8fa40e1ff3a550947a5ba83944147df0, type: 2}
+    alt: {fileID: 0}
+    tilemap: {fileID: 0}
+    altTilemap: {fileID: 0}
+    minimapColor:
+      serializedVersion: 2
+      rgba: 4281951152
+    isGrass: 0
+  - value: 0
+    tile: {fileID: 11400000, guid: ed094c8b04af7d7439d2234366d210f3, type: 2}
+    alt: {fileID: 0}
+    tilemap: {fileID: 0}
+    altTilemap: {fileID: 0}
+    minimapColor:
+      serializedVersion: 2
+      rgba: 4287255448
     isGrass: 0
   vcam: {fileID: 4386574285410547784}
   crystal: {fileID: 1911499224282035246, guid: 005fa7dfd3846b747886c57302b46c34, type: 3}
@@ -429,7 +614,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: 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
+    dataString: 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
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -543,7 +728,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3224247959883224196, guid: ff4f50c8b281fe54da564594867e11da, type: 3}
       propertyPath: m_Lens.m_SensorSize.x
-      value: 2.1508875
+      value: 1.8036649
       objectReference: {fileID: 0}
     - target: {fileID: 3224247960205667385, guid: ff4f50c8b281fe54da564594867e11da, type: 3}
       propertyPath: m_Name

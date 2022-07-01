@@ -3,34 +3,49 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Building : MonoBehaviour
+public class Building : MonoBehaviour, IBuilding, ISelectable
 {
-    [SerializeField] GameObject buildingPrewiew;
-    [SerializeField] Sprite icon;
-    [SerializeField] int price = 100;
-    [SerializeField] int id = -1;
+    [SerializeField] protected int price = 100;
+    [SerializeField] protected float health;
+    [SerializeField] private ContextMenu contextMenu;
+    [SerializeField] private ConstructionMenu constructionPreset;
+    public int Price => price;
 
+    public ContextMenu ContextMenu => contextMenu;
 
-    public static event Action<Building> OnBuildingSpawned;
-    public static event Action<Building> OnBuildingDespawned;
-
-    public int GetPrice()
+    public virtual void Sell()
     {
-        return price;
+        Economics.GainMoney(price);
+    }
+    private void OnEnable()
+    {
+        ConstructBehaviour cb = GetComponent<ConstructBehaviour>();
+        foreach (var item in constructionPreset.options)
+        {
+            UnityEngine.Events.UnityEvent e = new UnityEngine.Events.UnityEvent();
+            e.AddListener(() => cb.ConstructBuilding(item.building));
+            contextMenu.Add(item.option, e);
+        }
+    }
+    protected virtual void Start()
+    {
+        BuildingObserver.Observe(this);
+
     }
 
-    public int GetId()
+    public virtual void Damage(float damage, IDamagable owner)
     {
-        return id;
-    }
-    public Sprite GetIcon()
-    {
-        return icon;
-    }
-
-    public GameObject GetBuildingPreview()
-    {
-        return buildingPrewiew;
+        health -= damage;
+        if (health <= 0)
+        {
+            BuildingObserver.StopObserving(this);
+            Destroy(gameObject);
+        }
     }
 
+    public bool Select() => false;
+
+    public void Action(OrderBase order) { }
+
+    public bool Deselect() => false;
 }
