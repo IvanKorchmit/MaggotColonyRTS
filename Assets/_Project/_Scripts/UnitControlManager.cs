@@ -101,7 +101,6 @@ public interface ISelectable
 }
 public interface IAttackable : IDamagable
 {
-    GameObject gameObject { get; }
 }
 public abstract class OrderBase
 {

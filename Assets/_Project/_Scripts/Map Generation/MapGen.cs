@@ -94,15 +94,7 @@ public class MapGen : MonoBehaviour
         Vector3Int origin = Vector3Int.RoundToInt(tilemap.cellBounds.center);
         cc.transform.position = grid.CellToWorld(origin);
         Vector3Int size = new Vector3Int(24, 24, 1);
-        BoundsInt bounds = new(origin - size / 2, size);
-        // Clearing area
-        foreach (var item in tilemapToClear)
-        {
-            foreach (var pos in bounds.allPositionsWithin)
-            {
-                item.SetTile(pos, tileToReplace);
-            }
-        }
+        ClearAround(size, origin);
         float z = vcam.position.z;
         vcam.transform.position = cc.transform.position;
 
@@ -163,7 +155,7 @@ public class MapGen : MonoBehaviour
 
     private void ClearAround(Vector3Int size, Vector3Int origin)
     {
-        BoundsInt bounds = new BoundsInt(origin - size / 2, size);
+        BoundsInt bounds = new BoundsInt(origin - (size / 4), size);
         foreach (var item in tilemapToClear)
         {
             foreach (var pos in bounds.allPositionsWithin)
