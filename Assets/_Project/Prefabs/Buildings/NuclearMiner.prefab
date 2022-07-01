@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2533688182737087386}
   - component: {fileID: 3855933726588876143}
   - component: {fileID: 7655296115692029719}
+  - component: {fileID: 4017651181118990888}
   m_Layer: 8
   m_Name: NuclearMiner
   m_TagString: Player
@@ -105,7 +106,7 @@ PolygonCollider2D:
   m_Offset: {x: -0.33, y: 0.8}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.49534416, y: 0.062126644}
+    pivot: {x: 0.4953442, y: 0.06212664}
     oldSize: {x: 4, y: 4}
     newSize: {x: 8, y: 8}
     adaptiveTilingThreshold: 0.5
@@ -165,8 +166,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 896bd892ae6b6ad428fbff9f0317728a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  price: 140
   health: 100
-  radius: 8
   contextMenu:
     options:
     - action:
@@ -185,6 +186,8 @@ MonoBehaviour:
               m_BoolArgument: 0
             m_CallState: 2
       summary: Sell (25$)
+  constructionPreset: {fileID: 11400000, guid: d9e94ad8d82526f4bb599cb84912e3f8, type: 2}
+  multiplier: 2
 --- !u!50 &3855933726588876143
 Rigidbody2D:
   serializedVersion: 4
@@ -226,3 +229,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4017651181118990888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7113053798192772446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de5d4cfff5394194989821998dd3eb0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  constructionLayer:
+    serializedVersion: 2
+    m_Bits: 256

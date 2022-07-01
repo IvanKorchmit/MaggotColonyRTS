@@ -14,10 +14,12 @@ public class CommandCenter : Building, ISelectable, IBuilding
     // Start is called before the first frame update
     protected override void Start()
     {
-        BuildingObserver.Observe(this);
+        base.Start();
         foreach (var u in startUnits)
         {
             Instantiate(u, transform.position, Quaternion.identity);
         }
     }
 }
+
+

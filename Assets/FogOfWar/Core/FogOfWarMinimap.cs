@@ -41,6 +41,7 @@ namespace FoW
 
                 _texture = new Texture2D(fow.mapResolution.x, fow.mapResolution.y, TextureFormat.ARGB32, false, false);
                 _texture.name = "FogOfWarMinimap";
+                _texture.filterMode = FilterMode.Point;
                 _fogValues = new byte[fow.mapResolution.x * fow.mapResolution.y];
                 _pixels = new Color32[fow.mapResolution.x * fow.mapResolution.y];
 

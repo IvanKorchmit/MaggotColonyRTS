@@ -4,21 +4,22 @@ public class ConstructBehaviour : MonoBehaviour
 {
     [SerializeField] private LayerMask constructionLayer;
 
-    public void Construct(GameObject obj)
+    public void ConstructMiner(GameObject obj)
     {
-
-
+        Building bld = obj.GetComponent<Building>();
+        if (bld.Price > Economics.Money)
+        {
+            return;
+        }
         int layer = constructionLayer;
-
+        
         Collider2D[] crystals = Physics2D.OverlapCircleAll(transform.position, 12f, constructionLayer);
         foreach (var item in crystals)
         {
-            Debug.Log(item.name);
             if (item.TryGetComponent(out ICrystal crystal))
             {
                 void GridSnap_OnPlaceSuccessful(Vector3 position, GameObject prefab)
                 {
-                    Debug.Log(name);
                     if (Vector2.Distance(position, transform.position) <= 25f)
                     {
                         prefab.layer = LayerMask.NameToLayer("Building");
@@ -26,6 +27,7 @@ public class ConstructBehaviour : MonoBehaviour
                         var miner = Instantiate(prefab, position, Quaternion.identity).GetComponent<IMiner>();
                         crystal.Assign(miner);
                         AstarPath.active.Scan();
+                        Economics.GainMoney(-bld.Price);
                         Destroy(prefab);
                         GridSnap.OnPlaceSuccessful -= GridSnap_OnPlaceSuccessful;
                     }
@@ -36,7 +38,6 @@ public class ConstructBehaviour : MonoBehaviour
                 }
                 if (crystal.CurrentMiner == null)
                 {
-                    // Checking space
                     GridSnap.Place(obj);
                     GridSnap.OnPlaceSuccessful += GridSnap_OnPlaceSuccessful;
                     return;
@@ -50,4 +51,34 @@ public class ConstructBehaviour : MonoBehaviour
         }
         Debug.LogError("No Crystal found!");
     }
+
+    public void ConstructBuilding(GameObject obj)
+    {
+        void GridSnap_OnPlaceSuccessful(Vector3 position, GameObject prefab)
+        {
+            Debug.Log(name);
+            if (Vector2.Distance(position, transform.position) <= 25f)
+            {
+                prefab.layer = LayerMask.NameToLayer("Building");
+                prefab.GetComponent<SpriteRenderer>().color = Color.white;
+                Instantiate(prefab, position, Quaternion.identity);
+                AstarPath.active.Scan();
+                Destroy(prefab);
+                GridSnap.OnPlaceSuccessful -= GridSnap_OnPlaceSuccessful;
+            }
+            else
+            {
+                Debug.LogError("Too far away " + Vector2.Distance((Vector3)position, transform.position));
+            }
+        }
+        int layer = constructionLayer;
+        Building bld = obj.GetComponent<Building>();
+        if (bld.Price <= Economics.Money)
+        {
+            GridSnap.Place(obj);
+            GridSnap.OnPlaceSuccessful += GridSnap_OnPlaceSuccessful;
+            Economics.GainMoney(-bld.Price);
+        }
+    }
+
 }

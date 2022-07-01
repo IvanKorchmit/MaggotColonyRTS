@@ -5,11 +5,10 @@ using UnityEngine;
 
 public class Building : MonoBehaviour, IBuilding, ISelectable
 {
-    [SerializeField] GameObject buildingPrewiew;
-    [SerializeField] Sprite icon;
     [SerializeField] protected int price = 100;
     [SerializeField] protected float health;
     [SerializeField] private ContextMenu contextMenu;
+    [SerializeField] private ConstructionMenu constructionPreset;
     public int Price => price;
 
     public ContextMenu ContextMenu => contextMenu;
@@ -18,9 +17,23 @@ public class Building : MonoBehaviour, IBuilding, ISelectable
     {
         Economics.GainMoney(price);
     }
+    private void OnEnable()
+    {
+        Start();
+    }
     protected virtual void Start()
     {
+        Debug.Log("Start");
         BuildingObserver.Observe(this);
+        ConstructBehaviour cb = GetComponent<ConstructBehaviour>();
+        foreach (var item in constructionPreset.options)
+        {
+            UnityEngine.Events.UnityEvent e = new UnityEngine.Events.UnityEvent();
+            e.AddListener(()=>cb.ConstructBuilding(item.building));
+            contextMenu.Add(item.option, e);
+        }
+        Debug.Log("End");
+
     }
 
     public virtual void Damage(float damage, IDamagable owner)

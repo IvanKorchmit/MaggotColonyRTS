@@ -92,7 +92,14 @@ public class UnitControlManager : MonoBehaviour
         if (Mouse.current.leftButton.ReadValue() >= 0.1f) MouseHold();
     }
 }
-public interface ISelectable
+
+public interface ITransformAndGameObject
+{
+    Transform transform { get; }
+    GameObject gameObject { get; }
+}
+
+public interface ISelectable : ITransformAndGameObject
 {
     ContextMenu @ContextMenu { get; }
     bool Select();

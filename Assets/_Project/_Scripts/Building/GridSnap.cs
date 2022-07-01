@@ -21,9 +21,12 @@ public class GridSnap : MonoBehaviour
 
     public static void Place(GameObject placement)
     {
-        foreach (Transform item in instance.transform)
+        OnPlaceSuccessful = null;
+        while (instance.transform.childCount > 0)
         {
-            Destroy(item.gameObject);
+            Transform child = instance.transform.GetChild(0);
+            child.SetParent(null);
+            Destroy(child.gameObject);
         }
         instance.placement = Instantiate(placement, instance.transform);
         instance.placement.transform.localPosition = new Vector3();

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class Economics
 {
-    private static int money;
+    private static int money = 150;
     private static List<ITank> tanks;
     private static List<IUnit> units;
 

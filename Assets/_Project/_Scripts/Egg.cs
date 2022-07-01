@@ -9,7 +9,7 @@ public class Egg : MonoBehaviour, IAttackable, IDamagable
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating(nameof(Spawn), 6f, Random.Range(10f, 60f));
+        InvokeRepeating(nameof(Spawn), 6f, Random.Range(50f, 60f));
     }
 
     private void Spawn()
@@ -23,7 +23,7 @@ public class Egg : MonoBehaviour, IAttackable, IDamagable
         if (Random.value >= 0.5f)
         {
             // Trigger spawning enemies on attack
-            for (int i = 0; i < (int)damage; i++)
+            for (int i = 0; i < (int)damage / 2; i++)
             {
                 Spawn();
             }

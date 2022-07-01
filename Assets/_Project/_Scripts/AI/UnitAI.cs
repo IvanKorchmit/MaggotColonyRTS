@@ -79,10 +79,8 @@ public class UnitAI : MonoBehaviour, ISelectable, IDamagable, IUnit
         }
     }
 }
-public interface IDamagable
+public interface IDamagable : ITransformAndGameObject
 {
-    GameObject gameObject { get; }
-    Transform transform { get; }
     void Damage(float damage, IDamagable owner);
 }
 

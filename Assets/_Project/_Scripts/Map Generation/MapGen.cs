@@ -11,6 +11,11 @@ using Cinemachine;
 
 public class MapGen : MonoBehaviour
 {
+
+    public static event System.Action OnMapGenerated;
+
+    public static MapGen instance;
+
     [System.Serializable]
     public struct NoiseTile
     {
@@ -20,6 +25,7 @@ public class MapGen : MonoBehaviour
         public TileBase alt;
         public Tilemap tilemap;
         public Tilemap altTilemap;
+        public Color32 minimapColor;
         public bool isGrass;
     }
 
@@ -50,7 +56,8 @@ public class MapGen : MonoBehaviour
     [SerializeField] private Seeker seeker;
 
     [SerializeField] private NoiseTile infested;
-
+    [NonReorderable]
+    [SerializeField] private NoiseTile[] minimapTiles;
 
     [SerializeField] private Transform vcam;
     [SerializeField] private GameObject crystal;
@@ -64,6 +71,7 @@ public class MapGen : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        instance = this;
         seed = Random.Range(0, 10000f);
 
 
@@ -77,6 +85,7 @@ public class MapGen : MonoBehaviour
         PlaceCommandCenter();
         var graph = AstarPath.active.graphs[0] as GridGraph;
         TimerUtils.AddTimer(0.1f, () => AstarPath.active.Scan(graph));
+        OnMapGenerated?.Invoke();
     }
     private void GenerateTree(float x, float y, ModuleBase noise)
     {
@@ -87,6 +96,30 @@ public class MapGen : MonoBehaviour
             tree.altTilemap.SetTile(new Vector3Int((int)x, (int)y), tree.alt);
         }
     }
+
+    public Texture2D GetTexture()
+    {
+        Texture2D result = new Texture2D(width, height);
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                Vector3Int pos = new Vector3Int(x, y, 0);
+                foreach (var t in minimapTiles)
+                {
+                    TileBase tile = t.tilemap.GetTile(pos);
+                    if (tile == null) continue;
+                    if (tile != t.tile) continue;
+                    result.SetPixel(x, y, t.isGrass ? t.tilemap.GetColor(pos) : t.minimapColor);
+                }
+
+            }
+        }
+        result.filterMode = FilterMode.Point;
+        result.Apply();
+        return result;
+    }
+
     private void PlaceCommandCenter()
     {
 
@@ -110,7 +143,7 @@ public class MapGen : MonoBehaviour
 
     private bool DefaultConstraint(Vector3Int origin, GameObject commandCenter)
     {
-        return Vector2.Distance((Vector3)origin, commandCenter.transform.position) >= 128;
+        return Vector2.Distance((Vector3)origin, commandCenter.transform.position) < 128;
     }
 
     private void SpawnCrystal(GameObject commandCenter)
@@ -174,7 +207,7 @@ public class MapGen : MonoBehaviour
             origin = new Vector3Int(0, 0);
             origin.x += Random.Range(0, width);
             origin.y += Random.Range(0, height);
-        } while (rules == null || rules(origin, commandCenter));
+        } while (rules == null || !rules(origin, commandCenter));
         return origin;
     }
 

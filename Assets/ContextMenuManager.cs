@@ -20,8 +20,16 @@ public class ContextMenuManager : MonoBehaviour
                 {
                     if (ray.transform.TryGetComponent(out ISelectable interactable))
                     {
+                        RectTransform rectTrans = contextMenuBase.transform as RectTransform;
+                        print(interactable.transform.name);
                         contextMenuBase.Init(interactable.ContextMenu);
-                        (contextMenuBase.transform as RectTransform).anchoredPosition = UnityEngine.InputSystem.Mouse.current.position.ReadValue();
+                        rectTrans.anchoredPosition = UnityEngine.InputSystem.Mouse.current.position.ReadValue();
+                        Vector2 apos = rectTrans.anchoredPosition;
+                        float xpos = apos.x;
+                        xpos = Mathf.Clamp(xpos, rectTrans.sizeDelta.x, Screen.width);
+                        apos.x = xpos;
+                        rectTrans.anchoredPosition = apos;
+
                         contextMenuBase.gameObject.SetActive(true);
                     }
                 }
@@ -43,7 +51,10 @@ public class ContextMenu
     {
         options[index].Invoke();
     }
-
+    public void Add(string option, UnityEvent action)
+    {
+        options.Add(new Option(option, action));
+    }
     [System.Serializable]
     public class Option
     {
@@ -54,6 +65,11 @@ public class ContextMenu
             action?.Invoke();
         }
         public string Summary => summary;
+        public Option(string name, UnityEvent action)
+        {
+            summary = name;
+            this.action = action;
+        }
     }
 
 } 

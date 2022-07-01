@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: bushes_and_rocks_9
+  m_Name: bush3
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 31935081, guid: 53e55cb96e856da40a75aa0ce879b37a, type: 3}
+  m_Sprite: {fileID: 810336641, guid: 53e55cb96e856da40a75aa0ce879b37a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2533688182737087389}
   - component: {fileID: 2533688182737087386}
   - component: {fileID: 3855933726588876143}
+  - component: {fileID: 6495840125146636167}
   m_Layer: 8
   m_Name: Miner
   m_TagString: Player
@@ -164,8 +165,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 896bd892ae6b6ad428fbff9f0317728a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  price: 75
   health: 100
-  radius: 8
   contextMenu:
     options:
     - action:
@@ -184,6 +185,8 @@ MonoBehaviour:
               m_BoolArgument: 0
             m_CallState: 2
       summary: Sell (25$)
+  constructionPreset: {fileID: 11400000, guid: d9e94ad8d82526f4bb599cb84912e3f8, type: 2}
+  multiplier: 1
 --- !u!50 &3855933726588876143
 Rigidbody2D:
   serializedVersion: 4
@@ -205,3 +208,18 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!114 &6495840125146636167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7113053798192772446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de5d4cfff5394194989821998dd3eb0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  constructionLayer:
+    serializedVersion: 2
+    m_Bits: 256

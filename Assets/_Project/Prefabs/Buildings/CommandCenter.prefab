@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 6119725097460025069}
   - component: {fileID: 6119725097460025066}
   - component: {fileID: 6119725097460025065}
+  - component: {fileID: 3890761197524839284}
   m_Layer: 8
   m_Name: Visuals
   m_TagString: Player
@@ -154,22 +155,16 @@ MonoBehaviour:
               m_BoolArgument: 0
             m_CallState: 2
       summary: Sell
-  health: 300
+  constructionPreset: {fileID: 11400000, guid: d9e94ad8d82526f4bb599cb84912e3f8, type: 2}
   startUnits:
-  - {fileID: 5664282489524170380, guid: e79b629d0a8587d40a381af6099ddb1c, type: 3}
-  - {fileID: 5664282489524170380, guid: e79b629d0a8587d40a381af6099ddb1c, type: 3}
-  - {fileID: 5664282489524170380, guid: e79b629d0a8587d40a381af6099ddb1c, type: 3}
-  - {fileID: 5664282489524170380, guid: e79b629d0a8587d40a381af6099ddb1c, type: 3}
-  - {fileID: 5664282489524170380, guid: e79b629d0a8587d40a381af6099ddb1c, type: 3}
-  - {fileID: 5664282489524170380, guid: e79b629d0a8587d40a381af6099ddb1c, type: 3}
-  - {fileID: 5664282489524170380, guid: e79b629d0a8587d40a381af6099ddb1c, type: 3}
-  - {fileID: 5664282489524170380, guid: e79b629d0a8587d40a381af6099ddb1c, type: 3}
-  - {fileID: 5664282489524170380, guid: e79b629d0a8587d40a381af6099ddb1c, type: 3}
-  - {fileID: 5664282489524170380, guid: e79b629d0a8587d40a381af6099ddb1c, type: 3}
-  - {fileID: 5664282489524170380, guid: e79b629d0a8587d40a381af6099ddb1c, type: 3}
-  - {fileID: 5664282489524170380, guid: e79b629d0a8587d40a381af6099ddb1c, type: 3}
-  - {fileID: 5664282489524170380, guid: e79b629d0a8587d40a381af6099ddb1c, type: 3}
-  - {fileID: 5664282489524170380, guid: e79b629d0a8587d40a381af6099ddb1c, type: 3}
+  - {fileID: 433034928824364513, guid: ac04924bf6d4f6b41b8be49ba3680ddf, type: 3}
+  - {fileID: 433034928824364513, guid: ac04924bf6d4f6b41b8be49ba3680ddf, type: 3}
+  - {fileID: 433034928824364513, guid: ac04924bf6d4f6b41b8be49ba3680ddf, type: 3}
+  - {fileID: 433034928824364513, guid: ac04924bf6d4f6b41b8be49ba3680ddf, type: 3}
+  - {fileID: 433034928824364513, guid: ac04924bf6d4f6b41b8be49ba3680ddf, type: 3}
+  - {fileID: 433034928824364513, guid: ac04924bf6d4f6b41b8be49ba3680ddf, type: 3}
+  - {fileID: 433034928824364513, guid: ac04924bf6d4f6b41b8be49ba3680ddf, type: 3}
+  - {fileID: 433034928824364513, guid: ac04924bf6d4f6b41b8be49ba3680ddf, type: 3}
 --- !u!60 &6119725097460025066
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -234,6 +229,21 @@ MonoBehaviour:
   multithreading: 1
   cellBased: 1
   snapToPixelCenter: 1
+--- !u!114 &3890761197524839284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6119725097460025071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de5d4cfff5394194989821998dd3eb0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  constructionLayer:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!1001 &4032206560007178964
 PrefabInstance:
   m_ObjectHideFlags: 0

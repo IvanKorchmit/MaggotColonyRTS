@@ -3,10 +3,10 @@
 public class Miner : Building, IMiner
 {
     public event System.Action OnDestroyed;
-
+    [SerializeField] private int multiplier;
     protected override void Start()
     {
-        BuildingObserver.Observe(this);
+        base.Start();
     }
     public override void Damage(float damage, IDamagable owner)
     {
@@ -27,6 +27,6 @@ public class Miner : Building, IMiner
     }
     public void GainIncome(int money)
     {
-        Economics.GainMoney(money);
+        Economics.GainMoney(money * multiplier);
     }
 }

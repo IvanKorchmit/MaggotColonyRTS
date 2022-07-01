@@ -294,7 +294,7 @@ MonoBehaviour:
           m_Calls:
           - m_Target: {fileID: 7710675470792429033}
             m_TargetAssemblyTypeName: ConstructBehaviour, Assembly-CSharp
-            m_MethodName: Construct
+            m_MethodName: ConstructMiner
             m_Mode: 2
             m_Arguments:
               m_ObjectArgument: {fileID: 7113053798192772446, guid: 2d437f8c2396ae649a716c56acb726b2, type: 3}
@@ -310,7 +310,7 @@ MonoBehaviour:
           m_Calls:
           - m_Target: {fileID: 7710675470792429033}
             m_TargetAssemblyTypeName: ConstructBehaviour, Assembly-CSharp
-            m_MethodName: Construct
+            m_MethodName: ConstructMiner
             m_Mode: 2
             m_Arguments:
               m_ObjectArgument: {fileID: 7113053798192772446, guid: 10e3869bb6a259746872e1d1f075d1a7, type: 3}

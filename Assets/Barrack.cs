@@ -4,25 +4,30 @@ using UnityEngine;
 
 public class Barrack : Building, ISelectable, IBuilding
 {
-    [SerializeField] private ContextMenu contextMenu;
 
-    private List<GameObject> pending;
+    private List<GameObject> pending = new List<GameObject>();
     protected override void Start()
     {
-        pending = new List<GameObject>();
+        base.Start();
     }
-    private void Create()
+
+    private IEnumerator Create()
     {
-        if (pending.Count > 0)
+        while (pending.Count > 0)
         {
+            yield return new WaitForSeconds(5);
             Instantiate(pending[0], transform.position, Quaternion.identity);
             pending.RemoveAt(0);
-            TimerUtils.AddTimer(5, Create);
         }
     }
-    public void ProduceUnit(GameObject unit)
+    public void ProduceUnit(UnitBarrack unit)
     {
-        pending.Add(unit);
-        TimerUtils.AddTimer(5, Create);
-    }
+        if (unit.price <= Economics.Money)
+        {
+            pending.Add(unit.unit);
+            StopAllCoroutines();
+            StartCoroutine(Create());
+            Economics.GainMoney(-unit.price);
+        }
+    }   
 }

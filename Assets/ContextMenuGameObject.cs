@@ -8,6 +8,7 @@ public class ContextMenuGameObject : MonoBehaviour
     public void Init(ContextMenu menu)
     {
         contextMenu = menu;
+        Start();
     }
     private void Start()
     {

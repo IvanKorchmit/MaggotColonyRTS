@@ -103,7 +103,7 @@ public class BugAI : MonoBehaviour, IAttackable, IDamagable
 
     public void Damage(float damage, IDamagable owner)
     {
-        if (health <= 0 || immune) return;
+        if (immune) return;
         health -= damage;
         target = owner;
         seeker.StartPath(transform.position, target.transform.position);

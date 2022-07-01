@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 2874852025998646951}
   - component: {fileID: 2874852025998646948}
   - component: {fileID: 3553329242044825686}
-  - component: {fileID: 7994419389129585198}
   - component: {fileID: 1218237835672531211}
+  - component: {fileID: -2668458875963938591}
   m_Layer: 8
   m_Name: Barrack
   m_TagString: Player
@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 7384309010412191847}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -859.859, y: 150.11462, z: -0.11833729}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -174,26 +174,6 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!95 &7994419389129585198
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7384309010412191847}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: eb2cd94340ad860428561d70e48fb729, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1218237835672531211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,6 +186,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77e7da05876f868409bde06be19784ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  price: 100
+  health: 50
   contextMenu:
     options:
     - action:
@@ -216,11 +198,43 @@ MonoBehaviour:
             m_MethodName: ProduceUnit
             m_Mode: 2
             m_Arguments:
-              m_ObjectArgument: {fileID: 433034928824364513, guid: ac04924bf6d4f6b41b8be49ba3680ddf, type: 3}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+              m_ObjectArgument: {fileID: 11400000, guid: d40b94a5d29973e4bbea880f03ca28b2, type: 2}
+              m_ObjectArgumentAssemblyTypeName: UnitBarrack, Assembly-CSharp
               m_IntArgument: 0
               m_FloatArgument: 0
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-      summary: Make Soldier (5$)
+      summary: Make Soldier (25$)
+    - action:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 1218237835672531211}
+            m_TargetAssemblyTypeName: Barrack, Assembly-CSharp
+            m_MethodName: ProduceUnit
+            m_Mode: 2
+            m_Arguments:
+              m_ObjectArgument: {fileID: 11400000, guid: 1f1dd1b37c7a0694f933f1be3b401bd3, type: 2}
+              m_ObjectArgumentAssemblyTypeName: UnitBarrack, Assembly-CSharp
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+      summary: Make Soldier (150$)
+  constructionPreset: {fileID: 11400000, guid: d9e94ad8d82526f4bb599cb84912e3f8, type: 2}
+--- !u!114 &-2668458875963938591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7384309010412191847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de5d4cfff5394194989821998dd3eb0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  constructionLayer:
+    serializedVersion: 2
+    m_Bits: 256
