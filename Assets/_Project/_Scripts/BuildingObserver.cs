@@ -14,7 +14,7 @@ public class BuildingObserver : MonoBehaviour
     }
     public static void StopObserving(IBuilding building)
     {
-        instance.buildingsToObserve.Remove(building);
+        instance.buildingsToObserve.RemoveAll((match)=>match==building);
     }
     private void Start()
     {

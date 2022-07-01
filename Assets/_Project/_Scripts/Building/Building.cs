@@ -19,20 +19,17 @@ public class Building : MonoBehaviour, IBuilding, ISelectable
     }
     private void OnEnable()
     {
-        Start();
-    }
-    protected virtual void Start()
-    {
-        Debug.Log("Start");
-        BuildingObserver.Observe(this);
         ConstructBehaviour cb = GetComponent<ConstructBehaviour>();
         foreach (var item in constructionPreset.options)
         {
             UnityEngine.Events.UnityEvent e = new UnityEngine.Events.UnityEvent();
-            e.AddListener(()=>cb.ConstructBuilding(item.building));
+            e.AddListener(() => cb.ConstructBuilding(item.building));
             contextMenu.Add(item.option, e);
         }
-        Debug.Log("End");
+    }
+    protected virtual void Start()
+    {
+        BuildingObserver.Observe(this);
 
     }
 

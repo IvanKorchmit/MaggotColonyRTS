@@ -23,6 +23,7 @@ public class ConstructBehaviour : MonoBehaviour
                     if (Vector2.Distance(position, transform.position) <= 25f)
                     {
                         prefab.layer = LayerMask.NameToLayer("Building");
+                        BuildingObserver.StopObserving(prefab.GetComponent<IBuilding>());
                         prefab.GetComponent<SpriteRenderer>().color = Color.white;
                         var miner = Instantiate(prefab, position, Quaternion.identity).GetComponent<IMiner>();
                         crystal.Assign(miner);
@@ -54,15 +55,18 @@ public class ConstructBehaviour : MonoBehaviour
 
     public void ConstructBuilding(GameObject obj)
     {
+        int price;
         void GridSnap_OnPlaceSuccessful(Vector3 position, GameObject prefab)
         {
             Debug.Log(name);
+                Economics.GainMoney(-price);
             if (Vector2.Distance(position, transform.position) <= 25f)
             {
                 prefab.layer = LayerMask.NameToLayer("Building");
                 prefab.GetComponent<SpriteRenderer>().color = Color.white;
                 Instantiate(prefab, position, Quaternion.identity);
                 AstarPath.active.Scan();
+                BuildingObserver.StopObserving(prefab.GetComponent<IBuilding>());
                 Destroy(prefab);
                 GridSnap.OnPlaceSuccessful -= GridSnap_OnPlaceSuccessful;
             }
@@ -75,9 +79,9 @@ public class ConstructBehaviour : MonoBehaviour
         Building bld = obj.GetComponent<Building>();
         if (bld.Price <= Economics.Money)
         {
+            price = bld.Price;
             GridSnap.Place(obj);
             GridSnap.OnPlaceSuccessful += GridSnap_OnPlaceSuccessful;
-            Economics.GainMoney(-bld.Price);
         }
     }
 

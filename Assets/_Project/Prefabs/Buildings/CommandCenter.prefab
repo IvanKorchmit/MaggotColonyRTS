@@ -62,7 +62,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6119725097460025071}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -133,10 +133,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c31b6d6b110cda3439f3a02b7c1dcd27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingPrewiew: {fileID: 0}
-  icon: {fileID: 0}
   price: 100
-  health: 300
+  health: 1500
   contextMenu:
     options:
     - action:
@@ -257,11 +255,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1911499224282035242, guid: 005fa7dfd3846b747886c57302b46c34, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.6
+      value: 5.81
       objectReference: {fileID: 0}
     - target: {fileID: 1911499224282035242, guid: 005fa7dfd3846b747886c57302b46c34, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.1
+      value: 4.21
       objectReference: {fileID: 0}
     - target: {fileID: 1911499224282035242, guid: 005fa7dfd3846b747886c57302b46c34, type: 3}
       propertyPath: m_LocalPosition.z

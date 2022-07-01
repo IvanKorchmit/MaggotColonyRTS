@@ -62,7 +62,7 @@ public class GridSnap : MonoBehaviour
                         if (comp is Renderer) continue;
                         if (comp is MonoBehaviour beh)
                         {
-                            beh.enabled = false;
+                            beh.enabled = true;
                         }
                     }
                     OnPlaceSuccessful?.Invoke(transform.position, placement);

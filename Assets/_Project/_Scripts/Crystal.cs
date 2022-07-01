@@ -10,7 +10,7 @@ public class Crystal : MonoBehaviour, ICrystal
 
     private void Update()
     {
-        TimerUtils.AddTimer(10f, GiveMoney);
+        TimerUtils.AddTimer(5f, GiveMoney);
     }
     private void GiveMoney()
     {
