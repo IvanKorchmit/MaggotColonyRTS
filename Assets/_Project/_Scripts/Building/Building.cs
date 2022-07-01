@@ -3,22 +3,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Building : MonoBehaviour
+public class Building : MonoBehaviour, IBuilding, ISelectable
 {
     [SerializeField] GameObject buildingPrewiew;
     [SerializeField] Sprite icon;
-    [SerializeField] int price = 100;
-    [SerializeField] int id = -1;
-
-
-    public static event Action<Building> OnBuildingSpawned;
-    public static event Action<Building> OnBuildingDespawned;
-
+    [SerializeField] protected int price = 100;
+    [SerializeField] protected float health;
+    [SerializeField] private ContextMenu contextMenu;
     public int Price => price;
 
-    public int ID => id;
-    public Sprite Icon => icon;
+    public ContextMenu ContextMenu => contextMenu;
 
-    public GameObject BuildingPreview => buildingPrewiew;
+    public virtual void Sell()
+    {
+        Economics.GainMoney(price);
+    }
+    protected virtual void Start()
+    {
+        BuildingObserver.Observe(this);
+    }
 
+    public virtual void Damage(float damage, IDamagable owner)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            BuildingObserver.StopObserving(this);
+            Destroy(gameObject);
+        }
+    }
+
+    public bool Select() => false;
+
+    public void Action(OrderBase order) { }
+
+    public bool Deselect() => false;
 }

@@ -12,6 +12,6 @@ public static class Economics
     {
         money += v;
     }
-
+    public static int Money => money;
 
 }

@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class BuildingButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+public class BuildingButton : MonoBehaviour
 {
     [SerializeField] Building building;
     [SerializeField] Image iconImage;
@@ -19,33 +19,12 @@ public class BuildingButton : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     Renderer buildingRendererInstance;
     private BoxCollider2D buildingCollider;
 
-    private void Start()
-    {
-        mainCamera = Camera.main;
-        iconImage.sprite = building.Icon;
-        priceText.SetText(building.Price.ToString());
-
-        //player = NetworkClient.connection.identity.GetComponent<RTSPlayer>();
-        buildingCollider = building.GetComponent<BoxCollider2D>();
-    }
 
     private void Update()
     {
         if (buildingPreviewInstance == null) { return; }
         UpdateBuildingPreview();
     }
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        if (eventData.button != PointerEventData.InputButton.Left) { return; }
-
-        if (player.GetResoucres() < building.Price) { return; }
-
-        buildingPreviewInstance = Instantiate(building.BuildingPreview);
-        buildingRendererInstance=buildingPreviewInstance.GetComponentInChildren<Renderer>();
-
-        buildingPreviewInstance.SetActive(true);
-    }
-
     public void OnPointerUp(PointerEventData eventData)
     {
         if (buildingPreviewInstance == null) { return; }

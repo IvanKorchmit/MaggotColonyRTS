@@ -102,6 +102,7 @@ GameObject:
   - component: {fileID: 7445075946642162428}
   - component: {fileID: 5958259627735712918}
   - component: {fileID: 1029451420983707904}
+  - component: {fileID: 7710675470792429033}
   m_Layer: 7
   m_Name: Unit
   m_TagString: Player
@@ -282,11 +283,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5da12c352f35cec43a34e18f06c6ecbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  miner: {fileID: 7113053798192772446, guid: 2d437f8c2396ae649a716c56acb726b2, type: 3}
-  nuclearMiner: {fileID: 7113053798192772446, guid: 10e3869bb6a259746872e1d1f075d1a7, type: 3}
-  constructionLayer:
-    serializedVersion: 2
-    m_Bits: 256
   seeker: {fileID: 433034928824364515}
   move: {fileID: 433034928824364514}
   range: {fileID: 433034929079282826}
@@ -296,13 +292,13 @@ MonoBehaviour:
     - action:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 433034928824364440}
-            m_TargetAssemblyTypeName: UnitAI, Assembly-CSharp
-            m_MethodName: ConstructMiner
-            m_Mode: 1
+          - m_Target: {fileID: 7710675470792429033}
+            m_TargetAssemblyTypeName: ConstructBehaviour, Assembly-CSharp
+            m_MethodName: Construct
+            m_Mode: 2
             m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_ObjectArgument: {fileID: 7113053798192772446, guid: 2d437f8c2396ae649a716c56acb726b2, type: 3}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
               m_IntArgument: 0
               m_FloatArgument: 0
               m_StringArgument: 
@@ -312,13 +308,13 @@ MonoBehaviour:
     - action:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 433034928824364440}
-            m_TargetAssemblyTypeName: UnitAI, Assembly-CSharp
-            m_MethodName: ConstructNuclear
-            m_Mode: 1
+          - m_Target: {fileID: 7710675470792429033}
+            m_TargetAssemblyTypeName: ConstructBehaviour, Assembly-CSharp
+            m_MethodName: Construct
+            m_Mode: 2
             m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_ObjectArgument: {fileID: 7113053798192772446, guid: 10e3869bb6a259746872e1d1f075d1a7, type: 3}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
               m_IntArgument: 0
               m_FloatArgument: 0
               m_StringArgument: 
@@ -393,6 +389,21 @@ MonoBehaviour:
   multithreading: 0
   cellBased: 1
   snapToPixelCenter: 1
+--- !u!114 &7710675470792429033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433034928824364513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de5d4cfff5394194989821998dd3eb0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  constructionLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &433034929079282831
 GameObject:
   m_ObjectHideFlags: 0

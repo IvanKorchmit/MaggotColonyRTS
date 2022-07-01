@@ -12,6 +12,10 @@ public class BuildingObserver : MonoBehaviour
     {
         instance.buildingsToObserve.Add(building);
     }
+    public static void StopObserving(IBuilding building)
+    {
+        instance.buildingsToObserve.Remove(building);
+    }
     private void Start()
     {
         instance = this;
@@ -30,6 +34,5 @@ public class BuildingObserver : MonoBehaviour
 
 public interface IBuilding : IDamagable, ISelectable
 {
-    float SpaceRequiredCircle { get; }
     void Sell();
 }
