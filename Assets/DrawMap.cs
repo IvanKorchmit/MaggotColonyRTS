@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class DrawMap : MonoBehaviour
 {
     [SerializeField] private RawImage image;
-    void Start()
+    void Awake()
     {
         MapGen.OnMapGenerated += MapGen_OnMapGenerated;
     }

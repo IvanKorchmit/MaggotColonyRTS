@@ -14,10 +14,13 @@ public class UnitControlManager : MonoBehaviour
     {
         mainCam = Camera.main;
         selected = new List<ISelectable>();
+        
     }
+
+
     private void MouseHold()
     {
-        Vector2 mouse = mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        Vector2 mouse = RT2Mouse.GetMousePosition();
         Vector2 lowerLeft = new Vector2(Mathf.Min(mouse.x, lastClick.x), Mathf.Min(mouse.y, lastClick.y));
         Vector2 upperRight = new Vector2(Mathf.Max(mouse.x, lastClick.x), Mathf.Max(mouse.y, lastClick.y));
         selectionBox.transform.position = lowerLeft;
@@ -28,7 +31,7 @@ public class UnitControlManager : MonoBehaviour
     {
         OnDoubleClick();
         selectionBox.gameObject.SetActive(true);
-        lastClick = mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        lastClick = RT2Mouse.GetMousePosition();
         selectionBox.transform.position = lastClick;
         foreach (var item in selected)
         {

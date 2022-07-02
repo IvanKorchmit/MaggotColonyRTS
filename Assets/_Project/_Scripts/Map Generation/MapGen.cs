@@ -83,6 +83,7 @@ public class MapGen : MonoBehaviour
         }
         Generate();
         PlaceCommandCenter();
+
         var graph = AstarPath.active.graphs[0] as GridGraph;
         TimerUtils.AddTimer(0.1f, () => AstarPath.active.Scan(graph));
         OnMapGenerated?.Invoke();
@@ -254,7 +255,7 @@ public class MapGen : MonoBehaviour
                 GenerateRiver(x, y, riverNoise);
             }
         }
-    }
+    }   
 
     private void GenerateRiver(float x, float y, ModuleBase noise)
     {

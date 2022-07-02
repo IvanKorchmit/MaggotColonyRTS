@@ -6,10 +6,6 @@ public class Barrack : Building, ISelectable, IBuilding
 {
 
     private List<GameObject> pending = new List<GameObject>();
-    protected override void Start()
-    {
-        base.Start();
-    }
 
     private IEnumerator Create()
     {

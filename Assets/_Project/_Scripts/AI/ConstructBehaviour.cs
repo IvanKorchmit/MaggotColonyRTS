@@ -7,10 +7,7 @@ public class ConstructBehaviour : MonoBehaviour
     public void ConstructMiner(GameObject obj)
     {
         Building bld = obj.GetComponent<Building>();
-        if (bld.Price > Economics.Money)
-        {
-            return;
-        }
+        if (bld.Price > Economics.Money) return;
         int layer = constructionLayer;
         
         Collider2D[] crystals = Physics2D.OverlapCircleAll(transform.position, 12f, constructionLayer);
@@ -46,7 +43,6 @@ public class ConstructBehaviour : MonoBehaviour
                 else
                 {
                     Debug.LogError("This crystal is already occupied!");
-                    return;
                 }
             }
         }

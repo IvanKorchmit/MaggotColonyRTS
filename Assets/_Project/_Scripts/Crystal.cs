@@ -7,7 +7,7 @@ public class Crystal : MonoBehaviour, ICrystal
     public IMiner CurrentMiner => miner;
     private IMiner miner;
     [SerializeField] private int money;
-
+    [SerializeField] private Transform minerDEBUG;
     private void Update()
     {
         TimerUtils.AddTimer(5f, GiveMoney);
@@ -24,6 +24,7 @@ public class Crystal : MonoBehaviour, ICrystal
     {
         this.miner = miner;
         miner.OnDestroyed += Miner_OnDestroyed;
+        this.minerDEBUG = miner.transform;
     }
 
     private void Miner_OnDestroyed()

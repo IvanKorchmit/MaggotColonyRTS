@@ -12,7 +12,7 @@ public class UnitAI : MonoBehaviour, ISelectable, IDamagable, IUnit
     [SerializeField] protected float health = 50;
     protected IAttackable target;
     protected Vector2 targetPosition;
-    [SerializeField] private ContextMenu contextMenu;
+    [SerializeField] protected ContextMenu contextMenu;
     public ContextMenu ContextMenu => contextMenu;
     public void Action(OrderBase order)
     {
