@@ -30,9 +30,9 @@ public class GridSnap : MonoBehaviour
         }
         instance.placement = Instantiate(placement, instance.transform);
         instance.placement.transform.localPosition = new Vector3();
-        instance.placement_sprite = instance.placement.GetComponent<SpriteRenderer>();
+        instance.placement_sprite = instance.placement.GetComponentInChildren<SpriteRenderer>();
         instance.placement.layer = LayerMask.NameToLayer("Placement");
-        Component[] components = instance.placement.GetComponents<Component>();
+        Component[] components = instance.placement.GetComponentsInChildren<Component>();
         foreach (Component comp in components)
         {
             if (comp is Renderer) continue;
@@ -56,7 +56,7 @@ public class GridSnap : MonoBehaviour
                 List<Collider2D> colls = new List<Collider2D>();
                 if (Physics2D.OverlapBox(placement.transform.position, Vector2.one * 3, 0, constructionLayer) == null)
                 {
-                    Component[] components = placement.GetComponents<Component>();
+                    Component[] components = placement.GetComponentsInChildren<Component>();
                     foreach (Component comp in components)
                     {
                         if (comp is Renderer) continue;

@@ -59,7 +59,7 @@ public class ConstructBehaviour : MonoBehaviour
             if (Vector2.Distance(position, transform.position) <= 25f)
             {
                 prefab.layer = LayerMask.NameToLayer("Building");
-                prefab.GetComponent<SpriteRenderer>().color = Color.white;
+                prefab.GetComponentInChildren<SpriteRenderer>().color = Color.white;
                 Instantiate(prefab, position, Quaternion.identity);
                 AstarPath.active.Scan();
                 BuildingObserver.StopObserving(prefab.GetComponent<IBuilding>());

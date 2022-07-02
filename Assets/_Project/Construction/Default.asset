@@ -17,3 +17,5 @@ MonoBehaviour:
     option: Construct Barrack
   - building: {fileID: 429404449677361114, guid: 6107fef8d99e8014f96196548394d9ce, type: 3}
     option: Construct Factory
+  - building: {fileID: 6376332067596855890, guid: b32ac9049614186408539250c71a6cc5, type: 3}
+    option: Construct Turret

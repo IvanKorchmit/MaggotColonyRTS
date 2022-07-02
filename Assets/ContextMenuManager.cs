@@ -21,7 +21,6 @@ public class ContextMenuManager : MonoBehaviour
                     if (ray.transform.TryGetComponent(out ISelectable interactable))
                     {
                         RectTransform rectTrans = contextMenuBase.transform as RectTransform;
-                        print(interactable.transform.name);
                         contextMenuBase.Init(interactable.ContextMenu);
                         rectTrans.anchoredPosition = UnityEngine.InputSystem.Mouse.current.position.ReadValue();
                         Vector2 apos = rectTrans.anchoredPosition;

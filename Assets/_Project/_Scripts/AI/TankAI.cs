@@ -4,10 +4,10 @@ public class TankAI : UnitAI
 {
     [SerializeField] private SpriteRotation headRotation;
     [SerializeField] protected float currentAngle;
-    [SerializeField] private float rotationSpeed;
+    [SerializeField] protected float rotationSpeed;
     [SerializeField] private LayerMask explosionMask;
     [SerializeField] private AudioEvent explosion;
-    [SerializeField] private AudioSource audioSource;
+    [SerializeField] protected AudioSource audioSource;
     [SerializeField] private GameObject explosionParticle;
     protected override void Attack()
     {
@@ -23,7 +23,7 @@ public class TankAI : UnitAI
     {
         if (range.ClosestTarget != null && range.ClosestTarget.IsAlive())
         {
-            float angle = Rotate();
+            float angle = Rotate(range.ClosestTarget);
             if (AttackOnRotation(angle))
             {
                 TimerUtils.AddTimer(3f, Attack);
@@ -37,9 +37,9 @@ public class TankAI : UnitAI
         headRotation.SetAngle((int)currentAngle);
     }
 
-    protected float Rotate()
+    protected float Rotate(Transform target)
     {
-        Vector2 direction = range.ClosestTarget.position - transform.position;
+        Vector2 direction = target.position - transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         currentAngle = Mathf.MoveTowardsAngle(currentAngle, angle, Time.deltaTime * rotationSpeed);
         return angle;

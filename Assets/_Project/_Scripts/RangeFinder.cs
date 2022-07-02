@@ -92,4 +92,10 @@ public class RangeFinder : MonoBehaviour
         OnSpot?.Invoke(ClosestTarget);
 
     }
+
+
+    public bool HasTarget(Transform target)
+    {
+        return targets.Contains(target);
+    }
 }
