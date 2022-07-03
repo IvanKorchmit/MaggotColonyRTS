@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Drill : Building, IDrill
+public class Pump : Building, IFuel.IPump
 {
     public event System.Action OnDestroyed;
     [SerializeField] private int multiplier;
@@ -21,6 +21,6 @@ public class Drill : Building, IDrill
     }
     public void GainIncome(int money)
     {
-        Economics.GainMoney(0, money * multiplier, 0);
+        Economics.GainMoney(0, 0, money * multiplier);
     }
 }

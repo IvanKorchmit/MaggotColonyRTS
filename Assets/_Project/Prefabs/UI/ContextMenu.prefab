@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5567310239398500162}
   - component: {fileID: 2874847711365141926}
   m_Layer: 0
-  m_Name: Panel
+  m_Name: ContextMenuPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -134,7 +134,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5350087828202344368
 RectTransform:
   m_ObjectHideFlags: 0

@@ -14,7 +14,7 @@ public class BuildingObserver : MonoBehaviour
     }
     public static void StopObserving(IBuilding building)
     {
-        instance.buildingsToObserve.RemoveAll((match)=>match==building);
+        instance.buildingsToObserve.RemoveAll((match)=>match==building || match == null || !match.IsAlive());
     }
     private void Start()
     {
@@ -24,7 +24,12 @@ public class BuildingObserver : MonoBehaviour
     }
     public static IBuilding GetBuilding()
     {
-        return instance.buildingsToObserve[Random.Range(0, instance.buildingsToObserve.Count)];
+        Debug.Log("Attack");
+        if (instance.buildingsToObserve.Count > 0)
+        {
+            return instance.buildingsToObserve[Random.Range(0, instance.buildingsToObserve.Count)];
+        }
+        return null;
     }
     private void Invoke()
     {

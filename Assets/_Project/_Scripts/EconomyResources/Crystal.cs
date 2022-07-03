@@ -31,7 +31,6 @@ public class Crystal : MonoBehaviour, ICrystal
     }
 
 }
-
 public interface IMiner : IBuilding
 {
     void GainIncome(int money);
@@ -46,6 +45,16 @@ public interface ISteel
 {
     IDrill CurrentDrill { get; }
     void Assign(IDrill drill);
+}
+public interface IFuel
+{
+    public interface IPump
+    {
+        void GainIncome(int money);
+        event System.Action OnDestroyed;
+    }
+    IPump CurrentPump { get; }
+    void Assign(IPump pump);
 }
 public interface IDrill
 {

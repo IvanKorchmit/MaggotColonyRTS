@@ -6,23 +6,11 @@ public class Turret : TankAI
 {
     [SerializeField] private AudioEvent shoot;
     [SerializeField] private AudioEvent detection;
-    [SerializeField] private ConstructionMenu constructionPreset;
     [SerializeField] private SpriteRotation spriteRotation;
     [SerializeField] private Transform currentTarget;
     [SerializeField] private float cooldown;
     [SerializeField] private float damage;
     [SerializeField] private int direction;
-    private void OnEnable()
-    {
-        InvokeRepeating(nameof(SetDirection), 0, Random.Range(2f, 4f));
-        ConstructBehaviour cb = GetComponent<ConstructBehaviour>();
-        foreach (var item in constructionPreset.options)
-        {
-            UnityEngine.Events.UnityEvent e = new UnityEngine.Events.UnityEvent();
-            e.AddListener(() => cb.ConstructBuilding(item.building));
-            contextMenu.Add(item.option, e);
-        }
-    }
     protected override void Attack()
     {
         if (range.ClosestTarget == null || !range.ClosestTarget.IsAlive()) return;

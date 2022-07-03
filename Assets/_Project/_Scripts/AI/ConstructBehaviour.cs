@@ -99,9 +99,50 @@ public class ConstructBehaviour : MonoBehaviour
                 }
 
             }
-        
+            else if (item.TryGetComponent(out IFuel fuel))
+            {
+                void GridSnap_OnPlaceSuccessful(Vector3 position, GameObject prefab)
+                {
+                    if (Vector2.Distance(position, transform.position) <= MAX_DISTANCE)
+                    {
+                        Component[] components = prefab.GetComponentsInChildren<Component>();
+                        foreach (Component comp in components)
+                        {
+                            if (comp is Renderer) continue;
+                            if (comp is MonoBehaviour beh)
+                            {
+                                beh.enabled = true;
+                            }
+                        }
+                        prefab.layer = LayerMask.NameToLayer("Building");
+                        BuildingObserver.StopObserving(prefab.GetComponent<IBuilding>());
+                        prefab.GetComponent<SpriteRenderer>().color = Color.white;
+                        var pump = Instantiate(prefab, position, Quaternion.identity).GetComponent<IFuel.IPump>();
+                        fuel.Assign(pump);
+                        AstarPath.active.Scan();
+                        Economics.GainMoney(-bld.Cost.money, -bld.Cost.steel, -bld.Cost.fuel);
+                        Destroy(prefab);
+                        GridSnap.OnPlaceSuccessful -= GridSnap_OnPlaceSuccessful;
+                    }
+                    else
+                    {
+                        Debug.LogError("Too far away " + Vector2.Distance((Vector3)position, transform.position));
+                    }
+                }
+
+                if (fuel.CurrentPump == null)
+                {
+                    GridSnap.Place(obj);
+                    GridSnap.OnPlaceSuccessful += GridSnap_OnPlaceSuccessful;
+                    return;
+                }
+                else
+                {
+                    Debug.LogError("This fuel is already occupied!");
+                }
+            }
         }
-        Debug.LogError("No Crystal found!");
+        Debug.LogError("No Resource found!");
     }
 
     public void ConstructBuilding(GameObject obj)

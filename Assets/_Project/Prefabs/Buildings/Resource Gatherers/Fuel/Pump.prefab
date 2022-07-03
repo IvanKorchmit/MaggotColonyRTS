@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 6495840125146636167}
   - component: {fileID: 3670564012779093353}
   m_Layer: 8
-  m_Name: Miner
+  m_Name: Pump
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -163,11 +163,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7113053798192772446}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 896bd892ae6b6ad428fbff9f0317728a, type: 3}
+  m_Script: {fileID: 11500000, guid: 248f814953c8b944d8bfcacaa435fc98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  priceMoney: 75
-  priceSteel: 0
+  priceMoney: 100
+  priceSteel: 150
   priceFuel: 0
   health: 100
   contextMenu:

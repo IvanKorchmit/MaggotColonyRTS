@@ -32,6 +32,8 @@ public class BugAI : MonoBehaviour, IAttackable, IDamagable
     private void BuildingObserver_AttackBase()
     {
         IBuilding b = BuildingObserver.GetBuilding();
+        if (b == null || !b.IsAlive()) b = BuildingObserver.GetBuilding();
+        if (b == null || !b.IsAlive()) return;
         seeker.StartPath(transform.position, b.transform.position);
         target = b;
         isWandering = false;
