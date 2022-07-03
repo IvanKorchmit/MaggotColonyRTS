@@ -60,8 +60,8 @@ public class MapGen : MonoBehaviour
     [SerializeField] private NoiseTile[] minimapTiles;
 
     [SerializeField] private Transform vcam;
-    [SerializeField] private GameObject crystal;
 
+    [SerializeField] private GameObject[] resource;
 
 
     private float seed;
@@ -136,8 +136,12 @@ public class MapGen : MonoBehaviour
         for (int i = 0; i < 10; i++)
         {
             SpawnNest(cc);
-            SpawnCrystal(cc);
+            foreach (var item in resource)
+            {
 
+            SpawnResource(cc, item);
+
+            }
         }
 
     }
@@ -147,10 +151,10 @@ public class MapGen : MonoBehaviour
         return Vector2.Distance((Vector3)origin, commandCenter.transform.position) < height;
     }
 
-    private void SpawnCrystal(GameObject commandCenter)
+    private void SpawnResource(GameObject commandCenter, GameObject res)
     {
         Vector3Int origin = GetRandomPosition(commandCenter, DefaultConstraint);
-        var c = Instantiate(crystal, tilemap.CellToWorld(origin), Quaternion.identity);
+        var resourceInstance = Instantiate(res, tilemap.CellToWorld(origin), Quaternion.identity);
         Vector3Int size = new Vector3Int(24, 24, 1);
         BoundsInt bounds = new(origin - (size / 2), size);
         foreach (var item in tilemapToClear)
@@ -160,7 +164,7 @@ public class MapGen : MonoBehaviour
                 item.SetTile(pos, tileToReplace);
             }
         }
-        ClearPath(c, commandCenter);
+        ClearPath(resourceInstance, commandCenter);
     }
 
 

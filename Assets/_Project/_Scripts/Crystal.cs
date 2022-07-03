@@ -7,7 +7,6 @@ public class Crystal : MonoBehaviour, ICrystal
     public IMiner CurrentMiner => miner;
     private IMiner miner;
     [SerializeField] private int money;
-    [SerializeField] private Transform minerDEBUG;
     private void Update()
     {
         TimerUtils.AddTimer(5f, GiveMoney);
@@ -24,7 +23,6 @@ public class Crystal : MonoBehaviour, ICrystal
     {
         this.miner = miner;
         miner.OnDestroyed += Miner_OnDestroyed;
-        this.minerDEBUG = miner.transform;
     }
 
     private void Miner_OnDestroyed()
@@ -32,9 +30,7 @@ public class Crystal : MonoBehaviour, ICrystal
         miner = null;
     }
 
-    public void Damage(float damage, IDamagable owner) { }
 }
-
 
 public interface IMiner : IBuilding
 {
@@ -45,4 +41,14 @@ public interface ICrystal
 {
     IMiner CurrentMiner { get; }
     void Assign(IMiner miner);
+}
+public interface ISteel
+{
+    IDrill CurrentDrill { get; }
+    void Assign(IDrill drill);
+}
+public interface IDrill
+{
+    void GainIncome(int money);
+    event System.Action OnDestroyed;
 }
