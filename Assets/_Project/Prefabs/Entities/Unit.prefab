@@ -321,6 +321,38 @@ MonoBehaviour:
               m_BoolArgument: 0
             m_CallState: 2
       summary: Construct Nuclear Miner (130$)
+    - action:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 7710675470792429033}
+            m_TargetAssemblyTypeName: ConstructBehaviour, Assembly-CSharp
+            m_MethodName: ConstructMiner
+            m_Mode: 2
+            m_Arguments:
+              m_ObjectArgument: {fileID: 7113053798192772446, guid: 638e9d8f68c4e4549928e3ba1e67c27b, type: 3}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+      summary: Construct Drill (200$)
+    - action:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 7710675470792429033}
+            m_TargetAssemblyTypeName: ConstructBehaviour, Assembly-CSharp
+            m_MethodName: ConstructMiner
+            m_Mode: 2
+            m_Arguments:
+              m_ObjectArgument: {fileID: 7113053798192772446, guid: ebef8664a7c540949a377e4252370a43, type: 3}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+      summary: Construct Nuclear Drill (300$)
 --- !u!114 &7445075946642162428
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Miner : Building, IMiner
+public class Drill : Building, IDrill
 {
     public event System.Action OnDestroyed;
     [SerializeField] private int multiplier;
@@ -20,13 +20,13 @@ public class Miner : Building, IMiner
     }
     public override void Sell()
     {
-        Economics.GainMoney(25,0,0);
+        Economics.GainMoney(25, 0, 0);
         OnDestroyed?.Invoke();
 
         Destroy(gameObject);
     }
     public void GainIncome(int money)
     {
-        Economics.GainMoney(money * multiplier,0,0);
+        Economics.GainMoney(0, money * multiplier, 0);
     }
 }

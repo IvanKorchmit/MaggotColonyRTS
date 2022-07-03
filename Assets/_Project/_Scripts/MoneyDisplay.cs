@@ -7,6 +7,6 @@ public class MoneyDisplay : MonoBehaviour
     [SerializeField] private TMPro.TextMeshProUGUI text;
     private void OnGUI()
     {
-        text.text = Economics.Money.ToString();
+        text.text = $"Money: {Economics.Money} Steel: {Economics.Steel} Fuel: {Economics.Fuel}";
     }
 }

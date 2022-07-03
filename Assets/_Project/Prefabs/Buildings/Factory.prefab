@@ -189,7 +189,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77e7da05876f868409bde06be19784ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  price: 150
+  priceMoney: 100
+  priceSteel: 25
+  priceFuel: 0
   health: 50
   contextMenu:
     options:

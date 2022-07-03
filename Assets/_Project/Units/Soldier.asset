@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Soldier
   m_EditorClassIdentifier: 
   unit: {fileID: 433034928824364513, guid: ac04924bf6d4f6b41b8be49ba3680ddf, type: 3}
-  price: 25
+  priceMoney: 25
+  priceSteel: 0
+  priceFuel: 0

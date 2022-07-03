@@ -445,6 +445,7 @@ MonoBehaviour:
   currentTarget: {fileID: 0}
   cooldown: 0.03
   damage: 2
+  direction: 0
 --- !u!114 &923457080463868708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -457,7 +458,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aeecca79433e784eb0832632465a773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  price: 25
+  priceMoney: 50
+  priceSteel: 0
+  priceFuel: 0
   health: 0
   contextMenu:
     options: []

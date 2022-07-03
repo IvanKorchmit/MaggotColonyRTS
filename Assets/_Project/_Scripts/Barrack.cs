@@ -18,12 +18,12 @@ public class Barrack : Building, ISelectable, IBuilding
     }
     public void ProduceUnit(UnitBarrack unit)
     {
-        if (unit.price <= Economics.Money)
+        if (unit.priceMoney <= Economics.Money && unit.priceSteel <= Economics.Steel && unit.priceFuel <= Economics.Fuel)
         {
             pending.Add(unit.unit);
             StopAllCoroutines();
             StartCoroutine(Create());
-            Economics.GainMoney(-unit.price);
+            Economics.GainMoney(-unit.priceMoney, -unit.priceSteel, -unit.priceFuel);
         }
     }   
 }

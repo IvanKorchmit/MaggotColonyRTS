@@ -4,5 +4,7 @@
 public class UnitBarrack : ScriptableObject
 {
     public GameObject unit;
-    public int price;
+    public int priceMoney;
+    public int priceSteel;
+    public int priceFuel;
 }

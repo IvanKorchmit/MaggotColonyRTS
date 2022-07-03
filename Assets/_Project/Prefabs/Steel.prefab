@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 1911499224282035242}
   - component: {fileID: 1911499224282035243}
   - component: {fileID: 1911499224282035240}
-  - component: {fileID: 694904062900557505}
   - component: {fileID: -7806190237859849300}
+  - component: {fileID: 879469955979662349}
   m_Layer: 8
   m_Name: Steel
   m_TagString: Untagged
@@ -76,8 +76,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9046ddd5306e35c46a9a92728fb43535, type: 3}
-  m_Color: {r: 0.2830189, g: 0.2830189, b: 0.2830189, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 802212a3f5c698f4694ca0f93017a6b6, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -100,22 +100,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.21, y: 0.5}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1
---- !u!114 &694904062900557505
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1911499224282035246}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3dfc46be5c39a0e4e915556f30176ae0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  money: 17
+  m_Radius: 4
 --- !u!50 &-7806190237859849300
 Rigidbody2D:
   serializedVersion: 4
@@ -137,3 +124,16 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!114 &879469955979662349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911499224282035246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19734589d3e8644419e22955bf6038b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  money: 15

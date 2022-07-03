@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Artillery
   m_EditorClassIdentifier: 
   unit: {fileID: 2433903075917200708, guid: bb5e2f5e5cf26b243a0e5d849dd2d8b5, type: 3}
-  price: 75
+  priceMoney: 125
+  priceSteel: 30
+  priceFuel: 5

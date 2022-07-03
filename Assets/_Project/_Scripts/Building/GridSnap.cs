@@ -56,15 +56,6 @@ public class GridSnap : MonoBehaviour
                 List<Collider2D> colls = new List<Collider2D>();
                 if (Physics2D.OverlapBox(placement.transform.position, Vector2.one * 3, 0, constructionLayer) == null)
                 {
-                    Component[] components = placement.GetComponentsInChildren<Component>();
-                    foreach (Component comp in components)
-                    {
-                        if (comp is Renderer) continue;
-                        if (comp is MonoBehaviour beh)
-                        {
-                            beh.enabled = true;
-                        }
-                    }
                     OnPlaceSuccessful?.Invoke(transform.position, placement);
                 }
             }

@@ -360,7 +360,9 @@ MonoBehaviour:
       rgba: 4287255448
     isGrass: 0
   vcam: {fileID: 4386574285410547784}
-  crystal: {fileID: 1911499224282035246, guid: 005fa7dfd3846b747886c57302b46c34, type: 3}
+  resource:
+  - {fileID: 1911499224282035246, guid: 005fa7dfd3846b747886c57302b46c34, type: 3}
+  - {fileID: 1911499224282035246, guid: 99828d8ad9cb41b4ca7b7e432a12e2a1, type: 3}
 --- !u!114 &2201393673013846395
 MonoBehaviour:
   m_ObjectHideFlags: 0
