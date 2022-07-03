@@ -136,19 +136,22 @@ public class MapGen : MonoBehaviour
         for (int i = 0; i < 10; i++)
         {
             SpawnNest(cc);
+        }
+        for (int i = 0; i < 5; i++)
+        {
             foreach (var item in resource)
             {
 
-            SpawnResource(cc, item);
+                SpawnResource(cc, item);
 
             }
         }
-
     }
 
     private bool DefaultConstraint(Vector3Int origin, GameObject commandCenter)
     {
-        return Vector2.Distance((Vector3)origin, commandCenter.transform.position) < height;
+        var v = tilemap.WorldToCell(commandCenter.transform.position);
+        return Vector2.Distance((Vector3)origin, (Vector3)v) > height / 4;
     }
 
     private void SpawnResource(GameObject commandCenter, GameObject res)

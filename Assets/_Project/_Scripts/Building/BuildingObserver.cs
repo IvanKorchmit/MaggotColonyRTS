@@ -24,7 +24,6 @@ public class BuildingObserver : MonoBehaviour
     }
     public static IBuilding GetBuilding()
     {
-        Debug.Log("Attack");
         if (instance.buildingsToObserve.Count > 0)
         {
             return instance.buildingsToObserve[Random.Range(0, instance.buildingsToObserve.Count)];
@@ -34,6 +33,10 @@ public class BuildingObserver : MonoBehaviour
     private void Invoke()
     {
         AttackBase?.Invoke();
+    }
+    private void OnGUI()
+    {
+        GUILayout.Label(Time.time.ToString());
     }
 }
 

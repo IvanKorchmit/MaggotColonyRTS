@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using UnityEngine.Events;
 public class ContextMenuManager : MonoBehaviour
 {
     [SerializeField] private ContextMenuGameObject contextMenuBase;
     [SerializeField] private LayerMask mask;
+    [SerializeField] private CanvasScaler scaler;
     private void OnGUI()
     {
         EventSystem cur = EventSystem.current;
@@ -22,7 +24,10 @@ public class ContextMenuManager : MonoBehaviour
                     {
                         RectTransform rectTrans = contextMenuBase.transform as RectTransform;
                         contextMenuBase.Init(interactable.ContextMenu);
-                        rectTrans.anchoredPosition = UnityEngine.InputSystem.Mouse.current.position.ReadValue();
+                        Vector2 ratio = scaler.referenceResolution;
+                        ratio.x /= Screen.width;
+                        ratio.y /= Screen.height;
+                        rectTrans.anchoredPosition = UnityEngine.InputSystem.Mouse.current.position.ReadValue() * ratio;
                         Vector2 apos = rectTrans.anchoredPosition;
                         float xpos = apos.x;
                         xpos = Mathf.Clamp(xpos, rectTrans.sizeDelta.x, Screen.width);

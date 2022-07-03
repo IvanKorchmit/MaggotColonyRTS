@@ -105,10 +105,10 @@ public class BugAI : MonoBehaviour, IAttackable, IDamagable
 
     public void Damage(float damage, IDamagable owner)
     {
+        seeker.StartPath(transform.position, target.transform.position);
         if (immune) return;
         health -= damage;
         target = owner;
-        seeker.StartPath(transform.position, target.transform.position);
         if (health <= 0)
         {
             var corpse = Instantiate(this.corpse, transform.position, Quaternion.identity);

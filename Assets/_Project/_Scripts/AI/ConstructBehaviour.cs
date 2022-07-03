@@ -154,9 +154,9 @@ public class ConstructBehaviour : MonoBehaviour
         if (price.fuel > Economics.Fuel) return;
         void GridSnap_OnPlaceSuccessful(Vector3 position, GameObject prefab)
         {
-                Economics.GainMoney(-price.money,-price.steel,-price.fuel);
             if (Vector2.Distance(position, transform.position) <= 25f)
             {
+                Economics.GainMoney(-price.money,-price.steel,-price.fuel);
                 Component[] components = prefab.GetComponentsInChildren<Component>();
                 foreach (Component comp in components)
                 {
