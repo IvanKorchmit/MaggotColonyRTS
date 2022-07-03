@@ -29,7 +29,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7384309010412191847}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -859.859, y: 150.11462, z: -0.11833729}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -206,22 +206,6 @@ MonoBehaviour:
               m_BoolArgument: 0
             m_CallState: 2
       summary: Make Soldier (25$)
-    - action:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 1218237835672531211}
-            m_TargetAssemblyTypeName: Barrack, Assembly-CSharp
-            m_MethodName: ProduceUnit
-            m_Mode: 2
-            m_Arguments:
-              m_ObjectArgument: {fileID: 11400000, guid: 1f1dd1b37c7a0694f933f1be3b401bd3, type: 2}
-              m_ObjectArgumentAssemblyTypeName: UnitBarrack, Assembly-CSharp
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-      summary: Make Soldier (150$)
   constructionPreset: {fileID: 11400000, guid: d9e94ad8d82526f4bb599cb84912e3f8, type: 2}
 --- !u!114 &-2668458875963938591
 MonoBehaviour:

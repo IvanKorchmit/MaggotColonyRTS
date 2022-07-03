@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dfd723294bc0e341baa6903c56ac598, type: 3}
+  m_Name: Artillery
+  m_EditorClassIdentifier: 
+  unit: {fileID: 2433903075917200708, guid: bb5e2f5e5cf26b243a0e5d849dd2d8b5, type: 3}
+  priceMoney: 125
+  priceSteel: 30
+  priceFuel: 5

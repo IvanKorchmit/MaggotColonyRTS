@@ -5,19 +5,21 @@ using UnityEngine;
 
 public class Building : MonoBehaviour, IBuilding, ISelectable
 {
-    [SerializeField] protected int price = 100;
+    [SerializeField] protected int priceMoney = 100;
+    [SerializeField] protected int priceSteel = 0;
+    [SerializeField] protected int priceFuel = 0;
     [SerializeField] protected float health;
     [SerializeField] private ContextMenu contextMenu;
     [SerializeField] private ConstructionMenu constructionPreset;
-    public int Price => price;
+    public (int money,int steel,int fuel) Cost => (priceMoney, priceSteel, priceFuel);
 
     public ContextMenu ContextMenu => contextMenu;
 
     public virtual void Sell()
     {
-        Economics.GainMoney(price);
+        Economics.GainMoney(priceMoney,priceSteel,priceFuel);
     }
-    private void OnEnable()
+    protected virtual void Start()
     {
         ConstructBehaviour cb = GetComponent<ConstructBehaviour>();
         foreach (var item in constructionPreset.options)
@@ -26,9 +28,6 @@ public class Building : MonoBehaviour, IBuilding, ISelectable
             e.AddListener(() => cb.ConstructBuilding(item.building));
             contextMenu.Add(item.option, e);
         }
-    }
-    protected virtual void Start()
-    {
         BuildingObserver.Observe(this);
 
     }

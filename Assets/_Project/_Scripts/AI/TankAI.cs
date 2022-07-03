@@ -2,13 +2,13 @@
 
 public class TankAI : UnitAI
 {
-    [SerializeField] private SpriteRotation headRotation;
-    [SerializeField] private float currentAngle;
-    [SerializeField] private float rotationSpeed;
-    [SerializeField] private LayerMask explosionMask;
-    [SerializeField] private AudioEvent explosion;
-    [SerializeField] private AudioSource audioSource;
-    [SerializeField] private GameObject explosionParticle;
+    [SerializeField] protected SpriteRotation headRotation;
+    [SerializeField] protected float currentAngle;
+    [SerializeField] protected float rotationSpeed;
+    [SerializeField] protected LayerMask explosionMask;
+    [SerializeField] protected AudioEvent explosion;
+    [SerializeField] protected AudioSource audioSource;
+    [SerializeField] protected GameObject explosionParticle;
     protected override void Attack()
     {
         Instantiate(explosionParticle, range.ClosestTarget.position, Quaternion.identity);
@@ -21,26 +21,10 @@ public class TankAI : UnitAI
     }
     protected override void Update()
     {
-        if (target.IsAlive())
-        {
-            seeker.StartPath(transform.position, targetPosition);
-            targetPosition = target.transform.position;
-            if (range.ClosestTarget == target.transform)
-            {
-                move.canMove = false;
-                TimerUtils.AddTimer(2, Attack);
-            }
-            else
-            {
-                move.canMove = true;
-            }
-        }
         if (range.ClosestTarget != null && range.ClosestTarget.IsAlive())
         {
-            Vector2 direction = range.ClosestTarget.position - transform.position;
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            currentAngle = Mathf.MoveTowardsAngle(currentAngle, angle, Time.deltaTime * rotationSpeed);
-            if (Mathf.RoundToInt(angle) == Mathf.RoundToInt(currentAngle))
+            float angle = Rotate(range.ClosestTarget);
+            if (AttackOnRotation(angle))
             {
                 TimerUtils.AddTimer(3f, Attack);
                 move.canMove = false;
@@ -51,5 +35,27 @@ public class TankAI : UnitAI
             move.canMove = true;
         }
         headRotation.SetAngle((int)currentAngle);
+    }
+
+    protected float Rotate(Transform target)
+    {
+        Vector2 direction = target.position - transform.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        currentAngle = Mathf.MoveTowardsAngle(currentAngle, angle, Time.deltaTime * rotationSpeed);
+        currentAngle %= 360f;
+        return angle;
+    }
+    protected float Rotate(Vector2 target)
+    {
+        Vector2 direction = target - (Vector2)transform.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        currentAngle = Mathf.MoveTowardsAngle(currentAngle, angle, Time.deltaTime * rotationSpeed);
+        currentAngle %= 360f;
+
+        return angle;
+    }
+    protected bool AttackOnRotation(float angle)
+    {
+        return Mathf.RoundToInt(angle) == Mathf.RoundToInt(currentAngle);
     }
 }

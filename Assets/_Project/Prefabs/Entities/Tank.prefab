@@ -350,8 +350,8 @@ MonoBehaviour:
   centerBackingField: 1
   locked: 0
   lockWhenNotMoving: 0
-  agentTimeHorizon: 2
-  obstacleTimeHorizon: 2
+  agentTimeHorizon: 5
+  obstacleTimeHorizon: 5
   maxNeighbours: 10
   layer: 1
   collidesWith: -1
@@ -444,39 +444,7 @@ MonoBehaviour:
   range: {fileID: 5664282488717930471}
   health: 150
   contextMenu:
-    options:
-    - action:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 3776436194577122430}
-            m_TargetAssemblyTypeName: ConstructBehaviour, Assembly-CSharp
-            m_MethodName: ConstructMiner
-            m_Mode: 2
-            m_Arguments:
-              m_ObjectArgument: {fileID: 7113053798192772446, guid: 2d437f8c2396ae649a716c56acb726b2, type: 3}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-      summary: Construct Miner (75$)
-    - action:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 3776436194577122430}
-            m_TargetAssemblyTypeName: ConstructBehaviour, Assembly-CSharp
-            m_MethodName: ConstructMiner
-            m_Mode: 2
-            m_Arguments:
-              m_ObjectArgument: {fileID: 7113053798192772446, guid: 10e3869bb6a259746872e1d1f075d1a7, type: 3}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-      summary: Construct Nuclear Miner (130$)
+    options: []
   headRotation: {fileID: 6940383324452196759}
   currentAngle: 0
   rotationSpeed: 45

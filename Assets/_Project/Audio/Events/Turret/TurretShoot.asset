@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a8815800073d4542b37ae05c2fd064e, type: 3}
+  m_Name: TurretShoot
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 3cb4425d57f036e40a77a245e4a85b4f, type: 3}
+  volume:
+    minValue: 1
+    maxValue: 1
+  pitch:
+    minValue: 0.9511242
+    maxValue: 1.0977517

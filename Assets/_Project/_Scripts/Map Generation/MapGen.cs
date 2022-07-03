@@ -60,8 +60,8 @@ public class MapGen : MonoBehaviour
     [SerializeField] private NoiseTile[] minimapTiles;
 
     [SerializeField] private Transform vcam;
-    [SerializeField] private GameObject crystal;
 
+    [SerializeField] private GameObject[] resource;
 
 
     private float seed;
@@ -83,6 +83,7 @@ public class MapGen : MonoBehaviour
         }
         Generate();
         PlaceCommandCenter();
+
         var graph = AstarPath.active.graphs[0] as GridGraph;
         TimerUtils.AddTimer(0.1f, () => AstarPath.active.Scan(graph));
         OnMapGenerated?.Invoke();
@@ -135,21 +136,25 @@ public class MapGen : MonoBehaviour
         for (int i = 0; i < 10; i++)
         {
             SpawnNest(cc);
-            SpawnCrystal(cc);
+            foreach (var item in resource)
+            {
 
+            SpawnResource(cc, item);
+
+            }
         }
 
     }
 
     private bool DefaultConstraint(Vector3Int origin, GameObject commandCenter)
     {
-        return Vector2.Distance((Vector3)origin, commandCenter.transform.position) < 128;
+        return Vector2.Distance((Vector3)origin, commandCenter.transform.position) < height;
     }
 
-    private void SpawnCrystal(GameObject commandCenter)
+    private void SpawnResource(GameObject commandCenter, GameObject res)
     {
         Vector3Int origin = GetRandomPosition(commandCenter, DefaultConstraint);
-        var c = Instantiate(crystal, tilemap.CellToWorld(origin), Quaternion.identity);
+        var resourceInstance = Instantiate(res, tilemap.CellToWorld(origin), Quaternion.identity);
         Vector3Int size = new Vector3Int(24, 24, 1);
         BoundsInt bounds = new(origin - (size / 2), size);
         foreach (var item in tilemapToClear)
@@ -159,7 +164,7 @@ public class MapGen : MonoBehaviour
                 item.SetTile(pos, tileToReplace);
             }
         }
-        ClearPath(c, commandCenter);
+        ClearPath(resourceInstance, commandCenter);
     }
 
 
@@ -254,7 +259,7 @@ public class MapGen : MonoBehaviour
                 GenerateRiver(x, y, riverNoise);
             }
         }
-    }
+    }   
 
     private void GenerateRiver(float x, float y, ModuleBase noise)
     {
