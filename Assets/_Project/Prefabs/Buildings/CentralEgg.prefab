@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7669059853259773511}
   - component: {fileID: 6409266308354020185}
   - component: {fileID: 9019934131197714146}
+  - component: {fileID: 2102137112458113302}
   m_Layer: 8
   m_Name: CentralEgg
   m_TagString: Enemy
@@ -100,6 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bug: {fileID: 1044287870891840055, guid: 206da53960c19ee4bb010a903a9c5359, type: 3}
+  health: 300
 --- !u!58 &6409266308354020185
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -136,3 +138,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!50 &2102137112458113302
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3320680001973058432}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 0
+  m_CollisionDetection: 0
+  m_Constraints: 0

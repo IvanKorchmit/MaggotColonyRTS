@@ -162,7 +162,6 @@ MonoBehaviour:
   - {fileID: 433034928824364513, guid: ac04924bf6d4f6b41b8be49ba3680ddf, type: 3}
   - {fileID: 433034928824364513, guid: ac04924bf6d4f6b41b8be49ba3680ddf, type: 3}
   - {fileID: 433034928824364513, guid: ac04924bf6d4f6b41b8be49ba3680ddf, type: 3}
-  - {fileID: 433034928824364513, guid: ac04924bf6d4f6b41b8be49ba3680ddf, type: 3}
 --- !u!60 &6119725097460025066
 PolygonCollider2D:
   m_ObjectHideFlags: 0

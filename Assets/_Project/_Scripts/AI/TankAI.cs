@@ -2,13 +2,13 @@
 
 public class TankAI : UnitAI
 {
-    [SerializeField] private SpriteRotation headRotation;
+    [SerializeField] protected SpriteRotation headRotation;
     [SerializeField] protected float currentAngle;
     [SerializeField] protected float rotationSpeed;
-    [SerializeField] private LayerMask explosionMask;
-    [SerializeField] private AudioEvent explosion;
+    [SerializeField] protected LayerMask explosionMask;
+    [SerializeField] protected AudioEvent explosion;
     [SerializeField] protected AudioSource audioSource;
-    [SerializeField] private GameObject explosionParticle;
+    [SerializeField] protected GameObject explosionParticle;
     protected override void Attack()
     {
         Instantiate(explosionParticle, range.ClosestTarget.position, Quaternion.identity);
@@ -42,9 +42,18 @@ public class TankAI : UnitAI
         Vector2 direction = target.position - transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         currentAngle = Mathf.MoveTowardsAngle(currentAngle, angle, Time.deltaTime * rotationSpeed);
+        currentAngle %= 360f;
         return angle;
     }
+    protected float Rotate(Vector2 target)
+    {
+        Vector2 direction = target - (Vector2)transform.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        currentAngle = Mathf.MoveTowardsAngle(currentAngle, angle, Time.deltaTime * rotationSpeed);
+        currentAngle %= 360f;
 
+        return angle;
+    }
     protected bool AttackOnRotation(float angle)
     {
         return Mathf.RoundToInt(angle) == Mathf.RoundToInt(currentAngle);

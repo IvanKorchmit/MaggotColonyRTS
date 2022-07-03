@@ -11,8 +11,10 @@ public class Turret : TankAI
     [SerializeField] private Transform currentTarget;
     [SerializeField] private float cooldown;
     [SerializeField] private float damage;
+    [SerializeField] private int direction;
     private void OnEnable()
     {
+        InvokeRepeating(nameof(SetDirection), 0, Random.Range(2f, 4f));
         ConstructBehaviour cb = GetComponent<ConstructBehaviour>();
         foreach (var item in constructionPreset.options)
         {
@@ -29,6 +31,16 @@ public class Turret : TankAI
         {
             attackable.Damage(damage, this);
         }
+    }
+    private void Stop()
+    {
+        direction = 0;
+    }
+    private void SetDirection()
+    {
+        var random = new int[] { -1, 1};
+        direction = random[Random.Range(0, random.Length)];
+        Invoke(nameof(Stop), Random.Range(0.25f, 0.75f));
     }
     protected override void Update()
     {
@@ -56,7 +68,7 @@ public class Turret : TankAI
         }
         else
         {
-            currentAngle = Mathf.MoveTowardsAngle(currentAngle, (currentAngle + 45f), Time.deltaTime * rotationSpeed);
+            currentAngle = Mathf.MoveTowardsAngle(currentAngle, (currentAngle + 45f * direction), Time.deltaTime * rotationSpeed / 2);
         }
         currentAngle %= 360;
         spriteRotation.SetAngle((int)currentAngle);

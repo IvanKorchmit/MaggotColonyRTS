@@ -17,7 +17,7 @@ public class Building : MonoBehaviour, IBuilding, ISelectable
     {
         Economics.GainMoney(price);
     }
-    private void OnEnable()
+    protected virtual void Start()
     {
         ConstructBehaviour cb = GetComponent<ConstructBehaviour>();
         foreach (var item in constructionPreset.options)
@@ -26,9 +26,6 @@ public class Building : MonoBehaviour, IBuilding, ISelectable
             e.AddListener(() => cb.ConstructBuilding(item.building));
             contextMenu.Add(item.option, e);
         }
-    }
-    protected virtual void Start()
-    {
         BuildingObserver.Observe(this);
 
     }
