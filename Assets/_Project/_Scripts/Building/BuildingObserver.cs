@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BuildingObserver : MonoBehaviour
 {
-    private const int MINUTES_BEFORE_ATTACK = 2;
+    private const int MINUTES_BEFORE_ATTACK = 3;
     public static event System.Action AttackBase;
     private List<IBuilding> buildingsToObserve;
     private static BuildingObserver instance;

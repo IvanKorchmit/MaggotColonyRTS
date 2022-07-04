@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3855933726588876143}
   - component: {fileID: 6495840125146636167}
   - component: {fileID: 3670564012779093353}
+  - component: {fileID: 3902577533467634118}
   m_Layer: 8
   m_Name: Drill
   m_TagString: Player
@@ -79,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 48cbe50cbce34314ea03d6ea211b69ad, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d5746c166883ce6488f339a9782a2a54, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -106,8 +107,8 @@ PolygonCollider2D:
   m_Offset: {x: -0.33, y: 0.8}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.54296875, y: 0.14648438}
-    oldSize: {x: 8, y: 8}
+    pivot: {x: 0.4, y: 0.2}
+    oldSize: {x: 4, y: 4}
     newSize: {x: 8, y: 8}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -262,3 +263,23 @@ MonoBehaviour:
   multithreading: 1
   cellBased: 1
   snapToPixelCenter: 1
+--- !u!95 &3902577533467634118
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7113053798192772446}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 30e316e957e4fed4786fbfff46bae77f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

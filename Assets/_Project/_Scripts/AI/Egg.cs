@@ -9,7 +9,7 @@ public class Egg : MonoBehaviour, IAttackable, IDamagable
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating(nameof(SpawnCycle), 30f, Random.Range(10f, 30f));
+        InvokeRepeating(nameof(SpawnCycle), 60 * 5, Random.Range(60,90));
     }
 
     private void Spawn()

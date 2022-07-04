@@ -4,7 +4,7 @@ using Pathfinding;
 
 public class UnitAI : MonoBehaviour, ISelectable, IDamagable, IUnit
 {
-
+    protected OrderBase order;
 
     [SerializeField] protected Seeker seeker;
     [SerializeField] protected MovementAstar move;
@@ -26,6 +26,8 @@ public class UnitAI : MonoBehaviour, ISelectable, IDamagable, IUnit
         {
             seeker.StartPath(transform.position, move.position);
         }
+        this.order = order;
+
     }
 
     public virtual void Damage(float damage, IDamagable owner)
@@ -56,7 +58,7 @@ public class UnitAI : MonoBehaviour, ISelectable, IDamagable, IUnit
     // Update is called once per frame
     protected virtual void Update()
     {
-        if (target.IsAlive()) 
+        if (target.IsAlive() && (order == null || order is OrderBase.AttackOrder)) 
         {
             seeker.StartPath(transform.position, targetPosition);
             targetPosition = target.transform.position;

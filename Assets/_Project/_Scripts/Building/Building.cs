@@ -19,6 +19,8 @@ public class Building : MonoBehaviour, IBuilding, ISelectable
     public virtual void Sell()
     {
         Economics.GainMoney(priceMoney / 2, priceSteel / 2, priceFuel / 2);
+        BuildingObserver.StopObserving(this);
+        Destroy(gameObject);
     }
     protected virtual void Start()
     {
