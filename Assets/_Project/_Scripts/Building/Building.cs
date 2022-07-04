@@ -10,6 +10,7 @@ public class Building : MonoBehaviour, IBuilding, ISelectable
     [SerializeField] protected int priceFuel = 0;
     [SerializeField] protected float health;
     [SerializeField] private ContextMenu contextMenu;
+    [SerializeField] private BuildingContextMenuPreset actionsPreset;
     [SerializeField] private ConstructionMenu constructionPreset;
     public (int money,int steel,int fuel) Cost => (priceMoney, priceSteel, priceFuel);
 
@@ -17,10 +18,11 @@ public class Building : MonoBehaviour, IBuilding, ISelectable
 
     public virtual void Sell()
     {
-        Economics.GainMoney(priceMoney,priceSteel,priceFuel);
+        Economics.GainMoney(priceMoney / 2, priceSteel / 2, priceFuel / 2);
     }
     protected virtual void Start()
     {
+        actionsPreset.AddToObject(this, contextMenu);
         ConstructBehaviour cb = GetComponent<ConstructBehaviour>();
         foreach (var item in constructionPreset.options)
         {
@@ -31,7 +33,6 @@ public class Building : MonoBehaviour, IBuilding, ISelectable
         BuildingObserver.Observe(this);
 
     }
-
     public virtual void Damage(float damage, IDamagable owner)
     {
         health -= damage;

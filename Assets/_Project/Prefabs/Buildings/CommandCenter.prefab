@@ -133,26 +133,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c31b6d6b110cda3439f3a02b7c1dcd27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  price: 100
+  priceMoney: 100
+  priceSteel: 0
+  priceFuel: 0
   health: 1500
   contextMenu:
-    options:
-    - action:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 6119725097460025069}
-            m_TargetAssemblyTypeName: CommandCenter, Assembly-CSharp
-            m_MethodName: Sell
-            m_Mode: 1
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-      summary: Sell
+    options: []
+  actionsPreset: {fileID: 11400000, guid: 2aa2b22566742e243955013e1e02a108, type: 2}
   constructionPreset: {fileID: 11400000, guid: d9e94ad8d82526f4bb599cb84912e3f8, type: 2}
   startUnits:
   - {fileID: 433034928824364513, guid: ac04924bf6d4f6b41b8be49ba3680ddf, type: 3}

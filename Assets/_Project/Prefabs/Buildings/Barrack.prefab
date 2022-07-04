@@ -186,7 +186,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77e7da05876f868409bde06be19784ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  price: 100
+  priceMoney: 100
+  priceSteel: 0
+  priceFuel: 0
   health: 50
   contextMenu:
     options:
@@ -206,6 +208,7 @@ MonoBehaviour:
               m_BoolArgument: 0
             m_CallState: 2
       summary: Make Soldier (25$)
+  actionsPreset: {fileID: 11400000, guid: 2aa2b22566742e243955013e1e02a108, type: 2}
   constructionPreset: {fileID: 11400000, guid: d9e94ad8d82526f4bb599cb84912e3f8, type: 2}
 --- !u!114 &-2668458875963938591
 MonoBehaviour:

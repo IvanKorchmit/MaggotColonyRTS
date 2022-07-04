@@ -171,23 +171,8 @@ MonoBehaviour:
   priceFuel: 0
   health: 100
   contextMenu:
-    options:
-    - action:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 2533688182737087386}
-            m_TargetAssemblyTypeName: Miner, Assembly-CSharp
-            m_MethodName: Sell
-            m_Mode: 1
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-      summary: Sell (25$)
+    options: []
+  actionsPreset: {fileID: 11400000, guid: 2aa2b22566742e243955013e1e02a108, type: 2}
   constructionPreset: {fileID: 11400000, guid: d9e94ad8d82526f4bb599cb84912e3f8, type: 2}
   multiplier: 1
 --- !u!50 &3855933726588876143

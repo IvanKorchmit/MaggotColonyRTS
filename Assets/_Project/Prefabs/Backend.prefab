@@ -552,7 +552,7 @@ MonoBehaviour:
   team: 0
   mapResolution: {x: 256, y: 256}
   mapSize: 256
-  mapOffset: {x: 0, y: 0}
+  mapOffset: {x: 0, y: 64}
   plane: 0
   physics: 1
   pointFiltering: 0

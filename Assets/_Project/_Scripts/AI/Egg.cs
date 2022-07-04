@@ -9,14 +9,20 @@ public class Egg : MonoBehaviour, IAttackable, IDamagable
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating(nameof(Spawn), 6f, Random.Range(5, 20f));
+        InvokeRepeating(nameof(SpawnCycle), 30f, Random.Range(10f, 30f));
     }
 
     private void Spawn()
     {
         Instantiate(bug, transform.position, Quaternion.identity);
     }
-
+    private void SpawnCycle()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            Spawn();
+        }
+    }
     public void Damage(float damage, IDamagable owner)
     {
         health -= damage;

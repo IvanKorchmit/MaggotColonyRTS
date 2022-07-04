@@ -26,7 +26,7 @@ public class ContextMenuManager : MonoBehaviour
                         contextMenuBase.Init(interactable.ContextMenu);
                         Vector2 ratio = scaler.referenceResolution;
                         ratio.x /= Screen.width;
-                        ratio.y /= Screen.height;
+                        ratio.y /= Screen.height;   
                         rectTrans.anchoredPosition = UnityEngine.InputSystem.Mouse.current.position.ReadValue() * ratio;
                         Vector2 apos = rectTrans.anchoredPosition;
                         float xpos = apos.x;
@@ -64,6 +64,10 @@ public class ContextMenu
     {
         [SerializeField] private UnityEvent action;
         [SerializeField] private string summary;
+
+        public UnityEvent Action => action;
+
+
         public void Invoke()
         {
             action?.Invoke();

@@ -188,6 +188,7 @@ MonoBehaviour:
               m_BoolArgument: 0
             m_CallState: 2
       summary: Sell (25$)
+  actionsPreset: {fileID: 11400000, guid: 2aa2b22566742e243955013e1e02a108, type: 2}
   constructionPreset: {fileID: 11400000, guid: d9e94ad8d82526f4bb599cb84912e3f8, type: 2}
   multiplier: 1
 --- !u!50 &3855933726588876143
