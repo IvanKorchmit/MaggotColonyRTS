@@ -620,8 +620,8 @@ MonoBehaviour:
   partialFogAmount: 0.5
   fadeInDuration: 1
   fadeOutDuration: 1
-  renderType: 0
-  multithreaded: 1
+  renderType: 1
+  multithreaded: 0
   threads: 2
   maxMillisecondsPerFrame: 5
 --- !u!1 &1179637979300409634
