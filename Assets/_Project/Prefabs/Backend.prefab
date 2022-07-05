@@ -620,8 +620,8 @@ MonoBehaviour:
   partialFogAmount: 0.5
   fadeInDuration: 1
   fadeOutDuration: 1
-  renderType: 1
-  multithreaded: 0
+  renderType: 0
+  multithreaded: 1
   threads: 2
   maxMillisecondsPerFrame: 5
 --- !u!1 &1179637979300409634
@@ -851,6 +851,38 @@ PrefabInstance:
     - target: {fileID: 3224247960205667387, guid: ff4f50c8b281fe54da564594867e11da, type: 3}
       propertyPath: screenYLimits.y
       value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162598754550425435, guid: ff4f50c8b281fe54da564594867e11da, type: 3}
+      propertyPath: m_ClearFlags
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162598754550425435, guid: ff4f50c8b281fe54da564594867e11da, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162598754550425435, guid: ff4f50c8b281fe54da564594867e11da, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162598754550425435, guid: ff4f50c8b281fe54da564594867e11da, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6064709405387129235, guid: ff4f50c8b281fe54da564594867e11da, type: 3}
+      propertyPath: m_ClearFlags
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6064709405387129235, guid: ff4f50c8b281fe54da564594867e11da, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6064709405387129235, guid: ff4f50c8b281fe54da564594867e11da, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6064709405387129235, guid: ff4f50c8b281fe54da564594867e11da, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff4f50c8b281fe54da564594867e11da, type: 3}

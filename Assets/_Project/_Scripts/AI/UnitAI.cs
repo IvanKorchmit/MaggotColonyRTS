@@ -11,6 +11,8 @@ public class UnitAI : MonoBehaviour, ISelectable, IDamagable, IUnit, IHoverable
     [SerializeField] protected RangeFinder range;
     [SerializeField] protected float health = 50;
     [SerializeField] protected float maxHealth;
+    [SerializeField] private AudioEvent attack;
+    [SerializeField] protected AudioSource audioSource;
     protected IAttackable target;
     protected Vector2 targetPosition;
     [SerializeField] protected ContextMenu contextMenu;
@@ -66,6 +68,7 @@ public class UnitAI : MonoBehaviour, ISelectable, IDamagable, IUnit, IHoverable
     protected virtual void Attack()
     {
         target.Damage(3f, this);
+        attack.Play(audioSource);
     }
     // Update is called once per frame
     protected virtual void Update()

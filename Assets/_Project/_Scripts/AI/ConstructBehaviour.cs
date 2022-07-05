@@ -166,10 +166,11 @@ public class ConstructBehaviour : MonoBehaviour
         if (price.fuel > Economics.Fuel) return;
         void GridSnap_OnPlaceSuccessful(Vector3 position, GameObject prefab)
         {
-            if (Vector2.Distance(position, transform.position) <= 25f)
+            if (Vector2.Distance(position, transform.position) <= 25f && Economics.CountObject(prefab.GetComponent<IBuilding>()))
             {
                 Economics.GainMoney(-price.money,-price.steel,-price.fuel);
                 Component[] components = prefab.GetComponentsInChildren<Component>();
+
                 foreach (Component comp in components)
                 {
                     if (comp is Renderer) continue;
@@ -186,7 +187,7 @@ public class ConstructBehaviour : MonoBehaviour
                 Destroy(prefab);
                 GridSnap.OnPlaceSuccessful -= GridSnap_OnPlaceSuccessful;
             }
-            else
+            else if (Vector2.Distance(position, transform.position) > 25f)
             {
                 ErrorMessageManager.LogError("Too far away " + Vector2.Distance((Vector3)position, transform.position));
             }

@@ -7,7 +7,6 @@ public class TankAI : UnitAI
     [SerializeField] protected float rotationSpeed;
     [SerializeField] protected LayerMask explosionMask;
     [SerializeField] protected AudioEvent explosion;
-    [SerializeField] protected AudioSource audioSource;
     [SerializeField] protected GameObject explosionParticle;
     protected override void Attack()
     {
@@ -21,13 +20,20 @@ public class TankAI : UnitAI
     }
     protected override void Update()
     {
-        if (range.ClosestTarget != null && range.ClosestTarget.IsAlive() && (order == null || order is OrderBase.AttackOrder))
+        if (order != null && order is OrderBase.AttackOrder attack)
         {
-            float angle = Rotate(range.ClosestTarget);
-            if (AttackOnRotation(angle))
+            if (attack.target != null && attack.target.IsAlive() && range.HasTarget(attack.target.transform))
             {
-                TimerUtils.AddTimer(3f, Attack);
-                move.canMove = false;
+                float angle = Rotate(range.ClosestTarget);
+                if (AttackOnRotation(angle))
+                {
+                    TimerUtils.AddTimer(3f, Attack);
+                    move.canMove = false;
+                }
+            }
+            else if (attack.target != null && attack.target.IsAlive() && !range.HasTarget(attack.target.transform))
+            {
+                seeker.StartPath(transform.position, attack.target.transform.position);
             }
         }
         else
