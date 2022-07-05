@@ -56,7 +56,7 @@ public class Egg : MonoBehaviour, IAttackable, IDamagable, IHoverable
         if (Random.value >= 0.5f)
         {
             // Trigger spawning enemies on attack
-            for (int i = 0; i < ((int)damage == 0 ? 1 : (int)damage) / 2; i++)
+            for (int i = 0; i < ((int)damage == 0 ? 1 : (int)damage / 2); i++)
             {
                 Spawn();
             }
