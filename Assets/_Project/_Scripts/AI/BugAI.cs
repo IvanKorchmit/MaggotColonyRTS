@@ -38,10 +38,12 @@ public class BugAI : MonoBehaviour, IAttackable, IDamagable
 
     private void BuildingObserver_AttackBase()
     {
+        if (BuildingObserver.currentlySelected + 1 >= BuildingObserver.SelectAmount) return;
         IBuilding b = BuildingObserver.GetBuilding();
         if (b == null || !b.IsAlive()) b = BuildingObserver.GetBuilding();
         if (b == null || !b.IsAlive()) return;
         seeker.StartPath(transform.position, b.transform.position);
+        BuildingObserver.currentlySelected++;
         target = b;
         isWandering = false;
     }
@@ -96,7 +98,7 @@ public class BugAI : MonoBehaviour, IAttackable, IDamagable
         {
             seeker.StartPath(transform.position, target.transform.position);
         }
-            movement.canMove = !animator.GetBool("IsAttacking");
+        movement.canMove = !animator.GetBool("IsAttacking");
     }
 
     private void Wander()
@@ -119,7 +121,7 @@ public class BugAI : MonoBehaviour, IAttackable, IDamagable
         if (health <= 0)
         {
             var corpse = Instantiate(this.corpse, transform.position, Quaternion.identity);
-            corpse.GetComponent<Animator>().SetInteger("Angle",animator.GetInteger("Angle"));
+            corpse.GetComponent<Animator>().SetInteger("Angle", animator.GetInteger("Angle"));
             gameObject.SetActive(false);
             Destroy(corpse, 10);
             BuildingObserver.AttackBase -= BuildingObserver_AttackBase;

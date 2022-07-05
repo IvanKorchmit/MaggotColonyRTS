@@ -37,7 +37,8 @@ public static class Economics
     {
         buildings.RemoveAll((match) => match == null || !match.IsAlive());
         tanks.RemoveAll((match) => match == null || !match.IsAlive());
-        tanks.RemoveAll((match) => match == null || !match.IsAlive());
+        units.RemoveAll((match) => match == null || !match.IsAlive());
+        if (obj == null || !obj.IsAlive()) return false;
         string errorFormat = "Too {0} ({1}/{2})";
         if (obj is ITank tank)
         {
@@ -82,7 +83,7 @@ public static class Economics
                 return false;
             }
         }
-        ErrorMessageManager.LogError("Critical error! None of the current type matched!!");
+        ErrorMessageManager.LogError($"Critical error! {obj.GetType()} {obj.transform.name}");
         return false;
     }
 
