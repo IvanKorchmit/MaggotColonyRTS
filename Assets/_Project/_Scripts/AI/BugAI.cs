@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class BugAI : MonoBehaviour, IAttackable, IDamagable
 {
     [SerializeField] private float health = 10f;
+    [SerializeField] private float maxHealth = 10f;
     private bool immune = true;
     private bool isWandering;
     private IDamagable target;
@@ -19,8 +20,14 @@ public class BugAI : MonoBehaviour, IAttackable, IDamagable
     [SerializeField] private SpriteRotation spriteRotation;
     [SerializeField] private GameObject corpse;
     private RandomPath path;
+
+    public float Health => health;
+
+    public float MaxHealth => maxHealth;
+
     private void Start()
     {
+        maxHealth = health;
         TimerUtils.AddTimer(5, () => immune = false);
         isWandering = true;
         InvokeRepeating(nameof(Wander), 0, 3f);
@@ -105,10 +112,10 @@ public class BugAI : MonoBehaviour, IAttackable, IDamagable
 
     public void Damage(float damage, IDamagable owner)
     {
+        seeker.StartPath(transform.position, target.transform.position);
         if (immune) return;
         health -= damage;
         target = owner;
-        seeker.StartPath(transform.position, target.transform.position);
         if (health <= 0)
         {
             var corpse = Instantiate(this.corpse, transform.position, Quaternion.identity);

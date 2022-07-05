@@ -1,0 +1,129 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TileAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 9d6ce76b0b28b534fa3e4e5a52bcc947, type: 3}
+    - {fileID: 2800000, guid: e30cbe2b1160e2f4c8ee25960d2069e1, type: 3}
+    - {fileID: 2800000, guid: 3f74afc7e69a3b5448d86a123d949d4d, type: 3}
+    - {fileID: 2800000, guid: cf56e4329abece4478cd550d67332c44, type: 3}
+    - {fileID: 2800000, guid: 0299e5c251f7df8478faa3eaede7f859, type: 3}
+    - {fileID: 2800000, guid: 587ec1bdcf287004f98e9d251eb7af83, type: 3}
+    - {fileID: 2800000, guid: 53e55cb96e856da40a75aa0ce879b37a, type: 3}
+    - {fileID: 2800000, guid: fba2dbae6f709ea4ea4892c6cb085255, type: 3}
+    - {fileID: 2800000, guid: 1123aa93958ebda4d86ed8463881361e, type: 3}
+    - {fileID: 2800000, guid: 7da4905c2c8446d448d2e8927c0c9ddd, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: cf56e4329abece4478cd550d67332c44, type: 3}
+  - {fileID: 21300000, guid: 0299e5c251f7df8478faa3eaede7f859, type: 3}
+  - {fileID: 21300000, guid: 1123aa93958ebda4d86ed8463881361e, type: 3}
+  - {fileID: 21300000, guid: 3f74afc7e69a3b5448d86a123d949d4d, type: 3}
+  - {fileID: 31935081, guid: 53e55cb96e856da40a75aa0ce879b37a, type: 3}
+  - {fileID: 1946605009, guid: 53e55cb96e856da40a75aa0ce879b37a, type: 3}
+  - {fileID: 936934192, guid: 53e55cb96e856da40a75aa0ce879b37a, type: 3}
+  - {fileID: 1918300404, guid: 53e55cb96e856da40a75aa0ce879b37a, type: 3}
+  - {fileID: 1760819937, guid: 53e55cb96e856da40a75aa0ce879b37a, type: 3}
+  - {fileID: -1258686162, guid: 53e55cb96e856da40a75aa0ce879b37a, type: 3}
+  - {fileID: -124165839, guid: 53e55cb96e856da40a75aa0ce879b37a, type: 3}
+  - {fileID: -1257520089, guid: 53e55cb96e856da40a75aa0ce879b37a, type: 3}
+  - {fileID: 767707963, guid: 53e55cb96e856da40a75aa0ce879b37a, type: 3}
+  - {fileID: 897889492, guid: 53e55cb96e856da40a75aa0ce879b37a, type: 3}
+  - {fileID: 810336641, guid: 53e55cb96e856da40a75aa0ce879b37a, type: 3}
+  - {fileID: -1670962656, guid: 53e55cb96e856da40a75aa0ce879b37a, type: 3}
+  - {fileID: -1610672569, guid: 53e55cb96e856da40a75aa0ce879b37a, type: 3}
+  - {fileID: -1661297605, guid: 53e55cb96e856da40a75aa0ce879b37a, type: 3}
+  - {fileID: -2111027635, guid: 53e55cb96e856da40a75aa0ce879b37a, type: 3}
+  - {fileID: 108494613, guid: 53e55cb96e856da40a75aa0ce879b37a, type: 3}
+  - {fileID: 21300000, guid: e30cbe2b1160e2f4c8ee25960d2069e1, type: 3}
+  - {fileID: 21300000, guid: 9d6ce76b0b28b534fa3e4e5a52bcc947, type: 3}
+  - {fileID: 21300000, guid: 7da4905c2c8446d448d2e8927c0c9ddd, type: 3}
+  - {fileID: 2008496840, guid: 587ec1bdcf287004f98e9d251eb7af83, type: 3}
+  - {fileID: -2040648851, guid: 587ec1bdcf287004f98e9d251eb7af83, type: 3}
+  - {fileID: 316443503, guid: 587ec1bdcf287004f98e9d251eb7af83, type: 3}
+  - {fileID: 1260388356, guid: 587ec1bdcf287004f98e9d251eb7af83, type: 3}
+  - {fileID: 1387428055, guid: 587ec1bdcf287004f98e9d251eb7af83, type: 3}
+  - {fileID: 659065885, guid: 587ec1bdcf287004f98e9d251eb7af83, type: 3}
+  - {fileID: 358325180, guid: 587ec1bdcf287004f98e9d251eb7af83, type: 3}
+  - {fileID: 925694928, guid: 587ec1bdcf287004f98e9d251eb7af83, type: 3}
+  - {fileID: -11828654, guid: 587ec1bdcf287004f98e9d251eb7af83, type: 3}
+  - {fileID: 969330169, guid: 587ec1bdcf287004f98e9d251eb7af83, type: 3}
+  - {fileID: -1004729540, guid: 587ec1bdcf287004f98e9d251eb7af83, type: 3}
+  - {fileID: 479921520, guid: 587ec1bdcf287004f98e9d251eb7af83, type: 3}
+  - {fileID: -263083263, guid: 587ec1bdcf287004f98e9d251eb7af83, type: 3}
+  - {fileID: -2083298133, guid: 587ec1bdcf287004f98e9d251eb7af83, type: 3}
+  - {fileID: 21300000, guid: fba2dbae6f709ea4ea4892c6cb085255, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - infested
+  - sand
+  - oak_shadow
+  - grass
+  - bushes_and_rocks_9
+  - bushes_and_rocks_8
+  - bushes_and_rocks_1
+  - bushes_and_rocks_0
+  - bushes_and_rocks_3
+  - bushes_and_rocks_2
+  - bushes_and_rocks_5
+  - bushes_and_rocks_4
+  - bushes_and_rocks_7
+  - bushes_and_rocks_6
+  - bushes_and_rocks_10
+  - bushes_and_rocks_11
+  - bushes_and_rocks_12
+  - bushes_and_rocks_13
+  - bushes_and_rocks_14
+  - bushes_and_rocks_15
+  - field
+  - farm_grass
+  - tree
+  - water_10
+  - water_11
+  - water_12
+  - water_13
+  - water_9
+  - water_8
+  - water_5
+  - water_4
+  - water_7
+  - water_6
+  - water_1
+  - water_0
+  - water_3
+  - water_2
+  - oak
+  m_RenderDataMap: {}
+  m_Tag: TileAtlas
+  m_IsVariant: 0

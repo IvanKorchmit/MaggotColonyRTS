@@ -359,7 +359,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4287255448
     isGrass: 0
-  vcam: {fileID: 4386574285410547784}
+  vcam: {fileID: 4533380154812182795}
   resource:
   - {fileID: 1911499224282035246, guid: 005fa7dfd3846b747886c57302b46c34, type: 3}
   - {fileID: 1911499224282035246, guid: 99828d8ad9cb41b4ca7b7e432a12e2a1, type: 3}
@@ -402,6 +402,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1179637977339157544}
   - component: {fileID: 1179637977339157551}
+  - component: {fileID: 676015682}
   m_Layer: 0
   m_Name: UnitControlManager
   m_TagString: Untagged
@@ -438,6 +439,60 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doubleClickTime: 0.21
   selectionBox: {fileID: 0}
+--- !u!114 &676015682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179637977339157545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: b2133973c2baf634ba04eb3630350dc7, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 354c2d74-6dc6-4043-8df2-c531634ceceb
+    m_ActionName: Player/Move Camera[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 75f9e63b-937e-44fb-9d91-8e9c5ef1e4b2
+    m_ActionName: Player/OnSingleClick[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1179637977339157551}
+        m_TargetAssemblyTypeName: UnitControlManager, Assembly-CSharp
+        m_MethodName: CancelSelection
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 6107a705-3dcc-4362-98ed-47770452fb5e
+    m_ActionName: Player/Cancel[/Keyboard/c]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &1179637978314186145
 GameObject:
   m_ObjectHideFlags: 0
@@ -552,7 +607,7 @@ MonoBehaviour:
   team: 0
   mapResolution: {x: 256, y: 256}
   mapSize: 256
-  mapOffset: {x: 0, y: 0}
+  mapOffset: {x: 0, y: 64}
   plane: 0
   physics: 1
   pointFiltering: 0
@@ -565,8 +620,8 @@ MonoBehaviour:
   partialFogAmount: 0.5
   fadeInDuration: 1
   fadeOutDuration: 1
-  renderType: 0
-  multithreaded: 1
+  renderType: 1
+  multithreaded: 0
   threads: 2
   maxMillisecondsPerFrame: 5
 --- !u!1 &1179637979300409634
@@ -799,13 +854,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff4f50c8b281fe54da564594867e11da, type: 3}
---- !u!4 &4386574285410547784 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3224247959883224203, guid: ff4f50c8b281fe54da564594867e11da, type: 3}
-  m_PrefabInstance: {fileID: 1179637977196539075}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4386574285658521849 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3224247960205667386, guid: ff4f50c8b281fe54da564594867e11da, type: 3}
+  m_PrefabInstance: {fileID: 1179637977196539075}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4533380154812182795 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3366202431795797448, guid: ff4f50c8b281fe54da564594867e11da, type: 3}
   m_PrefabInstance: {fileID: 1179637977196539075}
   m_PrefabAsset: {fileID: 0}

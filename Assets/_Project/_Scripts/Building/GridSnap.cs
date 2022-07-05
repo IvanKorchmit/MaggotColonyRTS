@@ -54,7 +54,7 @@ public class GridSnap : MonoBehaviour
                 if (placement == null) return;
                 IBuilding building = placement.GetComponent<IBuilding>();
                 List<Collider2D> colls = new List<Collider2D>();
-                if (Physics2D.OverlapBox(placement.transform.position, Vector2.one * 3, 0, constructionLayer) == null)
+                if (Physics2D.OverlapBox(placement.transform.position, Vector2.one * RADIUS, 0, constructionLayer) == null)
                 {
                     OnPlaceSuccessful?.Invoke(transform.position, placement);
                 }
@@ -63,7 +63,7 @@ public class GridSnap : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireCube(transform.position, Vector2.one * 3);
+        Gizmos.DrawWireCube(transform.position, Vector2.one * RADIUS);
     }
     // Update is called once per frame
     void Update()
@@ -72,7 +72,8 @@ public class GridSnap : MonoBehaviour
         Vector3Int cp = m_Grid.LocalToCell(mouse);
         transform.localPosition = m_Grid.GetCellCenterLocal(cp);
         if (placement == null) return;
-        Collider2D coll = Physics2D.OverlapBox(placement.transform.position, Vector2.one * 3, 0, constructionLayer);
+        Collider2D coll = Physics2D.OverlapBox(placement.transform.position, Vector2.one * RADIUS, 0, constructionLayer);
         placement_sprite.color = coll == null? Color.green : Color.red;
     }
+    public const float RADIUS = 2;
 }

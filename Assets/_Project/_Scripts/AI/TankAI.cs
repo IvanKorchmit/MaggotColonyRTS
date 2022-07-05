@@ -21,7 +21,7 @@ public class TankAI : UnitAI
     }
     protected override void Update()
     {
-        if (range.ClosestTarget != null && range.ClosestTarget.IsAlive())
+        if (range.ClosestTarget != null && range.ClosestTarget.IsAlive() && (order == null || order is OrderBase.AttackOrder))
         {
             float angle = Rotate(range.ClosestTarget);
             if (AttackOnRotation(angle))

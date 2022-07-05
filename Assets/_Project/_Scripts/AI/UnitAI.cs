@@ -2,18 +2,30 @@ using UnityEngine;
 using Pathfinding;
 
 
-public class UnitAI : MonoBehaviour, ISelectable, IDamagable, IUnit
+public class UnitAI : MonoBehaviour, ISelectable, IDamagable, IUnit, IHoverable
 {
-
-
+    protected OrderBase order;
+    [SerializeField] private GameObject statsDisplay;
     [SerializeField] protected Seeker seeker;
     [SerializeField] protected MovementAstar move;
     [SerializeField] protected RangeFinder range;
     [SerializeField] protected float health = 50;
+    [SerializeField] protected float maxHealth;
     protected IAttackable target;
     protected Vector2 targetPosition;
     [SerializeField] protected ContextMenu contextMenu;
     public ContextMenu ContextMenu => contextMenu;
+
+    public float Health => health;
+
+    public float MaxHealth => maxHealth;
+
+    private void Start()
+    {
+        maxHealth = health;
+    }
+
+
     public void Action(OrderBase order)
     {
          
@@ -26,6 +38,8 @@ public class UnitAI : MonoBehaviour, ISelectable, IDamagable, IUnit
         {
             seeker.StartPath(transform.position, move.position);
         }
+        this.order = order;
+
     }
 
     public virtual void Damage(float damage, IDamagable owner)
@@ -56,7 +70,7 @@ public class UnitAI : MonoBehaviour, ISelectable, IDamagable, IUnit
     // Update is called once per frame
     protected virtual void Update()
     {
-        if (target.IsAlive()) 
+        if (target.IsAlive() && (order == null || order is OrderBase.AttackOrder)) 
         {
             seeker.StartPath(transform.position, targetPosition);
             targetPosition = target.transform.position;
@@ -78,10 +92,24 @@ public class UnitAI : MonoBehaviour, ISelectable, IDamagable, IUnit
             }
         }
     }
+
+    public void OnHover()
+    {
+        statsDisplay.SetActive(true);
+    }
+
+    public void OnUnHover()
+    {
+        statsDisplay.SetActive(false);
+    }
 }
 public interface IDamagable : ITransformAndGameObject
 {
     void Damage(float damage, IDamagable owner);
+    float Health { get; }
+    float MaxHealth { get; }
+
+
 }
 
 public static class UnityObjectAliveExtension
