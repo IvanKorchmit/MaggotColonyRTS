@@ -92,7 +92,7 @@ public class BugAI : MonoBehaviour, IAttackable, IDamagable
         }
         float speed = movement.CurrentSpeed;
         audioSource.enabled = speed > 0;
-        if (target != null && target.IsAlive() && (range.ClosestTarget == null || range.ClosestTarget != target.transform))
+        if (target != null && target.IsAlive() && range.HasTarget(target.transform))
         {
             seeker.StartPath(transform.position, target.transform.position);
         }
@@ -112,7 +112,7 @@ public class BugAI : MonoBehaviour, IAttackable, IDamagable
 
     public void Damage(float damage, IDamagable owner)
     {
-        seeker.StartPath(transform.position, target.transform.position);
+        seeker.StartPath(transform.position, owner.transform.position);
         if (immune) return;
         health -= damage;
         target = owner;

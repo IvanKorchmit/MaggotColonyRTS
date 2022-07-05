@@ -23,11 +23,14 @@ public class ConstructBehaviour : MonoBehaviour
             return;
         }
         int layer = constructionLayer;
-
         Collider2D[] resources = Physics2D.OverlapCircleAll(transform.position, MAX_DISTANCE, constructionLayer);
+        bool isMiner = obj.TryGetComponent  (out IMiner _);
+        bool isDrill = obj.TryGetComponent  (out IDrill _);
+        bool isPump = obj.TryGetComponent   (out IFuel.IPump _);
+        
         foreach (var item in resources)
         {
-            if (item.TryGetComponent(out ICrystal crystal))
+            if      (isMiner &&item.TryGetComponent(out ICrystal crystal))
             {
                 void GridSnap_OnPlaceSuccessful(Vector3 position, GameObject prefab)
                 {
@@ -68,7 +71,7 @@ public class ConstructBehaviour : MonoBehaviour
                     ErrorMessageManager.LogError("This crystal is already occupied!");
                 }
             }
-            else if (item.TryGetComponent(out ISteel steel))
+            else if (isDrill &&item.TryGetComponent(out ISteel steel))
             {
                 void GridSnap_OnPlaceSuccessful(Vector3 position, GameObject prefab)
                 {
@@ -111,7 +114,7 @@ public class ConstructBehaviour : MonoBehaviour
                 }
 
             }
-            else if (item.TryGetComponent(out IFuel fuel))
+            else if (isPump  &&item.TryGetComponent(out IFuel fuel))
             {
                 void GridSnap_OnPlaceSuccessful(Vector3 position, GameObject prefab)
                 {

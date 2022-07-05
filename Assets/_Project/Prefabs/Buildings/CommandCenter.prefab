@@ -152,6 +152,13 @@ MonoBehaviour:
   - {fileID: 433034928824364513, guid: ac04924bf6d4f6b41b8be49ba3680ddf, type: 3}
   - {fileID: 433034928824364513, guid: ac04924bf6d4f6b41b8be49ba3680ddf, type: 3}
   - {fileID: 433034928824364513, guid: ac04924bf6d4f6b41b8be49ba3680ddf, type: 3}
+  - {fileID: 5664282489524170380, guid: e79b629d0a8587d40a381af6099ddb1c, type: 3}
+  - {fileID: 5664282489524170380, guid: e79b629d0a8587d40a381af6099ddb1c, type: 3}
+  - {fileID: 5664282489524170380, guid: e79b629d0a8587d40a381af6099ddb1c, type: 3}
+  - {fileID: 5664282489524170380, guid: e79b629d0a8587d40a381af6099ddb1c, type: 3}
+  - {fileID: 5664282489524170380, guid: e79b629d0a8587d40a381af6099ddb1c, type: 3}
+  - {fileID: 5664282489524170380, guid: e79b629d0a8587d40a381af6099ddb1c, type: 3}
+  - {fileID: 5664282489524170380, guid: e79b629d0a8587d40a381af6099ddb1c, type: 3}
 --- !u!60 &6119725097460025066
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -165,10 +172,10 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.33, y: 0.8}
+  m_Offset: {x: 0, y: -1}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.54296875, y: 0.14648438}
+    pivot: {x: 0.5251248, y: 0.4}
     oldSize: {x: 8, y: 8}
     newSize: {x: 8, y: 8}
     adaptiveTilingThreshold: 0.5

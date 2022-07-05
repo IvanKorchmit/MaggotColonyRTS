@@ -6,10 +6,7 @@ public class Turret : TankAI
 {
     [SerializeField] private AudioEvent shoot;
     [SerializeField] private AudioEvent detection;
-    [SerializeField] private SpriteRotation spriteRotation;
     [SerializeField] private Transform currentTarget;
-    [SerializeField] private float cooldown;
-    [SerializeField] private float damage;
     [SerializeField] private int direction;
     protected override void Attack()
     {

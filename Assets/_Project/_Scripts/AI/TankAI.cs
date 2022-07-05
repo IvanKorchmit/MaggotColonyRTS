@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class TankAI : UnitAI
+public class TankAI : UnitAI, ITank
 {
     [SerializeField] protected SpriteRotation headRotation;
     [SerializeField] protected float currentAngle;
@@ -12,10 +12,11 @@ public class TankAI : UnitAI
     {
         Instantiate(explosionParticle, range.ClosestTarget.position, Quaternion.identity);
         explosion.Play(audioSource);
-        var coll = Physics2D.CircleCastAll(range.ClosestTarget.position, 4f, new Vector2(), 0, explosionMask);
+        var coll = Physics2D.OverlapCircleAll(range.ClosestTarget.position, 4f,explosionMask);
         foreach (var en in coll)
         {
-            en.collider.GetComponent<IDamagable>().Damage(10, this);
+            Debug.Log(en.name);
+            en.GetComponent<IDamagable>().Damage(10, this);
         }
     }
     protected override void Update()

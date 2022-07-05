@@ -82,7 +82,7 @@ public class RangeFinder : MonoBehaviour
             return temp;
         }
         List<Transform> newList = new List<Transform>(targets.Count);
-        for (int i = 0; i < targets.Count; i++)
+        while (targets.Count > 0)
         {
             Transform min = Min(targets);
             targets.Remove(min);
