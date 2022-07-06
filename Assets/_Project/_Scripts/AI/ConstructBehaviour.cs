@@ -7,9 +7,21 @@ public class ConstructBehaviour : MonoBehaviour
     public void ConstructMiner(GameObject obj)
     {
         Building bld = obj.GetComponent<Building>();
-        if (bld.Cost.money > Economics.Money) return;
-        if (bld.Cost.steel > Economics.Steel) return;
-        if (bld.Cost.fuel > Economics.Fuel) return;
+        if (bld.Cost.money > Economics.Money) 
+        {
+            ErrorMessageManager.LogError($"Not enough money ({bld.Cost.money})");
+            return;
+        }
+        if (bld.Cost.steel > Economics.Steel)
+        {
+            ErrorMessageManager.LogError($"Not enough steel ({bld.Cost.steel})");
+            return;
+        }
+        if (bld.Cost.fuel > Economics.Fuel)
+        {
+            ErrorMessageManager.LogError($"Not enough fuel ({bld.Cost.fuel})");
+            return;
+        }
         int layer = constructionLayer;
 
         Collider2D[] resources = Physics2D.OverlapCircleAll(transform.position, MAX_DISTANCE, constructionLayer);
@@ -42,7 +54,7 @@ public class ConstructBehaviour : MonoBehaviour
                     }
                     else
                     {
-                        Debug.LogError("Too far away " + Vector2.Distance((Vector3)position, transform.position));
+                        ErrorMessageManager.LogError("Too far away " + Vector2.Distance((Vector3)position, transform.position));
                     }
                 }
                 if (crystal.CurrentMiner == null)
@@ -53,7 +65,7 @@ public class ConstructBehaviour : MonoBehaviour
                 }
                 else
                 {
-                    Debug.LogError("This crystal is already occupied!");
+                    ErrorMessageManager.LogError("This crystal is already occupied!");
                 }
             }
             else if (item.TryGetComponent(out ISteel steel))
@@ -83,7 +95,7 @@ public class ConstructBehaviour : MonoBehaviour
                     }
                     else
                     {
-                        Debug.LogError("Too far away " + Vector2.Distance((Vector3)position, transform.position));
+                        ErrorMessageManager.LogError("Too far away " + Vector2.Distance((Vector3)position, transform.position));
                     }
                 }
 
@@ -95,7 +107,7 @@ public class ConstructBehaviour : MonoBehaviour
                 }
                 else
                 {
-                    Debug.LogError("This steel is already occupied!");
+                    ErrorMessageManager.LogError("This steel is already occupied!");
                 }
 
             }
@@ -126,7 +138,7 @@ public class ConstructBehaviour : MonoBehaviour
                     }
                     else
                     {
-                        Debug.LogError("Too far away " + Vector2.Distance((Vector3)position, transform.position));
+                        ErrorMessageManager.LogError("Too far away " + Vector2.Distance((Vector3)position, transform.position));
                     }
                 }
 
@@ -138,11 +150,11 @@ public class ConstructBehaviour : MonoBehaviour
                 }
                 else
                 {
-                    Debug.LogError("This fuel is already occupied!");
+                    ErrorMessageManager.LogError("This fuel is already occupied!");
                 }
             }
         }
-        Debug.LogError("No Resource found!");
+        ErrorMessageManager.LogError("No Resource found!");
     }
 
     public void ConstructBuilding(GameObject obj)
@@ -154,9 +166,9 @@ public class ConstructBehaviour : MonoBehaviour
         if (price.fuel > Economics.Fuel) return;
         void GridSnap_OnPlaceSuccessful(Vector3 position, GameObject prefab)
         {
-                Economics.GainMoney(-price.money,-price.steel,-price.fuel);
             if (Vector2.Distance(position, transform.position) <= 25f)
             {
+                Economics.GainMoney(-price.money,-price.steel,-price.fuel);
                 Component[] components = prefab.GetComponentsInChildren<Component>();
                 foreach (Component comp in components)
                 {
@@ -176,7 +188,7 @@ public class ConstructBehaviour : MonoBehaviour
             }
             else
             {
-                Debug.LogError("Too far away " + Vector2.Distance((Vector3)position, transform.position));
+                ErrorMessageManager.LogError("Too far away " + Vector2.Distance((Vector3)position, transform.position));
             }
         }
         int layer = constructionLayer;

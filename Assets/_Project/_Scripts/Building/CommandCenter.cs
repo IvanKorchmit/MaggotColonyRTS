@@ -17,9 +17,7 @@ public class CommandCenter : Building, ISelectable, IBuilding
         base.Start();
         foreach (var u in startUnits)
         {
-            Instantiate(u, transform.position, Quaternion.identity);
+            Instantiate(u, (Vector2)transform.position + Random.insideUnitCircle * 2f, Quaternion.identity);
         }
     }
 }
-
-

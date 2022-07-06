@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/FogOfWar/Samples/FogOfWarDemo.unity
-    guid: 086c389950190c94d8295dd5b4b4f0be
+    path: Assets/_Project/Scenes/Gameplay.unity
+    guid: f5a28afd21263ad448cac63842078f99
   m_configObjects: {}

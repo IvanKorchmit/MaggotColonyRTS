@@ -27,17 +27,22 @@ public class UnitControlManager : MonoBehaviour
         selectionBox.transform.localScale = upperRight - lowerLeft;
 
     }
+
+    public void CancelSelection()
+    {
+        foreach (var item in selected)
+        {
+            item.Deselect();
+        }
+        selected.Clear();
+    }
+
     private void OnClick()
     {
         OnDoubleClick();
         selectionBox.gameObject.SetActive(true);
         lastClick = RT2Mouse.GetMousePosition();
         selectionBox.transform.position = lastClick;
-        foreach (var item in selected)
-        {
-            item.Deselect();
-        }
-        selected.Clear();
     }
     private void OnRelease()
     {
@@ -72,7 +77,7 @@ public class UnitControlManager : MonoBehaviour
     {
         selected.RemoveAll((m) => m == null || !m.IsAlive());
         Vector2 mouse = mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        RaycastHit2D point = Physics2D.CircleCast(mouse, 2, new Vector2(), 1f, LayerMask.GetMask("Enemy"));
+        RaycastHit2D point = Physics2D.CircleCast(mouse, 2, new Vector2(), 1f, LayerMask.GetMask("Enemy", "Building"));
         if (point.collider != null && point.collider.TryGetComponent(out IAttackable attackable))
         {
             OrderBase.AttackOrder order = new OrderBase.AttackOrder { target = attackable };

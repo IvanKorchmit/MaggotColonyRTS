@@ -2,21 +2,54 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Egg : MonoBehaviour, IAttackable, IDamagable
+public class Egg : MonoBehaviour, IAttackable, IDamagable, IHoverable
 {
+
+    [SerializeField] private GameObject displayHealth;
+
+
+    public void OnHover()
+    {
+        displayHealth.SetActive(true);
+    }
+
+    public void OnUnHover()
+    {
+        displayHealth.SetActive(false);
+    }
+
+
+
+
+
+
+
+
     [SerializeField] private GameObject bug;
     [SerializeField] private float health = 300;
+    private float maxHealth;
+    public float Health => health;
+
+    public float MaxHealth => maxHealth;
+
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating(nameof(Spawn), 6f, Random.Range(5, 20f));
+        InvokeRepeating(nameof(SpawnCycle), 60 * 5, Random.Range(60,90));
+        maxHealth = health;
     }
 
     private void Spawn()
     {
         Instantiate(bug, transform.position, Quaternion.identity);
     }
-
+    private void SpawnCycle()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            Spawn();
+        }
+    }
     public void Damage(float damage, IDamagable owner)
     {
         health -= damage;
