@@ -6,8 +6,8 @@ public class Egg : MonoBehaviour, IAttackable, IDamagable, IHoverable
 {
 
     [SerializeField] private GameObject displayHealth;
-
-
+    public static int currentBugs;
+    public const int BUGS_LIMIT = 50;
     public void OnHover()
     {
         displayHealth.SetActive(true);
@@ -39,8 +39,9 @@ public class Egg : MonoBehaviour, IAttackable, IDamagable, IHoverable
         maxHealth = health;
     }
 
-    private void Spawn()
+    private void Spawn(bool ignoreLimit = false)
     {
+        if (currentBugs >= BUGS_LIMIT && !ignoreLimit) return;
         Instantiate(bug, transform.position, Quaternion.identity);
     }
     private void SpawnCycle()
@@ -53,12 +54,12 @@ public class Egg : MonoBehaviour, IAttackable, IDamagable, IHoverable
     public void Damage(float damage, IDamagable owner)
     {
         health -= damage;
-        if (Random.value >= 0.5f)
+        if (Random.value >= 0.9f)
         {
             // Trigger spawning enemies on attack
             for (int i = 0; i < ((int)damage == 0 ? 1 : (int)damage / 2); i++)
             {
-                Spawn();
+                Spawn(true);
             }
         }
         if (health <= 0)

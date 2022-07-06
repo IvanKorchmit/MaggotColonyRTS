@@ -19,7 +19,10 @@ public class Building : MonoBehaviour, IBuilding, ISelectable, IHoverable
     }
 
 
-
+    private void OnDestroy()
+    {
+        Economics.ClearDestroyed();
+    }
 
 
 

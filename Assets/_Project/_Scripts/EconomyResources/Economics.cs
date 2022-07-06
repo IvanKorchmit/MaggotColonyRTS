@@ -31,55 +31,59 @@ public static class Economics
     public static int MaxUnits => maxUnits;
     public static int MaxBuildings => maxBuildings;
 
+    public static int ME => tanks.Count;
+    public static int Units => units.Count;
+    public static int Buildings => buildings.Count;
 
 
-    public static bool CountObject(ITransformAndGameObject obj, bool silent = false)
+    public static bool CountObject(ITransformAndGameObject obj, bool alarm = false)
     {
-        buildings.RemoveAll((match) => match == null || !match.IsAlive());
-        tanks.RemoveAll((match) => match == null || !match.IsAlive());
-        units.RemoveAll((match) => match == null || !match.IsAlive());
+        ClearDestroyed();
         if (obj == null || !obj.IsAlive()) return false;
         string errorFormat = "Too {0} ({1}/{2})";
         if (obj is ITank tank)
         {
-            if (tanks.Count + 1 < maxME)
+            if (tanks.Count < maxME)
             {
                 Debug.Log("Tank");
                 tanks.Add(tank);
                 return true;
             }
-            else if (!silent)
+            else
             {
-                ErrorMessageManager.LogError(string.Format(errorFormat,"much military equipment",tanks.Count,maxME));
+                if (!alarm)
+                    ErrorMessageManager.LogError(string.Format(errorFormat, "much military equipment", tanks.Count, maxME));
                 return false;
             }
         }
         else if (obj is IUnit unit)
         {
-            if (units.Count + 1 < maxUnits)
+            if (units.Count < maxUnits)
             {
                 Debug.Log("Unit");
                 units.Add(unit);
                 return true;
             }
-            else if (!silent)
+            else
             {
-                ErrorMessageManager.LogError(string.Format(errorFormat, "many units", tanks.Count, maxME));
+                if (!alarm)
+                    ErrorMessageManager.LogError(string.Format(errorFormat, "many units", units.Count, maxBuildings));
                 return false;
             }
         }
         else if (obj is IBuilding building)
         {
-            if (buildings.Count + 1 < maxBuildings)
+            if (buildings.Count < maxBuildings)
             {
                 Debug.Log("Building");
 
                 buildings.Add(building);
                 return true;
             }
-            else if (!silent)
+            else
             {
-                ErrorMessageManager.LogError(string.Format(errorFormat, "many buildings", tanks.Count, maxME));
+                if (!alarm)
+                    ErrorMessageManager.LogError(string.Format(errorFormat, "many buildings", buildings.Count, maxBuildings));
                 return false;
             }
         }
@@ -87,6 +91,12 @@ public static class Economics
         return false;
     }
 
+    public static void ClearDestroyed()
+    {
+        buildings.RemoveAll((match) => match == null || !match.IsAlive());
+        tanks.RemoveAll((match) => match == null || !match.IsAlive());
+        units.RemoveAll((match) => match == null || !match.IsAlive());
+    }
 
     public static int Money => money;
     public static int Steel => steel;

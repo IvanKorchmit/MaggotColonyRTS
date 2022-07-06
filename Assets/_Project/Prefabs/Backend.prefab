@@ -120,8 +120,8 @@ MonoBehaviour:
     isGrass: 1
   trees:
   - value: 0.023
-    tile: {fileID: 11400000, guid: 8fa40e1ff3a550947a5ba83944147df0, type: 2}
-    alt: {fileID: 11400000, guid: 2725741a6656efb4a809f6f94cb209a4, type: 2}
+    tile: {fileID: 11400000, guid: fc89870a5be2b9549bfbde5aeb124a23, type: 2}
+    alt: {fileID: 11400000, guid: cf4afb4e21d2db44aa46d40fd1e5f21f, type: 2}
     tilemap: {fileID: 0}
     altTilemap: {fileID: 0}
     minimapColor:
@@ -129,24 +129,24 @@ MonoBehaviour:
       rgba: 4278226299
     isGrass: 0
   - value: 0.043
-    tile: {fileID: 11400000, guid: d19148b7afde655419af06320489bb59, type: 2}
-    alt: {fileID: 11400000, guid: fd2f031ff2ebb0c47b0ce365076ae76a, type: 2}
+    tile: {fileID: 11400000, guid: f0533f0b5d4c883428160a4e29664693, type: 2}
+    alt: {fileID: 11400000, guid: ea2612f44e810ce4cbce77596086eade, type: 2}
     tilemap: {fileID: 0}
     altTilemap: {fileID: 0}
     minimapColor:
       serializedVersion: 2
       rgba: 4278226299
     isGrass: 0
-  - value: 0.068
-    tile: {fileID: 11400000, guid: e5d94e508f1f56645b49729c5def403e, type: 2}
-    alt: {fileID: 11400000, guid: ad8a6be40d907114487845c843d7be5d, type: 2}
+  - value: 0.163
+    tile: {fileID: 11400000, guid: bedc079900b4ae84bae148d212bbdc24, type: 2}
+    alt: {fileID: 11400000, guid: fd426c8eb1bcd6943865cc594917d630, type: 2}
     tilemap: {fileID: 0}
     altTilemap: {fileID: 0}
     minimapColor:
       serializedVersion: 2
       rgba: 4278226299
     isGrass: 0
-  - value: 0.376
+  - value: 0.498
     tile: {fileID: 11400000, guid: cb811b36c9a34ce478a6e9e08ead2bea, type: 2}
     alt: {fileID: 11400000, guid: 9c4798f94956acd46bb3343d2a7df5c6, type: 2}
     tilemap: {fileID: 0}
@@ -201,7 +201,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4292721801
     isGrass: 0
-  treeDensity: 0.173
+  treeDensity: 0.506
   tilemap: {fileID: 0}
   tilemapToClear:
   - {fileID: 0}
@@ -381,8 +381,8 @@ MonoBehaviour:
   detailedGizmos: 0
   startEndModifier:
     addPoints: 0
-    exactStartPoint: 0
-    exactEndPoint: 0
+    exactStartPoint: 1
+    exactEndPoint: 1
     useRaycasting: 0
     mask:
       serializedVersion: 2
@@ -620,8 +620,8 @@ MonoBehaviour:
   partialFogAmount: 0.5
   fadeInDuration: 1
   fadeOutDuration: 1
-  renderType: 0
-  multithreaded: 1
+  renderType: 1
+  multithreaded: 0
   threads: 2
   maxMillisecondsPerFrame: 5
 --- !u!1 &1179637979300409634

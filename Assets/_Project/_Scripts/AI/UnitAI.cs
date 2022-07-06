@@ -88,7 +88,7 @@ public class UnitAI : MonoBehaviour, ISelectable, IDamagable, IUnit, IHoverable
                 attack.target = range.ClosestTarget.GetComponent<IAttackable>();
             }
             seeker.StartPath(transform.position, attack.target.transform.position);
-            targetPosition = target.transform.position;
+            targetPosition = attack.target.transform.position;
             if (range.HasTarget(attack.target.transform))
             {
                 move.canMove = false;
@@ -115,7 +115,10 @@ public class UnitAI : MonoBehaviour, ISelectable, IDamagable, IUnit, IHoverable
     {
         statsDisplay.SetActive(true);
     }
-
+    private void OnDestroy()
+    {
+        Economics.ClearDestroyed();
+    }
     public void OnUnHover()
     {
         statsDisplay.SetActive(false);

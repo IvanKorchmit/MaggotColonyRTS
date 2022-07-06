@@ -34,6 +34,7 @@ public class BugAI : MonoBehaviour, IAttackable, IDamagable
         range.OnUnspot += Range_OnUnspot;
         range.OnSpot += Range_OnSpot;
         BuildingObserver.AttackBase += BuildingObserver_AttackBase;
+        Egg.currentBugs++;
     }
 
     private void BuildingObserver_AttackBase()
@@ -125,6 +126,7 @@ public class BugAI : MonoBehaviour, IAttackable, IDamagable
             gameObject.SetActive(false);
             Destroy(corpse, 10);
             BuildingObserver.AttackBase -= BuildingObserver_AttackBase;
+            Egg.currentBugs--;
             Destroy(gameObject, 1f);
         }
     }
