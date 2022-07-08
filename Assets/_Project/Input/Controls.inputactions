@@ -15,7 +15,16 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "OnSingleClick",
+                    "name": "Select",
+                    "type": "Button",
+                    "id": "9aeb4a9d-fac4-4077-8a17-e8e3caebe3c0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "OrderAndInteract",
                     "type": "Button",
                     "id": "75f9e63b-937e-44fb-9d91-8e9c5ef1e4b2",
                     "expectedControlType": "Button",
@@ -165,11 +174,11 @@
                 {
                     "name": "",
                     "id": "da82eed3-4d03-421b-9b1a-6bc1161353c9",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "OnSingleClick",
+                    "action": "OrderAndInteract",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -203,6 +212,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "MouseWheel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "11c47e6c-ced1-4df6-be14-63a94e2ebca1",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

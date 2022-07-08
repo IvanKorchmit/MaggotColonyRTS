@@ -11,38 +11,6 @@ public class ContextMenuManager : MonoBehaviour
     [SerializeField] private CanvasScaler scaler;
     private void OnGUI()
     {
-        EventSystem cur = EventSystem.current;
-        if (!cur.IsPointerOverGameObject())
-        {
-            if (Event.current.type == EventType.MouseDown && Event.current.button == 1)
-            {
-                Vector2 mouse = Camera.main.ScreenToWorldPoint(UnityEngine.InputSystem.Mouse.current.position.ReadValue());
-                Collider2D ray = Physics2D.OverlapPoint(mouse, mask);
-                if (ray != null)
-                {
-                    if (ray.transform.TryGetComponent(out ISelectable interactable))
-                    {
-                        RectTransform rectTrans = contextMenuBase.transform as RectTransform;
-                        contextMenuBase.Init(interactable.ContextMenu);
-                        Vector2 ratio = scaler.referenceResolution;
-                        ratio.x /= Screen.width;
-                        ratio.y /= Screen.height;   
-                        rectTrans.anchoredPosition = UnityEngine.InputSystem.Mouse.current.position.ReadValue() * ratio;
-                        Vector2 apos = rectTrans.anchoredPosition;
-                        float xpos = apos.x;
-                        xpos = Mathf.Clamp(xpos, rectTrans.sizeDelta.x, Screen.width);
-                        apos.x = xpos;
-                        rectTrans.anchoredPosition = apos;
-
-                        contextMenuBase.gameObject.SetActive(true);
-                    }
-                }
-            }
-            else if (Event.current.type == EventType.MouseDown)
-            {
-                contextMenuBase.gameObject.SetActive(false);
-            }
-        }
     }
 }
 [System.Serializable]

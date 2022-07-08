@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Barrack : Building, ISelectable, IBuilding
+public class Barrack : Building, IBuilding
 {
 
     private List<GameObject> pending = new List<GameObject>();
