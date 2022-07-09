@@ -253,10 +253,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a94dae5daa00b6e47aa9560f88a17a93, type: 2}
+  m_sharedMaterial: {fileID: -8264087102772746377, guid: a94dae5daa00b6e47aa9560f88a17a93, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3080,11 +3080,11 @@ PrefabInstance:
     - target: {fileID: 529369796, guid: d15c585f6c1f4c543a508956c7a98474, type: 3}
       propertyPath: trees.Array.data[1].tilemap
       value: 
-      objectReference: {fileID: 1712466672}
+      objectReference: {fileID: 824645071}
     - target: {fileID: 529369796, guid: d15c585f6c1f4c543a508956c7a98474, type: 3}
       propertyPath: trees.Array.data[2].tilemap
       value: 
-      objectReference: {fileID: 1712466672}
+      objectReference: {fileID: 824645071}
     - target: {fileID: 529369796, guid: d15c585f6c1f4c543a508956c7a98474, type: 3}
       propertyPath: trees.Array.data[3].tilemap
       value: 
