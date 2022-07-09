@@ -1,33 +1,40 @@
 ﻿using UnityEngine;
 
-public class TankAI : UnitAI
+public class TankAI : UnitAI, ITank
 {
     [SerializeField] protected SpriteRotation headRotation;
     [SerializeField] protected float currentAngle;
     [SerializeField] protected float rotationSpeed;
     [SerializeField] protected LayerMask explosionMask;
     [SerializeField] protected AudioEvent explosion;
-    [SerializeField] protected AudioSource audioSource;
     [SerializeField] protected GameObject explosionParticle;
     protected override void Attack()
     {
         Instantiate(explosionParticle, range.ClosestTarget.position, Quaternion.identity);
         explosion.Play(audioSource);
-        var coll = Physics2D.CircleCastAll(range.ClosestTarget.position, 4f, new Vector2(), 0, explosionMask);
+        var coll = Physics2D.OverlapCircleAll(range.ClosestTarget.position, 4f,explosionMask);
         foreach (var en in coll)
         {
-            en.collider.GetComponent<IDamagable>().Damage(10, this);
+            Debug.Log(en.name);
+            en.GetComponent<IDamagable>().Damage(10, this);
         }
     }
     protected override void Update()
     {
-        if (range.ClosestTarget != null && range.ClosestTarget.IsAlive() && (order == null || order is OrderBase.AttackOrder))
+        if (order != null && order is OrderBase.AttackOrder attack)
         {
-            float angle = Rotate(range.ClosestTarget);
-            if (AttackOnRotation(angle))
+            if (attack.target != null && attack.target.IsAlive() && range.HasTarget(attack.target.transform))
             {
-                TimerUtils.AddTimer(3f, Attack);
-                move.canMove = false;
+                float angle = Rotate(range.ClosestTarget);
+                if (AttackOnRotation(angle))
+                {
+                    TimerUtils.AddTimer(3f, Attack);
+                    move.canMove = false;
+                }
+            }
+            else if (attack.target != null && attack.target.IsAlive() && !range.HasTarget(attack.target.transform))
+            {
+                seeker.StartPath(transform.position, attack.target.transform.position);
             }
         }
         else

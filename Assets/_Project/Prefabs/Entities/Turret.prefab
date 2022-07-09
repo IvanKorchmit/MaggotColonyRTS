@@ -429,6 +429,11 @@ MonoBehaviour:
   range: {fileID: 6376332065733356345}
   health: 50
   maxHealth: 0
+  attack: {fileID: 0}
+  audioSource: {fileID: 2815741955163385958}
+  spriteRotation: {fileID: 4119953507430827343}
+  damage: 0.5
+  cooldown: 0.03
   contextMenu:
     options: []
   headRotation: {fileID: 4119953507430827343}
@@ -438,14 +443,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   explosion: {fileID: 0}
-  audioSource: {fileID: 2815741955163385958}
   explosionParticle: {fileID: 0}
   shoot: {fileID: 11400000, guid: 1515ff8f8ffa95c4991385af4ba7c08b, type: 2}
   detection: {fileID: 11400000, guid: fe4b66c2b790348438d0e32b5caeba71, type: 2}
-  spriteRotation: {fileID: 4119953507430827343}
   currentTarget: {fileID: 0}
-  cooldown: 0.03
-  damage: 0.5
   direction: 0
 --- !u!114 &923457080463868708
 MonoBehaviour:
@@ -459,6 +460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aeecca79433e784eb0832632465a773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayHealth: {fileID: 0}
   priceMoney: 50
   priceSteel: 0
   priceFuel: 0
@@ -466,7 +468,7 @@ MonoBehaviour:
   maxHealth: 0
   contextMenu:
     options: []
-  actionsPreset: {fileID: 0}
+  actionsPreset: {fileID: 11400000, guid: 2aa2b22566742e243955013e1e02a108, type: 2}
   constructionPreset: {fileID: 11400000, guid: d9e94ad8d82526f4bb599cb84912e3f8, type: 2}
 --- !u!1001 &5594661622445419417
 PrefabInstance:

@@ -4,8 +4,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class ArtilleryAI : TankAI
 {
-    [SerializeField] private float damage;
-    [SerializeField] private float cooldown;
     [SerializeField] private bool isReady;
     [SerializeField] private Vector2? point = null;
     /// <summary>

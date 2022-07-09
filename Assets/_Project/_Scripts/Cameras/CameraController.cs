@@ -14,7 +14,6 @@ public class CameraController : MonoBehaviour
     Vector2 previousInput;
     Controls controls;
     
-
     private void Start()
     {
         playerCameraTranform.gameObject.SetActive(true);

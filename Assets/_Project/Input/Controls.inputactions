@@ -15,7 +15,16 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "OnSingleClick",
+                    "name": "Select",
+                    "type": "Button",
+                    "id": "9aeb4a9d-fac4-4077-8a17-e8e3caebe3c0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "OrderAndInteract",
                     "type": "Button",
                     "id": "75f9e63b-937e-44fb-9d91-8e9c5ef1e4b2",
                     "expectedControlType": "Button",
@@ -31,6 +40,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "566cafb8-2bdd-44c5-88c8-7d50076a5c05",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MouseWheel",
+                    "type": "Value",
+                    "id": "1a17d7cf-5cec-4aa0-a02e-6df7892e5675",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -147,11 +174,11 @@
                 {
                     "name": "",
                     "id": "da82eed3-4d03-421b-9b1a-6bc1161353c9",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "OnSingleClick",
+                    "action": "OrderAndInteract",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -163,6 +190,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "Cancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1c816685-505f-45f7-957a-f90da1f3973e",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5787733a-6d8c-40e9-90fa-03424d18b3f6",
+                    "path": "<Mouse>/scroll",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MouseWheel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "11c47e6c-ced1-4df6-be14-63a94e2ebca1",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
