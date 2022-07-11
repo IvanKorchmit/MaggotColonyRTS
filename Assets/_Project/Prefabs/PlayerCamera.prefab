@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4380130768256091381}
   - component: {fileID: 4162598754550425435}
   - component: {fileID: 4432847183637337647}
+  - component: {fileID: 3007697847550434833}
   m_Layer: 0
   m_Name: Output
   m_TagString: Untagged
@@ -109,6 +110,27 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!114 &3007697847550434833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3171478724200127765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ec0af1344bf2204db5c3b78db3954fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 0
+  fogFarPlane: 1
+  outsideFogStrength: 1
+  pointFiltering: 0
+  fogColor: {r: 0, g: 0, b: 0, a: 1}
+  fogColorTexture: {fileID: 0}
+  fogTextureScreenSpace: 0
+  fogColorTextureScale: 1
+  fogColorTextureHeight: 0
 --- !u!1 &3224247960205667385
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,8 +179,8 @@ MonoBehaviour:
   playerCameraTranform: {fileID: 3366202431795797448}
   speed: 20
   screenBorderThickness: 10
-  screenXLimits: {x: -100, y: 100}
-  screenYLimits: {x: -100, y: 100}
+  screenXLimits: {x: -64, y: 100}
+  screenYLimits: {x: -64, y: 100}
 --- !u!1 &8281959508748739616
 GameObject:
   m_ObjectHideFlags: 0

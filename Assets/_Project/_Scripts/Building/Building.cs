@@ -19,7 +19,10 @@ public class Building : MonoBehaviour, IBuilding, ISelectable, IHoverable
     }
 
 
-
+    private void OnDestroy()
+    {
+        Economics.ClearDestroyed();
+    }
 
 
 
@@ -48,6 +51,7 @@ public class Building : MonoBehaviour, IBuilding, ISelectable, IHoverable
     }
     protected virtual void Start()
     {
+        Economics.CountObject(this);
         maxHealth = health;
         actionsPreset.AddToObject(this, contextMenu);
         ConstructBehaviour cb = GetComponent<ConstructBehaviour>();
@@ -70,9 +74,9 @@ public class Building : MonoBehaviour, IBuilding, ISelectable, IHoverable
         }
     }
 
-    public bool Select() => false;
+    public bool Select() => true;
 
     public void Action(OrderBase order) { }
 
-    public bool Deselect() => false;
+    public bool Deselect() => true;
 }

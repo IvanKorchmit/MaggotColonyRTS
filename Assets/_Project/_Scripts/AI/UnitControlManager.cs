@@ -5,6 +5,9 @@ using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 public class UnitControlManager : MonoBehaviour
 {
+    [SerializeField] private GameObject contextMenuBase;
+    [SerializeField] private Transform panel;
+    [SerializeField] private LayerMask selectionMask;
     [SerializeField] private float doubleClickTime;
     private Vector2 lastClick;
     private Camera mainCam;
@@ -34,12 +37,16 @@ public class UnitControlManager : MonoBehaviour
         {
             item.Deselect();
         }
+        foreach (Transform item in panel)
+        {
+            item.SetParent(null);
+            Destroy(item.gameObject);
+        }
         selected.Clear();
     }
 
     private void OnClick()
     {
-        OnDoubleClick();
         selectionBox.gameObject.SetActive(true);
         lastClick = RT2Mouse.GetMousePosition();
         selectionBox.transform.position = lastClick;
@@ -48,14 +55,18 @@ public class UnitControlManager : MonoBehaviour
     {
         selectionBox.gameObject.SetActive(false);
         Vector2 releasePos = mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        var units = Physics2D.OverlapAreaAll(lastClick, releasePos, LayerMask.GetMask("Player"));
+        var units = Physics2D.OverlapAreaAll(lastClick, releasePos, selectionMask);
         foreach (var item in units)
         {
             var sel = item != null ? item.GetComponent<ISelectable>() : null;
             if (sel != null)
             {
-                sel.Select();
-                selected.Add(sel);
+                if (selected.Contains(sel)) continue;
+                if (sel.Select())
+                {
+                    selected.Add(sel);
+                    Instantiate(contextMenuBase, panel).GetComponent<ContextMenuGameObject>().Init(sel.ContextMenu);
+                }
             }
         }
     }
@@ -73,7 +84,7 @@ public class UnitControlManager : MonoBehaviour
             }
         }
     }
-    private void OnDoubleClick()
+    public void MoveUnits()
     {
         selected.RemoveAll((m) => m == null || !m.IsAlive());
         Vector2 mouse = mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());

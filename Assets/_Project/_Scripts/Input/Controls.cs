@@ -37,7 +37,16 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""OnSingleClick"",
+                    ""name"": ""Select"",
+                    ""type"": ""Button"",
+                    ""id"": ""9aeb4a9d-fac4-4077-8a17-e8e3caebe3c0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""OrderAndInteract"",
                     ""type"": ""Button"",
                     ""id"": ""75f9e63b-937e-44fb-9d91-8e9c5ef1e4b2"",
                     ""expectedControlType"": ""Button"",
@@ -53,6 +62,24 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""566cafb8-2bdd-44c5-88c8-7d50076a5c05"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MouseWheel"",
+                    ""type"": ""Value"",
+                    ""id"": ""1a17d7cf-5cec-4aa0-a02e-6df7892e5675"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -169,11 +196,11 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""da82eed3-4d03-421b-9b1a-6bc1161353c9"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""OnSingleClick"",
+                    ""action"": ""OrderAndInteract"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -185,6 +212,39 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1c816685-505f-45f7-957a-f90da1f3973e"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5787733a-6d8c-40e9-90fa-03424d18b3f6"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseWheel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""11c47e6c-ced1-4df6-be14-63a94e2ebca1"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -213,8 +273,11 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_MoveCamera = m_Player.FindAction("Move Camera", throwIfNotFound: true);
-        m_Player_OnSingleClick = m_Player.FindAction("OnSingleClick", throwIfNotFound: true);
+        m_Player_Select = m_Player.FindAction("Select", throwIfNotFound: true);
+        m_Player_OrderAndInteract = m_Player.FindAction("OrderAndInteract", throwIfNotFound: true);
         m_Player_Cancel = m_Player.FindAction("Cancel", throwIfNotFound: true);
+        m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
+        m_Player_MouseWheel = m_Player.FindAction("MouseWheel", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -275,15 +338,21 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_MoveCamera;
-    private readonly InputAction m_Player_OnSingleClick;
+    private readonly InputAction m_Player_Select;
+    private readonly InputAction m_Player_OrderAndInteract;
     private readonly InputAction m_Player_Cancel;
+    private readonly InputAction m_Player_Pause;
+    private readonly InputAction m_Player_MouseWheel;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
         public PlayerActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @MoveCamera => m_Wrapper.m_Player_MoveCamera;
-        public InputAction @OnSingleClick => m_Wrapper.m_Player_OnSingleClick;
+        public InputAction @Select => m_Wrapper.m_Player_Select;
+        public InputAction @OrderAndInteract => m_Wrapper.m_Player_OrderAndInteract;
         public InputAction @Cancel => m_Wrapper.m_Player_Cancel;
+        public InputAction @Pause => m_Wrapper.m_Player_Pause;
+        public InputAction @MouseWheel => m_Wrapper.m_Player_MouseWheel;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -296,12 +365,21 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @MoveCamera.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveCamera;
                 @MoveCamera.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveCamera;
                 @MoveCamera.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveCamera;
-                @OnSingleClick.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOnSingleClick;
-                @OnSingleClick.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOnSingleClick;
-                @OnSingleClick.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOnSingleClick;
+                @Select.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelect;
+                @Select.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelect;
+                @Select.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelect;
+                @OrderAndInteract.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOrderAndInteract;
+                @OrderAndInteract.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOrderAndInteract;
+                @OrderAndInteract.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOrderAndInteract;
                 @Cancel.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCancel;
                 @Cancel.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCancel;
                 @Cancel.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCancel;
+                @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @MouseWheel.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouseWheel;
+                @MouseWheel.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouseWheel;
+                @MouseWheel.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouseWheel;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -309,12 +387,21 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @MoveCamera.started += instance.OnMoveCamera;
                 @MoveCamera.performed += instance.OnMoveCamera;
                 @MoveCamera.canceled += instance.OnMoveCamera;
-                @OnSingleClick.started += instance.OnOnSingleClick;
-                @OnSingleClick.performed += instance.OnOnSingleClick;
-                @OnSingleClick.canceled += instance.OnOnSingleClick;
+                @Select.started += instance.OnSelect;
+                @Select.performed += instance.OnSelect;
+                @Select.canceled += instance.OnSelect;
+                @OrderAndInteract.started += instance.OnOrderAndInteract;
+                @OrderAndInteract.performed += instance.OnOrderAndInteract;
+                @OrderAndInteract.canceled += instance.OnOrderAndInteract;
                 @Cancel.started += instance.OnCancel;
                 @Cancel.performed += instance.OnCancel;
                 @Cancel.canceled += instance.OnCancel;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
+                @MouseWheel.started += instance.OnMouseWheel;
+                @MouseWheel.performed += instance.OnMouseWheel;
+                @MouseWheel.canceled += instance.OnMouseWheel;
             }
         }
     }
@@ -331,7 +418,10 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnMoveCamera(InputAction.CallbackContext context);
-        void OnOnSingleClick(InputAction.CallbackContext context);
+        void OnSelect(InputAction.CallbackContext context);
+        void OnOrderAndInteract(InputAction.CallbackContext context);
         void OnCancel(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
+        void OnMouseWheel(InputAction.CallbackContext context);
     }
 }

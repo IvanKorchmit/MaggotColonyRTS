@@ -120,8 +120,8 @@ MonoBehaviour:
     isGrass: 1
   trees:
   - value: 0.023
-    tile: {fileID: 11400000, guid: 8fa40e1ff3a550947a5ba83944147df0, type: 2}
-    alt: {fileID: 11400000, guid: 2725741a6656efb4a809f6f94cb209a4, type: 2}
+    tile: {fileID: 11400000, guid: fc89870a5be2b9549bfbde5aeb124a23, type: 2}
+    alt: {fileID: 11400000, guid: cf4afb4e21d2db44aa46d40fd1e5f21f, type: 2}
     tilemap: {fileID: 0}
     altTilemap: {fileID: 0}
     minimapColor:
@@ -129,24 +129,24 @@ MonoBehaviour:
       rgba: 4278226299
     isGrass: 0
   - value: 0.043
-    tile: {fileID: 11400000, guid: d19148b7afde655419af06320489bb59, type: 2}
-    alt: {fileID: 11400000, guid: fd2f031ff2ebb0c47b0ce365076ae76a, type: 2}
+    tile: {fileID: 11400000, guid: f0533f0b5d4c883428160a4e29664693, type: 2}
+    alt: {fileID: 11400000, guid: ea2612f44e810ce4cbce77596086eade, type: 2}
     tilemap: {fileID: 0}
     altTilemap: {fileID: 0}
     minimapColor:
       serializedVersion: 2
       rgba: 4278226299
     isGrass: 0
-  - value: 0.068
-    tile: {fileID: 11400000, guid: e5d94e508f1f56645b49729c5def403e, type: 2}
-    alt: {fileID: 11400000, guid: ad8a6be40d907114487845c843d7be5d, type: 2}
+  - value: 0.163
+    tile: {fileID: 11400000, guid: bedc079900b4ae84bae148d212bbdc24, type: 2}
+    alt: {fileID: 11400000, guid: fd426c8eb1bcd6943865cc594917d630, type: 2}
     tilemap: {fileID: 0}
     altTilemap: {fileID: 0}
     minimapColor:
       serializedVersion: 2
       rgba: 4278226299
     isGrass: 0
-  - value: 0.376
+  - value: 0.498
     tile: {fileID: 11400000, guid: cb811b36c9a34ce478a6e9e08ead2bea, type: 2}
     alt: {fileID: 11400000, guid: 9c4798f94956acd46bb3343d2a7df5c6, type: 2}
     tilemap: {fileID: 0}
@@ -201,7 +201,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4292721801
     isGrass: 0
-  treeDensity: 0.173
+  treeDensity: 0.506
   tilemap: {fileID: 0}
   tilemapToClear:
   - {fileID: 0}
@@ -381,8 +381,8 @@ MonoBehaviour:
   detailedGizmos: 0
   startEndModifier:
     addPoints: 0
-    exactStartPoint: 0
-    exactEndPoint: 0
+    exactStartPoint: 1
+    exactEndPoint: 1
     useRaycasting: 0
     mask:
       serializedVersion: 2
@@ -437,6 +437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40ac3a4d03821af4eb6c642be2e67c89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  contextMenuBase: {fileID: 0}
   doubleClickTime: 0.21
   selectionBox: {fileID: 0}
 --- !u!114 &676015682
@@ -469,7 +470,19 @@ MonoBehaviour:
     m_ActionId: 354c2d74-6dc6-4043-8df2-c531634ceceb
     m_ActionName: Player/Move Camera[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1179637977339157551}
+        m_TargetAssemblyTypeName: UnitControlManager, Assembly-CSharp
+        m_MethodName: MoveUnits
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 75f9e63b-937e-44fb-9d91-8e9c5ef1e4b2
     m_ActionName: Player/OnSingleClick[/Mouse/leftButton]
   - m_PersistentCalls:
@@ -488,6 +501,18 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 6107a705-3dcc-4362-98ed-47770452fb5e
     m_ActionName: Player/Cancel[/Keyboard/c]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 566cafb8-2bdd-44c5-88c8-7d50076a5c05
+    m_ActionName: Player/Pause[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1a17d7cf-5cec-4aa0-a02e-6df7892e5675
+    m_ActionName: Player/MouseWheel[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9aeb4a9d-fac4-4077-8a17-e8e3caebe3c0
+    m_ActionName: Player/Select[/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -546,7 +571,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1179637978507701430}
-  - component: {fileID: 1179637978507701429}
   - component: {fileID: 1179637978507701428}
   m_Layer: 0
   m_Name: Backend
@@ -575,23 +599,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1179637978507701429
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1179637978507701431}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IsGlobal: 1
-  priority: 0
-  blendDistance: 0
-  weight: 1
-  sharedProfile: {fileID: 11400000, guid: bb40c585799ff9441bcb4ce7c0c2113d, type: 2}
 --- !u!114 &1179637978507701428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -838,19 +845,51 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3224247960205667387, guid: ff4f50c8b281fe54da564594867e11da, type: 3}
       propertyPath: screenXLimits.x
-      value: -256
+      value: -128
       objectReference: {fileID: 0}
     - target: {fileID: 3224247960205667387, guid: ff4f50c8b281fe54da564594867e11da, type: 3}
       propertyPath: screenXLimits.y
-      value: 256
+      value: 128
       objectReference: {fileID: 0}
     - target: {fileID: 3224247960205667387, guid: ff4f50c8b281fe54da564594867e11da, type: 3}
       propertyPath: screenYLimits.x
-      value: -256
+      value: -128
       objectReference: {fileID: 0}
     - target: {fileID: 3224247960205667387, guid: ff4f50c8b281fe54da564594867e11da, type: 3}
       propertyPath: screenYLimits.y
-      value: 256
+      value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162598754550425435, guid: ff4f50c8b281fe54da564594867e11da, type: 3}
+      propertyPath: m_ClearFlags
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162598754550425435, guid: ff4f50c8b281fe54da564594867e11da, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162598754550425435, guid: ff4f50c8b281fe54da564594867e11da, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162598754550425435, guid: ff4f50c8b281fe54da564594867e11da, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6064709405387129235, guid: ff4f50c8b281fe54da564594867e11da, type: 3}
+      propertyPath: m_ClearFlags
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6064709405387129235, guid: ff4f50c8b281fe54da564594867e11da, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6064709405387129235, guid: ff4f50c8b281fe54da564594867e11da, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6064709405387129235, guid: ff4f50c8b281fe54da564594867e11da, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff4f50c8b281fe54da564594867e11da, type: 3}
@@ -864,3 +903,83 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3366202431795797448, guid: ff4f50c8b281fe54da564594867e11da, type: 3}
   m_PrefabInstance: {fileID: 1179637977196539075}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7111610656767281379 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8281959508748739616, guid: ff4f50c8b281fe54da564594867e11da, type: 3}
+  m_PrefabInstance: {fileID: 1179637977196539075}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2121173544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7111610656767281379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f86bd3746837ae42b291ee786a97fcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensitivity: 24
+--- !u!114 &2121173545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7111610656767281379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: b2133973c2baf634ba04eb3630350dc7, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 354c2d74-6dc6-4043-8df2-c531634ceceb
+    m_ActionName: Player/Move Camera[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 75f9e63b-937e-44fb-9d91-8e9c5ef1e4b2
+    m_ActionName: Player/OnSingleClick[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6107a705-3dcc-4362-98ed-47770452fb5e
+    m_ActionName: Player/Cancel[/Keyboard/c]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 566cafb8-2bdd-44c5-88c8-7d50076a5c05
+    m_ActionName: Player/Pause[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2121173544}
+        m_TargetAssemblyTypeName: MouseScroll, Assembly-CSharp
+        m_MethodName: Scroll
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 1a17d7cf-5cec-4aa0-a02e-6df7892e5675
+    m_ActionName: Player/MouseWheel[/Mouse/scroll/y]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}

@@ -23,11 +23,14 @@ public class ConstructBehaviour : MonoBehaviour
             return;
         }
         int layer = constructionLayer;
-
         Collider2D[] resources = Physics2D.OverlapCircleAll(transform.position, MAX_DISTANCE, constructionLayer);
+        bool isMiner = obj.TryGetComponent  (out IMiner _);
+        bool isDrill = obj.TryGetComponent  (out IDrill _);
+        bool isPump = obj.TryGetComponent   (out IFuel.IPump _);
+        
         foreach (var item in resources)
         {
-            if (item.TryGetComponent(out ICrystal crystal))
+            if      (isMiner &&item.TryGetComponent(out ICrystal crystal))
             {
                 void GridSnap_OnPlaceSuccessful(Vector3 position, GameObject prefab)
                 {
@@ -68,7 +71,7 @@ public class ConstructBehaviour : MonoBehaviour
                     ErrorMessageManager.LogError("This crystal is already occupied!");
                 }
             }
-            else if (item.TryGetComponent(out ISteel steel))
+            else if (isDrill &&item.TryGetComponent(out ISteel steel))
             {
                 void GridSnap_OnPlaceSuccessful(Vector3 position, GameObject prefab)
                 {
@@ -111,7 +114,7 @@ public class ConstructBehaviour : MonoBehaviour
                 }
 
             }
-            else if (item.TryGetComponent(out IFuel fuel))
+            else if (isPump  &&item.TryGetComponent(out IFuel fuel))
             {
                 void GridSnap_OnPlaceSuccessful(Vector3 position, GameObject prefab)
                 {
@@ -166,10 +169,11 @@ public class ConstructBehaviour : MonoBehaviour
         if (price.fuel > Economics.Fuel) return;
         void GridSnap_OnPlaceSuccessful(Vector3 position, GameObject prefab)
         {
-            if (Vector2.Distance(position, transform.position) <= 25f)
+            if (Vector2.Distance(position, transform.position) <= 25f && Economics.CountObject(prefab.GetComponent<IBuilding>()))
             {
                 Economics.GainMoney(-price.money,-price.steel,-price.fuel);
                 Component[] components = prefab.GetComponentsInChildren<Component>();
+
                 foreach (Component comp in components)
                 {
                     if (comp is Renderer) continue;
@@ -186,7 +190,7 @@ public class ConstructBehaviour : MonoBehaviour
                 Destroy(prefab);
                 GridSnap.OnPlaceSuccessful -= GridSnap_OnPlaceSuccessful;
             }
-            else
+            else if (Vector2.Distance(position, transform.position) > 25f)
             {
                 ErrorMessageManager.LogError("Too far away " + Vector2.Distance((Vector3)position, transform.position));
             }

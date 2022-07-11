@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class BuildingObserver : MonoBehaviour
 {
+
     private const int MINUTES_BEFORE_ATTACK = 3;
     public static event System.Action AttackBase;
     private List<IBuilding> buildingsToObserve;
     private static BuildingObserver instance;
+    private static int selectAmount = 3;
+    public static int SelectAmount => selectAmount;
+    public static int currentlySelected = 0;
     public static void Observe(IBuilding building)
     {
         instance.buildingsToObserve.Add(building);
@@ -20,7 +24,7 @@ public class BuildingObserver : MonoBehaviour
     {
         instance = this;
         buildingsToObserve = new List<IBuilding>();
-        InvokeRepeating(nameof(Invoke), 5, 60*MINUTES_BEFORE_ATTACK);
+        InvokeRepeating(nameof(Invoke), 60*MINUTES_BEFORE_ATTACK, 60*MINUTES_BEFORE_ATTACK);
     }
     public static IBuilding GetBuilding()
     {
@@ -33,6 +37,8 @@ public class BuildingObserver : MonoBehaviour
     private void Invoke()
     {
         AttackBase?.Invoke();
+        currentlySelected = 0;
+        selectAmount *= selectAmount;
     }
     private void OnGUI()
     {

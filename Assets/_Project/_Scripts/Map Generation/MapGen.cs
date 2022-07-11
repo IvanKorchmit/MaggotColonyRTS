@@ -90,8 +90,8 @@ public class MapGen : MonoBehaviour
     }
     private void GenerateTree(float x, float y, ModuleBase noise)
     {
-        NoiseTile tree = GetTileFromNoise(x, y, noise, trees, 1f - treeDensity, out double sample);
-        if (sample <= treeDensity && tree.altTilemap != null)
+        NoiseTile tree = GetTileFromNoise(x, y, noise, trees, 1F-treeDensity, out double sample);
+        if (sample < treeDensity && tree.altTilemap != null)
         {
             tree.tilemap.SetTile(new Vector3Int((int)x, (int)y), tree.tile);
             tree.altTilemap.SetTile(new Vector3Int((int)x, (int)y), tree.alt);

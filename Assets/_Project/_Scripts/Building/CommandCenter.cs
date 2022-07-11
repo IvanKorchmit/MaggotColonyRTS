@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CommandCenter : Building, ISelectable, IBuilding
+public class CommandCenter : Building, IBuilding
 {
     [SerializeField] private GameObject[] startUnits;
     public override void Sell()
@@ -17,7 +17,8 @@ public class CommandCenter : Building, ISelectable, IBuilding
         base.Start();
         foreach (var u in startUnits)
         {
-            Instantiate(u, (Vector2)transform.position + Random.insideUnitCircle * 2f, Quaternion.identity);
+            var st_ = Instantiate(u, (Vector2)transform.position + Random.insideUnitCircle * 2f, Quaternion.identity);
+            Economics.CountObject(st_.GetComponent<IDamagable>());
         }
     }
 }
