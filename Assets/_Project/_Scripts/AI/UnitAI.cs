@@ -48,6 +48,10 @@ public class UnitAI : MonoBehaviour, ISelectable, IDamagable, IUnit, IHoverable
             seeker.StartPath(transform.position, move.position);
             this.move.canMove = true;
         }
+        else if (order is OrderBase.HealOrder heal)
+        {
+            ///heal
+        }
         this.order = order;
 
     }
@@ -78,6 +82,12 @@ public class UnitAI : MonoBehaviour, ISelectable, IDamagable, IUnit, IHoverable
         target.Damage(damage, this);
         attack.Play(audioSource);
     }
+
+    protected virtual void Heal(IHealable targetToHeal)
+    {
+        targetToHeal.Heal();
+    }
+
     // Update is called once per frame
     protected virtual void Update()
     {
@@ -146,3 +156,5 @@ public static class UnityObjectAliveExtension
 
 public interface IUnit { }
 public interface ITank { }
+public interface IHealer { }
+

@@ -128,6 +128,11 @@ public interface ISelectable : ITransformAndGameObject
 public interface IAttackable : IDamagable
 {
 }
+
+public interface IHealable : ITransformAndGameObject
+{
+    void Heal();
+}
 public abstract class OrderBase
 {
     public class MoveOrder : OrderBase
@@ -138,5 +143,10 @@ public abstract class OrderBase
     public class AttackOrder : OrderBase
     {
         public IAttackable target;
+    }
+
+    public class HealOrder : OrderBase
+    {
+        public IHealable target;
     }
 }
