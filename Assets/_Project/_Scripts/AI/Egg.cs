@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,35 @@ public class Egg : MonoBehaviour, IAttackable, IDamagable, IHoverable
     [SerializeField] private GameObject displayHealth;
     public static int currentBugs;
     public const int BUGS_LIMIT = 50;
+
+
+
+
+
+
+
+    [SerializeField] private GameObject bug;
+    [SerializeField] private float health = 300;
+    private float maxHealth;
+
+    public static event Action<Egg> ServerOnBaseSpawned;
+    public static event Action<Egg> ServerOnBaseDespawned;
+
+
+    public void OnEnable()
+    {
+        //health.ServerOnDie += ServerHandleDie;
+
+        ServerOnBaseSpawned?.Invoke(this);
+    }
+
+    public void OnDisable()
+    {
+        //health.ServerOnDie -= ServerHandleDie;
+
+        ServerOnBaseDespawned?.Invoke(this);
+    }
+
     public void OnHover()
     {
         displayHealth.SetActive(true);
@@ -20,14 +50,6 @@ public class Egg : MonoBehaviour, IAttackable, IDamagable, IHoverable
 
 
 
-
-
-
-
-
-    [SerializeField] private GameObject bug;
-    [SerializeField] private float health = 300;
-    private float maxHealth;
     public float Health => health;
 
     public float MaxHealth => maxHealth;
@@ -35,7 +57,7 @@ public class Egg : MonoBehaviour, IAttackable, IDamagable, IHoverable
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating(nameof(SpawnCycle), 60 * 5, Random.Range(60,90));
+        InvokeRepeating(nameof(SpawnCycle), 60 * 5, UnityEngine.Random.Range(60,90));
         maxHealth = health;
     }
 
@@ -54,7 +76,7 @@ public class Egg : MonoBehaviour, IAttackable, IDamagable, IHoverable
     public void Damage(float damage, IDamagable owner)
     {
         health -= damage;
-        if (Random.value >= 0.9f)
+        if (UnityEngine.Random.value >= 0.9f)
         {
             // Trigger spawning enemies on attack
             for (int i = 0; i < ((int)damage == 0 ? 1 : (int)damage / 2); i++)
